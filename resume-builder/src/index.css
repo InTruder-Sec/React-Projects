@@ -6,6 +6,8 @@
 body {
   margin: 0px;
   background-color: hsl(329, 100%, 91%);
+  font-family: 'Titillium Web', sans-serif;
+  transition: 0.5s;
 }
 
 
@@ -18,7 +20,8 @@ body {
 .DesktopImg {
   position: absolute;
   right: 20px;
-  top: 100px
+  top: 100px;
+  transition: 0.8s ease;
 }
 
 .firstStepx032 {
@@ -38,12 +41,17 @@ body {
   margin-top: 10px;
 }
 
+.firstStepx032 {
+  transition: 0.5s;
+}
+
 .startBtn {
   width: fit-content;
   padding: 10px 20px;
   margin-left: 10px;
   font-family: 'Titillium Web', sans-serif;
   font-size: 16px;
+  margin-top: 20px;
   background-color: rgb(31, 153, 214);
   border: 0px;
   border-radius: 5px;
@@ -53,3 +61,12 @@ body {
 .startBtn:hover {
   background-color: rgb(117, 194, 233);
 }
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+
