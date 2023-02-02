@@ -3,7 +3,7 @@ import React from "react";
 
 function Template1() {
     return (
-        <div className="template1">
+        <div className="template1" id="template" value='1'>
             <div className='temp_0x32' id="tempDiv"></div>
             <div className="tempName_0x32" id="tempName">Captain Price</div>
             <div className="tempProf_0x32">Profession</div>

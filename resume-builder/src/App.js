@@ -6,12 +6,19 @@ import Template1 from './templates/template1';
 import Template2 from './templates/template2';
 
 
+// Resume parameters
+let crrColor = '#15abab';
+let theme = "";
+
+
 function App() {
   return (
     <div className="wrapper">
       <NavPannel />
       <img className='DesktopImg' id='desktopImg' alt='image' src={DisplayImg}></img>
+      <ProgressDiv />
       <Step1Div />
+      <Step2Div />
       <FirstDisplay />
       <FooterDiv />
       
@@ -29,6 +36,14 @@ function FirstDisplay() {
   )
 }
 
+function ProgressDiv() {
+  return (
+    <div className='ProgressBar'>
+        <div className='currentProgress' id='currentProgress'></div>
+    </div> 
+  )
+}
+
 
 
 function Step1() {
@@ -38,24 +53,37 @@ function Step1() {
   rImg.style.right = "43%";
   document.getElementById('currentProgress').style.width = "10%";
   rImg.style.opacity = '0.8';
+  document.querySelector('.ProgressBar').style.opacity = 1;
+  document.querySelectorAll('#newColor').forEach((e) => {
+    e.addEventListener('click', () => {
+      let q = e.value;
+      changeColor(q);
+    });
+  })
+
+  document.querySelectorAll('#template').forEach((e) => {
+    e.addEventListener('click', () => {
+      let q = e.className;
+      changeTheme(q);
+    });
+  })
+  document.querySelector('#nextStp').addEventListener("click", Step2DivCheck);
 }
 
 
 function Step1Div() {
   return (
     <div className='s1Div' id='s1Div'>
-      <div className='ProgressBar'>
-        <div className='currentProgress' id='currentProgress'></div>
-      </div>  
+      
       <div className='currHead'>Select Template</div>
       <div className='selectTheme'>Theme:</div>
       <div className='colors'>
-        <input className='color color1' type='button'  onClick={ChangeColor1}></input>
-        <input className='color color2' type='button' onClick={ChangeColor2}></input>
-        <input className='color color3' type='button' onClick={ChangeColor3}></input>
-        <input className='color color4' type='button' onClick={ChangeColor4}></input>
-        <input className='color color5' type='button' onClick={ChangeColor5}></input>
-        <input className='color color6' type='button' onClick={ChangeColor6}></input>
+        <button className='color color1' id='newColor' value='#5b509b'></button>
+        <button className='color color2' id='newColor' value='#17a9e4'></button>
+        <button className='color color3' id='newColor' value='#232323'></button>
+        <button className='color color4' id='newColor' value='rgb(255, 156, 170)'></button>
+        <button className='color color5' id='newColor' value='#acd68b'></button>
+        <button className='color color6' id='newColor' value='#15abab'></button>
       </div>
       <div className='templateList'>
       <table>
@@ -64,74 +92,70 @@ function Step1Div() {
           <td><Template2 /></td>
         </tr>
       </table>
-      <button className='nxtBtn'>Next</button>
+      <button className='nxtBtn' id='nextStp'>Next</button>
+      <div className='checkParam' id='warn'></div>
         
       </div>
     </div>
   )
 }
 
+function changeColor(atr) {
 
-function ChangeColor1() {
-  document.getElementById('tempName').style.color = '#5b509b';
-  document.getElementById('tempDiv').style.backgroundColor = '#5b509b';
-  document.getElementById('tempHR').style.border = 'solid 1px #5b509b';
+  document.getElementById('tempName').style.color = atr;
+  document.getElementById('tempDiv').style.backgroundColor = atr;
+  document.getElementById('tempHR').style.border = 'solid 1px ' + atr;
   document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = '#5b509b';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px #5b509b';
+  document.getElementById('tempDiv_0x33').style.backgroundColor = atr;
+  document.getElementById('tempHR_0x33').style.border = 'solid 1px ' + atr;
+  crrColor = atr;
 }
 
-function ChangeColor2() {
-  document.getElementById('tempName').style.color = '#17a9e4';
-  document.getElementById('tempDiv').style.backgroundColor = '#17a9e4';
-  document.getElementById('tempHR').style.border = 'solid 1px #17a9e4';
-  document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = '#17a9e4';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px #17a9e4';
+function changeTheme(atr) {
+  if (atr==='template1') {
+    document.querySelector('.template1').style.border = 'solid 2px blue'
+    document.querySelector('.template2').style.border = 'solid 1px black';
+    theme = 1;
+  } else {
+    document.querySelector('.template1').style.border = 'solid 1px black';
+    document.querySelector('.template2').style.border = 'solid 2px blue';
+  }
+  theme = 1;
 }
 
-function ChangeColor3() {
-  document.getElementById('tempName').style.color = '#232323';
-  document.getElementById('tempDiv').style.backgroundColor = '#232323';
-  document.getElementById('tempHR').style.border = 'solid 1px #232323';
-  document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = '#232323';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px #232323';
+
+function Step2DivCheck() {
+  // check
+  if (theme==="") {
+    document.querySelector('#warn').innerHTML = "⚠ Please Select a Theme"
+  } else {
+    document.getElementById('s1Div').style.opacity = 0;
+    document.getElementById('s1Div').style.zIndex = 0;
+    document.getElementById('currentProgress').style.width = "30%"; 
+    document.querySelector('.stp2Div').style.opacity = 1;
+    document.querySelector('.stp2Div').style.zIndex = 2;
+  }
 }
 
-function ChangeColor4() {
-  document.getElementById('tempName').style.color = 'rgb(255, 156, 170)';
-  document.getElementById('tempDiv').style.backgroundColor = 'rgb(255, 156, 170)';
-  document.getElementById('tempHR').style.border = 'solid 1px rgb(255, 156, 170)';
-  document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = 'rgb(255, 156, 170)';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px rgb(255, 156, 170)';
+function Step2Div() {
+  return (
+    <div className='stp2Div'>
+      <div className='currHead'>About You</div>
+      <div className='AboutDiv'>
+        <label className='fnLable'>Name:</label><br/>
+        <input type='text' className='fnInput'></input>
+      </div>
+    </div>
+  )
 }
 
-function ChangeColor5() {
-  document.getElementById('tempName').style.color = '#acd68b';
-  document.getElementById('tempDiv').style.backgroundColor = '#acd68b';
-  document.getElementById('tempHR').style.border = 'solid 1px #acd68b';
-  document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = '#acd68b';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px #acd68b';
-}
 
-function ChangeColor6() {
-  document.getElementById('tempName').style.color = '#15abab';
-  document.getElementById('tempDiv').style.backgroundColor = '#15abab';
-  document.getElementById('tempHR').style.border = 'solid 1px #15abab';
-  document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = '#15abab';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px #15abab';
-}
+
+
+
+
+
 
 
 export default App;
 
-
-// <div className='currHead'>About You</div>
-//       <div className='AboutDiv'>
-//         <label className='fnLable'>Name:</label><br/>
-//         <input type='text' className='fnInput'></input>
-//       </div>

@@ -8,6 +8,7 @@ body {
   background-color: hsl(329, 100%, 91%);
   font-family: 'Titillium Web', sans-serif;
   transition: 0.5s;
+  cursor: default;
 }
 
 
@@ -98,9 +99,13 @@ body {
 }
 
 .ProgressBar {
+  position: absolute;
+  right: 200px;
   width: 450px;
   height: 8px;
+  opacity: 0;
   border-radius: 4px;
+  margin-top: -10px;
   background-color: white;
 }
 
@@ -110,7 +115,6 @@ body {
   height: 8px;
   border-radius: 4px;
   transition: 0.8s;
-  margin-top: 4px;
 }
 
 .Step_x032 {
@@ -119,7 +123,7 @@ body {
 
 .currHead {
   font-size: 30px;
-  margin-top: 20px;
+  margin-top: 30px;
   text-decoration: underline 2px;
 }
 
@@ -139,6 +143,7 @@ body {
   margin-left: 30px;
   margin-top: 10px;
   display: inline-block;
+  border: solid black 1px;
 }
 
 .color1 {
@@ -175,7 +180,7 @@ body {
   display: inline-block;
   height: 270px;
   border-radius: 5px;
-  border: solid black 0.2px;
+  border: solid black 1px;
   background-color:  white;
 }
 
@@ -216,7 +221,6 @@ body {
 
 .template2 {
   width: 200px;
-  margin-top: 10px;
   display: inline-block;
   height: 270px;
   margin-left: 40px;
@@ -267,4 +271,53 @@ body {
   font-size: 9px;
   margin-left: 55px;
   margin-top: 33px;
+}
+
+.tempSkill_0x33 {
+  margin-top: 70px;
+  font-size: 9px;
+  margin-left: 5px;
+  display: inline-block;
+}
+.tempAbout_0x33 {
+  font-size: 9px;
+  margin-left: 35px;
+  display: inline-block;
+}
+
+.tempPro_0x33 {
+  margin-top: 40px;
+  font-size: 9px;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.tempExp_0x33 {
+  display: inline-block;
+  font-size: 9px;
+  margin-left: 25px;
+}
+
+.tempEdu_0x33 {
+  font-size: 9px;
+  margin-top: 40px;
+  margin-left: 68px;
+}
+
+
+.checkParam {
+  margin-left: 20px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.stp2Div {
+  position: absolute;
+  right: 150px;
+  width: 500px;
+  height: 70vh;
+  opacity: 0;
+  margin-top: -20px;
+  z-index: 0;
+  transition: 0.7s;
 }
