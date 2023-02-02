@@ -8,6 +8,7 @@ function Template2() {
                 <div className="tempProf_0x33" id="tempProff_0x33">Profession</div>
             </div>
             <hr className="tempHR_0x33" id="tempHR_0x33"></hr>
+            
         </div>
     )
 }

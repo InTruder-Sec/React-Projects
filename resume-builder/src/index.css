@@ -154,7 +154,7 @@ body {
 }
 
 .color4 {
-  background-color: hwb(351 61% 0%);
+  background-color: rgb(255, 156, 170);
 }
 
 .color5 {
@@ -256,4 +256,15 @@ body {
   width: 180px;
   margin-top: 160px;
 
+}
+
+.tempAbout_0x32 {
+  margin-left: 55px;
+  font-size: 9px;
+}
+
+.tempSkill_0x32 {
+  font-size: 9px;
+  margin-left: 55px;
+  margin-top: 33px;
 }

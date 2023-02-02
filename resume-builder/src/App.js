@@ -37,6 +37,7 @@ function Step1() {
   document.getElementById('s1Div').style.opacity = 1;
   rImg.style.right = "43%";
   document.getElementById('currentProgress').style.width = "10%";
+  rImg.style.opacity = '0.8';
 }
 
 
@@ -49,12 +50,12 @@ function Step1Div() {
       <div className='currHead'>Select Template</div>
       <div className='selectTheme'>Theme:</div>
       <div className='colors'>
-        <div className='color color1' onClick={ChangeColor1}></div>
-        <div className='color color2' onClick={ChangeColor2}></div>
-        <div className='color color3' onClick={ChangeColor3}></div>
-        <div className='color color4' onClick={ChangeColor4}></div>
-        <div className='color color5' onClick={ChangeColor5}></div>
-        <div className='color color6' onClick={ChangeColor6}></div>
+        <input className='color color1' type='button'  onClick={ChangeColor1}></input>
+        <input className='color color2' type='button' onClick={ChangeColor2}></input>
+        <input className='color color3' type='button' onClick={ChangeColor3}></input>
+        <input className='color color4' type='button' onClick={ChangeColor4}></input>
+        <input className='color color5' type='button' onClick={ChangeColor5}></input>
+        <input className='color color6' type='button' onClick={ChangeColor6}></input>
       </div>
       <div className='templateList'>
       <table>
@@ -99,12 +100,12 @@ function ChangeColor3() {
 }
 
 function ChangeColor4() {
-  document.getElementById('tempName').style.color = 'hwb(351 61% 0%)';
-  document.getElementById('tempDiv').style.backgroundColor = 'hwb(351 61% 0%)';
-  document.getElementById('tempHR').style.border = 'solid 1px hwb(351 61% 0%)';
+  document.getElementById('tempName').style.color = 'rgb(255, 156, 170)';
+  document.getElementById('tempDiv').style.backgroundColor = 'rgb(255, 156, 170)';
+  document.getElementById('tempHR').style.border = 'solid 1px rgb(255, 156, 170)';
   document.getElementById('tempName_0x33').style.color = 'white';
-  document.getElementById('tempDiv_0x33').style.backgroundColor = 'hwb(351 61% 0%)';
-  document.getElementById('tempHR_0x33').style.border = 'solid 1px hwb(351 61% 0%)';
+  document.getElementById('tempDiv_0x33').style.backgroundColor = 'rgb(255, 156, 170)';
+  document.getElementById('tempHR_0x33').style.border = 'solid 1px rgb(255, 156, 170)';
 }
 
 function ChangeColor5() {
