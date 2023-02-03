@@ -9,6 +9,10 @@ import Template2 from './templates/template2';
 // Resume parameters
 let crrColor = '#15abab';
 let theme = "";
+let cname = "";
+let cProf = "";
+let cAdd = "";
+let CDetails = "";
 
 
 function App() {
@@ -53,6 +57,7 @@ function Step1() {
   rImg.style.right = "43%";
   document.getElementById('currentProgress').style.width = "10%";
   rImg.style.opacity = '0.8';
+  document.querySelector('#stp2Btn').addEventListener("click", checkStep3);
   document.querySelector('.ProgressBar').style.opacity = 1;
   document.querySelectorAll('#newColor').forEach((e) => {
     e.addEventListener('click', () => {
@@ -143,10 +148,25 @@ function Step2Div() {
       <div className='currHead'>About You</div>
       <div className='AboutDiv'>
         <label className='fnLable'>Name:</label><br/>
-        <input type='text' className='fnInput'></input>
+        <input type='text' className='fnInput' required placeholder='Your Name'></input>
+        <br/><br/>
+        <label className='fnLable'>Profession:</label><br/>
+        <input type='text' className='fnInput' required placeholder='Your Profession'></input>
+        <br></br><br></br>
+        <label className='fnLable'>Address:</label><br/>
+        <input className='fnInput' required placeholder='Address'></input>
+        <br/><br/>
+        <label className='fnLable'>About You</label><br/>
+        <textarea className='ayTXT' required placeholder='About You'></textarea><br/>
+        <button className='nxtBtn newBtn' id='stp2Btn'>Next</button>
       </div>
     </div>
   )
+}
+
+
+function checkStep3() {
+  alert("Under Construction");
 }
 
 

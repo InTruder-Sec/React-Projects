@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
 
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 body {
   margin: 0px;
   background-color: hsl(329, 100%, 91%);
@@ -320,4 +326,39 @@ body {
   margin-top: -20px;
   z-index: 0;
   transition: 0.7s;
+}
+
+.fnInput {
+  height: 30px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  width: 90%;
+  margin-top: 5px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 14px;
+  border-color: rgb(250, 36, 36);
+}
+
+.ayTXT {
+  width: 90%;
+  height: 100px;
+  resize: none;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 14px;
+  border-color: rgb(250, 36, 36);
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.newBtn {
+  margin-left: 30px;
 }
