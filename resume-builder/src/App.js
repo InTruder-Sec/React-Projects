@@ -9,7 +9,7 @@ import Template2 from './templates/template2';
 // Resume parameters
 let crrColor = '#15abab';
 let theme = "";
-let cname = "";
+let cName = "";
 let cProf = "";
 let cAdd = "";
 let CDetails = "";
@@ -148,17 +148,18 @@ function Step2Div() {
       <div className='currHead'>About You</div>
       <div className='AboutDiv'>
         <label className='fnLable'>Name:</label><br/>
-        <input type='text' className='fnInput' required placeholder='Your Name'></input>
+        <input type='text' className='fnInput' required id='cName' placeholder='Your Name'></input>
         <br/><br/>
         <label className='fnLable'>Profession:</label><br/>
-        <input type='text' className='fnInput' required placeholder='Your Profession'></input>
+        <input type='text' className='fnInput' required id='cProof' placeholder='Your Profession'></input>
         <br></br><br></br>
         <label className='fnLable'>Address:</label><br/>
-        <input className='fnInput' required placeholder='Address'></input>
+        <input className='fnInput' required id='cAdd' placeholder='Address'></input>
         <br/><br/>
         <label className='fnLable'>About You</label><br/>
-        <textarea className='ayTXT' required placeholder='About You'></textarea><br/>
+        <textarea className='ayTXT' required id='cAbout' placeholder='About You'></textarea><br/>
         <button className='nxtBtn newBtn' id='stp2Btn'>Next</button>
+        <div className='checkParam warnDiv' id='warnNew'></div>
       </div>
     </div>
   )
@@ -166,7 +167,16 @@ function Step2Div() {
 
 
 function checkStep3() {
-  alert("Under Construction");
+  cName = document.querySelector('#cName').value;
+  cProf = document.querySelector('#cProf').value;
+  cAdd = document.querySelector('#cAdd').value;
+  CDetails = document.querySelector("#cAbout").value;
+  if (cName !== "" && cProf !== "" && cAdd!=="" && CDetails!=="") {
+    alert(cName);
+  } else {
+    document.querySelector(".warnDiv").innerHTML = "warnNew"
+  }
+  
 }
 
 
