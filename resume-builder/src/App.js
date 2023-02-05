@@ -23,6 +23,7 @@ function App() {
       <ProgressDiv />
       <Step1Div />
       <Step2Div />
+      <Stp3Div />
       <FirstDisplay />
       <FooterDiv />
       
@@ -154,13 +155,14 @@ function Step2Div() {
         <input type='text' className='fnInput' required id='cProof' placeholder='Your Profession'></input>
         <br></br><br></br>
         <label className='fnLable'>Address:</label><br/>
-        <input className='fnInput' required id='cAdd' placeholder='Address'></input>
+        <input className='fnInput' required id='cAdd' placeholder='Nagpur Road, Wadgaon, Chandrapur'></input>
         <br/><br/>
         <label className='fnLable'>About You</label><br/>
         <textarea className='ayTXT' required id='cAbout' placeholder='About You'></textarea><br/>
         <button className='nxtBtn newBtn' id='stp2Btn'>Next</button>
-        <div className='checkParam warnDiv' id='warnNew'></div>
+        <div className='checkParam' id='warnNew'></div>
       </div>
+      
     </div>
   )
 }
@@ -168,18 +170,29 @@ function Step2Div() {
 
 function checkStep3() {
   cName = document.querySelector('#cName').value;
-  cProf = document.querySelector('#cProf').value;
+  cProf = document.querySelector('#cProof').value;
   cAdd = document.querySelector('#cAdd').value;
   CDetails = document.querySelector("#cAbout").value;
   if (cName !== "" && cProf !== "" && cAdd!=="" && CDetails!=="") {
-    alert(cName);
+    document.querySelector(".stp2Div").style.opacity = 0;
+    document.querySelector(".stp2Div").style.zIndex = 0;
+    document.querySelector(".stp3Div").style.opacity = 1;
+    document.querySelector(".stp3Div").style.zIndex = 2;
   } else {
-    document.querySelector(".warnDiv").innerHTML = "warnNew"
+    document.querySelector("#warnNew").innerHTML = "⚠ Please enter all details"
   }
   
 }
 
 
+
+function Stp3Div() {
+  return (
+    <div className='stp3Div'>
+      <div className='currHead'>Experience</div>
+    </div>
+  )
+}
 
 
 

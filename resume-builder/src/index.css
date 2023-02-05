@@ -362,3 +362,15 @@ button:focus {
 .newBtn {
   margin-left: 30px;
 }
+
+
+.stp3Div {
+  position: absolute;
+  right: 150px;
+  width: 500px;
+  height: 70vh;
+  opacity: 0;
+  margin-top: -20px;
+  z-index: 0;
+  transition: 0.7s;
+}
