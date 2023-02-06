@@ -177,6 +177,7 @@ function checkStep3() {
     document.querySelector(".stp2Div").style.opacity = 0;
     document.querySelector(".stp2Div").style.zIndex = 0;
     document.querySelector(".stp3Div").style.opacity = 1;
+    document.getElementById('currentProgress').style.width = "50%"; 
     document.querySelector(".stp3Div").style.zIndex = 2;
   } else {
     document.querySelector("#warnNew").innerHTML = "⚠ Please enter all details"
@@ -190,6 +191,19 @@ function Stp3Div() {
   return (
     <div className='stp3Div'>
       <div className='currHead'>Experience</div>
+      <div className='expDiv'>
+        <label className='fnLable'>Job Title:</label><br/>
+        <input type='text' className='fnInput' required id='cJobTitle' placeholder='Your Name'></input>
+        <br/>
+        <label className='fnLable'>About You</label><br/>
+        <textarea className='ayTXT' required id='cAbout' placeholder='About You'></textarea><br/><br></br>
+        <label className='fnLable'>Job Title:</label><br/>
+        <input type='text' className='fnInput' required id='cProof' placeholder='Your Profession'></input>
+        <br></br>
+        <label className='fnLable'>About You</label><br/>
+        <textarea className='ayTXT' required id='cAbout' placeholder='About You'></textarea><br/>
+        
+      </div>
     </div>
   )
 }

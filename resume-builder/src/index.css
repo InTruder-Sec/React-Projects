@@ -374,3 +374,8 @@ button:focus {
   z-index: 0;
   transition: 0.7s;
 }
+
+.expDiv {
+  margin-top: 20px;
+  margin-left: 10px;
+}
