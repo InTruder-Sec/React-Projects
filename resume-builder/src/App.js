@@ -202,6 +202,7 @@ function Stp3Div() {
         <br></br>
         <label className='fnLable'>About You</label><br/>
         <textarea className='ayTXT' required id='cAbout' placeholder='About You'></textarea><br/>
+        <button className='nxtBtn newBtn' id='stp2Btn'>Next</button>
         
       </div>
     </div>
