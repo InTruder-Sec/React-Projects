@@ -86,58 +86,6 @@ body {
   background-color: rgb(117, 194, 233);
 }
 
-.footer {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-}
-
-.s1Div {
-  position: absolute;
-  right: 150px;
-  width: 500px;
-  height: 70vh;
-  opacity: 0;
-  margin-top: -20px;
-  z-index: 2;
-  transition: 0.7s;
-}
-
-.ProgressBar {
-  position: absolute;
-  right: 200px;
-  width: 450px;
-  height: 8px;
-  opacity: 0;
-  border-radius: 4px;
-  margin-top: -10px;
-  background-color: white;
-}
-
-.currentProgress {
-  background-color: red;
-  width: 0%;
-  height: 8px;
-  border-radius: 4px;
-  transition: 0.8s;
-}
-
-.Step_x032 {
-  margin-left: 2px;
-}
-
-.currHead {
-  font-size: 30px;
-  margin-top: 30px;
-  text-decoration: underline 2px;
-}
-
-.AboutDiv {
-  margin-top: 20px;
-  margin-left: 10px;
-}
-
 .selectTheme {
   margin-top: 30px;
   margin-left: 20px;
@@ -311,71 +259,11 @@ body {
 }
 
 
-.checkParam {
-  margin-left: 20px;
-  font-size: 16px;
-  display: inline-block;
-}
 
-.stp2Div {
-  position: absolute;
-  right: 150px;
+.stepsDiv {
   width: 500px;
-  height: 70vh;
-  opacity: 0;
-  margin-top: -20px;
-  z-index: 0;
-  transition: 0.7s;
-}
-
-.fnInput {
-  height: 30px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  width: 90%;
-  margin-top: 5px;
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 14px;
-  border-color: rgb(250, 36, 36);
-}
-
-.ayTXT {
-  width: 90%;
   height: 100px;
-  resize: none;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  font-family: 'Titillium Web', sans-serif;
-  font-size: 14px;
-  border-color: rgb(250, 36, 36);
-}
-
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-    outline: none;
-}
-
-.newBtn {
-  margin-left: 30px;
-}
-
-
-.stp3Div {
+  background-color: #232323;
   position: absolute;
-  right: 150px;
-  width: 500px;
-  height: 70vh;
-  opacity: 0;
-  margin-top: -20px;
-  z-index: 0;
-  transition: 0.7s;
-}
-
-.expDiv {
-  margin-top: 20px;
-  margin-left: 10px;
+  right: 9%;
 }
