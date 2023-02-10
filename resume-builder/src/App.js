@@ -40,7 +40,9 @@ function startBuilding() {
   document.querySelector(".stepsDiv").style.opacity = "1";
 }
 
-// End of js functionalities
+
+
+
 
 
 export default App;
