@@ -262,8 +262,25 @@ body {
 
 .stepsDiv {
   width: 500px;
-  height: 100px;
-  background-color: #232323;
+  height: 70vh;
   position: absolute;
   right: 9%;
+}
+
+.progressDiv {
+  height: 10px;
+  width: 100%;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.currentPro {
+  width: 10%;
+  height: 10px;
+  background-color: red;
+  border-radius: 5px;
+}
+
+.divheader {
+  font-size: 22px;
 }

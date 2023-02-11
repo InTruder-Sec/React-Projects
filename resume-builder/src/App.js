@@ -11,7 +11,9 @@ function App() {
     <div className="wrapper">
       <NavPannel />
       <img className='DesktopImg' alt='image' src={DisplayImg}></img>
-      <StepsDiv />
+      <StepsDiv
+        head={details[0][1]}
+       />
       <FirstDisplay />
     </div>
   );
@@ -33,6 +35,8 @@ function FirstDisplay() {
 // End of components
 
 // Start of js functionalities
+
+var details = [['head', 'Select Template'], ['Name', '']]
 
 function startBuilding() {
   document.querySelector(".DesktopImg").style.right = "42%";

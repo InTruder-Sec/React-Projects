@@ -1,10 +1,11 @@
 import React from "react";
 
 
-function StepsDiv() {
+function StepsDiv(props) {
     return (
         <div className="stepsDiv">
-            <div className="divheader">Hello</div>
+            <div className="progressDiv"><div className="currentPro"></div></div>
+            <div className="divheader">{props.head}</div>
         </div>
     )
 }
