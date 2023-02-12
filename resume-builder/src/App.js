@@ -11,9 +11,7 @@ function App() {
     <div className="wrapper">
       <NavPannel />
       <img className='DesktopImg' alt='image' src={DisplayImg}></img>
-      <StepsDiv
-        head={details[0][1]}
-       />
+      <StepsDiv />
       <FirstDisplay />
     </div>
   );
