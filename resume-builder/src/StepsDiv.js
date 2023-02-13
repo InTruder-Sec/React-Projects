@@ -35,10 +35,12 @@ function StepOneDiv() {
             <td><Template2 /></td>
             </tr>
         </table>
+        <script>addEvent()</script>
         </div>
     </div>
     )
 }
+
 
 
 function ChangeStep() {
