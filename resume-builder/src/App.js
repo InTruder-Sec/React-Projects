@@ -40,6 +40,7 @@ function startBuilding() {
   document.querySelector(".DesktopImg").style.right = "42%";
   document.querySelector(".firstStepx032").style.opacity = "0";
   document.querySelector(".stepsDiv").style.opacity = "1";
+  document.querySelectorAll(".newColor");
 }
 
 
