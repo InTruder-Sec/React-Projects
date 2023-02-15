@@ -45,7 +45,6 @@ function startBuilding() {
       liveTemp(m);
     })
   })
-  
 }
 
 
