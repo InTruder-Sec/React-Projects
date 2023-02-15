@@ -72,6 +72,7 @@ function ChangeStep() {
 
 // End of components
 
+
 // Start of functionalities
 
 function liveTemp(c) {
