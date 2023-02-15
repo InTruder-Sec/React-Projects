@@ -1,9 +1,7 @@
 import './App.css';
 import NavPannel from './NavPannel';
 import DisplayImg from './Images/desktop.svg'
-import Template1 from './templates/template1';
-import Template2 from './templates/template2';
-import StepsDiv from './StepsDiv';
+import StepsDiv, { liveTemp } from './StepsDiv';
 
 
 function App() {
@@ -34,12 +32,20 @@ function FirstDisplay() {
 
 // Start of js functionalities
 
-var details = [['head', 'Select Template'], ['Name', '']]
 
 function startBuilding() {
   document.querySelector(".DesktopImg").style.right = "42%";
   document.querySelector(".firstStepx032").style.opacity = "0";
   document.querySelector(".stepsDiv").style.opacity = "1";
+  document.querySelector(".stepsDiv").style.zIndex = "2";
+  let e = document.querySelectorAll('#newColor');
+  e.forEach((t) => {
+    t.addEventListener("click", () => {
+      let m = t.value;
+      liveTemp(m);
+    })
+  })
+  
 }
 
 

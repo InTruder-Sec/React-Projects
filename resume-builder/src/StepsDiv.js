@@ -14,6 +14,8 @@ function StepsDiv() {
     )
 }
 
+// Start of Components
+
 
 function StepOneDiv() {
     return (
@@ -35,7 +37,6 @@ function StepOneDiv() {
             <td><Template2 /></td>
             </tr>
         </table>
-        <script>addEvent()</script>
         </div>
     </div>
     )
@@ -46,12 +47,29 @@ function StepOneDiv() {
 function ChangeStep() {
     return (
         <div className="changeStep">
-            <button className="preBtn">Previous</button>
+            <button className="preBtn" disabled="true">Previous</button>
             <button className="nxtBtn">Next</button>
         </div>
     )
 }
 
 
+// End of components
+
+// Start of functionalities
+
+function liveTemp(c) {
+    document.getElementById('tempName').style.color = c;
+    document.getElementById('tempDiv').style.backgroundColor = c;
+    document.getElementById('tempHR').style.border = 'solid 1px ' + c;
+    document.getElementById('tempName_0x33').style.color = 'white';
+    document.getElementById('tempDiv_0x33').style.backgroundColor = c;
+    document.getElementById('tempHR_0x33').style.border = 'solid 1px ' + c;
+}
+
+// End of functionalities
+
 
 export default StepsDiv;
+
+export {liveTemp};
