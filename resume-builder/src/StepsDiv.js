@@ -9,6 +9,7 @@ function StepsDiv() {
         <div className="stepsDiv">
             <div className="progressDiv"><div className="currentPro"></div></div>
             <StepOneDiv />
+            <StepTwoDiv />
             <ChangeStep />
         </div>
     )
@@ -42,12 +43,27 @@ function StepOneDiv() {
     )
 }
 
+function StepTwoDiv() {
+    return (
+        <div className="StepTwoDiv">
+            <div className='currHead'>Persnol Details</div>
+            <div className="allInpt">
+                <label className="InputLable lastName">Last&nbsp;Name:</label>
+                <input className="inputPar lastName lastInp" placeholder="Price"></input>
+                <label className="InputLable">First Name:</label><br></br>
+                <input className="inputPar" placeholder="Captain"></input>
+                
+            </div>
+        </div>
+    )
+}
+
 
 
 function ChangeStep() {
     return (
         <div className="changeStep">
-            <button className="preBtn" disabled="true">Previous</button>
+            <button className="preBtn" disabled={true}>Previous</button>
             <button className="nxtBtn">Next</button>
         </div>
     )
@@ -67,9 +83,15 @@ function liveTemp(c) {
     document.getElementById('tempHR_0x33').style.border = 'solid 1px ' + c;
 }
 
+function proceedStp() {
+    document.querySelector(".StepOneDiv").style.opacity = "0";
+    document.querySelector(".preBtn").disabled = false;
+    document.querySelector(".StepTwoDiv").style.opacity = "1";
+}
+
 // End of functionalities
 
 
 export default StepsDiv;
 
-export {liveTemp};
+export {liveTemp, proceedStp};

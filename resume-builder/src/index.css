@@ -289,6 +289,10 @@ body {
   margin-top: 20px;
 }
 
+.changeStep {
+  margin-top: 480px;
+}
+
 
 .preBtn {
   width: fit-content;
@@ -307,4 +311,43 @@ body {
 
 .preBtn:hover {
   background-color: rgb(117, 194, 233);
+}
+
+.StepOneDiv {
+  transition: 0.8s;
+  position: absolute;
+}
+
+.StepTwoDiv {
+  opacity: 0;
+  transition: 0.8s;
+  position: absolute;
+}
+
+.allInpt {
+  margin-top: 20px;
+}
+
+.inputPar {
+  width: 200px;
+  height: 24px;
+  margin-top: 5px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-bottom: solid 2px red;
+} 
+
+.lastName {
+  position: absolute;
+  margin-left: 280px;
+}
+
+.lastInp {
+  margin-top: 30px;
+}
+
+input:focus {
+  outline: none;
+  caret-color: red;
 }

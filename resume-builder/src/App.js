@@ -1,7 +1,7 @@
 import './App.css';
 import NavPannel from './NavPannel';
 import DisplayImg from './Images/desktop.svg'
-import StepsDiv, { liveTemp } from './StepsDiv';
+import StepsDiv, { liveTemp, proceedStp } from './StepsDiv';
 
 
 function App() {
@@ -44,11 +44,26 @@ function startBuilding() {
       let m = t.value;
       liveTemp(m);
     })
-  })
+  });
+
+  document.querySelector(".nxtBtn").addEventListener("click", proceedStp);
+  document.querySelector(".template1").addEventListener("click", TempOneSelect);
+  document.querySelector(".template2").addEventListener("click", TempTwoSelect);
 }
 
 
+function TempOneSelect() {
+  document.querySelector(".template1").style.border = "solid 2px blue";
+  document.querySelector(".template2").style.border = "solid 1px black";
+}
 
+function TempTwoSelect() {
+  document.querySelector(".template2").style.border = "solid 2px blue";
+  document.querySelector(".template1").style.border = "solid 1px black";
+}
+
+
+// Emd of JS Functionalities
 
 
 
