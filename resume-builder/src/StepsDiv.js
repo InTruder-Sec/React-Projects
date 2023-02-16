@@ -10,6 +10,7 @@ function StepsDiv() {
             <div className="progressDiv"><div className="currentPro"></div></div>
             <StepOneDiv />
             <StepTwoDiv />
+            <StepThreeDiv />
             <ChangeStep />
         </div>
     )
@@ -48,12 +49,106 @@ function StepTwoDiv() {
         <div className="StepTwoDiv">
             <div className='currHead'>Persnol Details</div>
             <div className="allInpt">
-                <label className="InputLable lastName">Last&nbsp;Name:</label>
-                <input className="inputPar lastName lastInp" placeholder="Price"></input>
-                <label className="InputLable">First Name:</label><br></br>
-                <input className="inputPar" placeholder="Captain"></input>
-                
+                <table>
+                    <tr>
+                        <td>
+                            <label className="InputLable">First Name:</label><br/>
+                            <input className="inputPar" placeholder="Captain"></input>
+                        </td>
+                        <td>
+                            <label className="InputLable">Last Name:</label><br />
+                            <input className="inputPar" placeholder="Price"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Profession</label><br />
+                            <input className="inputPar proInpt" placeholder="Student"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="InputLable">Email:</label> <br />
+                            <input className="inputPar" placeholder="example@gmail.com" type={"email"}></input>
+                        </td>
+                        <td>
+                            <label className="InputLable">Phone:</label><br/>
+                            <input className="inputPar" placeholder="+91 **********"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">About:</label><br />
+                            <textarea className="inputPar txtArea" placeholder="About You"></textarea>
+                        </td>
+                    </tr>
+                </table>
             </div>
+        </div>
+    )
+}
+
+function StepThreeDiv() {
+    return (
+        <div className="StepThreeDiv">
+                <div className='currHead'>Experience</div>
+                <div className="expInput">
+                    <table>
+                        <tr>
+                            <td colSpan={2}>
+                                <label className="InputLable">Job Title:</label>
+                                <input className="inputPar proInpt" placeholder="Job Title"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label className="InputLable">Company:</label>
+                                <input className="inputPar" placeholder="MCLaren Corp"></input>
+                            </td>
+                            <td>
+                                <label className="InputLable">Date:</label>
+                                <input className="inputPar" placeholder="2019-2022"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <label className="InputLable">Description:</label>
+                                <textarea className="inputPar txtArea txtArea2" placeholder="Job Description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <label className="InputLable">Job Title:</label>
+                                <input className="inputPar proInpt" placeholder="Job Title"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label className="InputLable">Company:</label>
+                                <input className="inputPar" placeholder="MCLaren Corp"></input>
+                            </td>
+                            <td>
+                                <label className="InputLable">Date:</label>
+                                <input className="inputPar" placeholder="2019-2022"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <label className="InputLable">Description:</label>
+                                <textarea className="inputPar txtArea txtArea2" placeholder="Job Description"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+        </div>
+    )
+}
+
+function StepFourDiv() {
+    return (
+        <div className="StepFourDiv">
+            <div className='currHead'>Education</div>
+            
         </div>
     )
 }
@@ -85,9 +180,46 @@ function liveTemp(c) {
 }
 
 function proceedStp() {
-    document.querySelector(".StepOneDiv").style.opacity = "0";
-    document.querySelector(".preBtn").disabled = false;
-    document.querySelector(".StepTwoDiv").style.opacity = "1";
+    if (crntStp === 1) {
+        document.querySelector(".StepOneDiv").style.opacity = "0";
+        document.querySelector(".preBtn").disabled = false;
+        document.querySelector(".StepTwoDiv").style.opacity = "1";
+        document.querySelector(".stepsDiv").style.zIndex = "1";
+        document.querySelector(".StepOneDiv").style.zIndex = "-1";
+        document.querySelector(".StepTwoDiv").style.zIndex = "2";
+        document.querySelector(".currentPro").style.width = "30%";
+        crntStp++;
+    }
+    else if (crntStp === 2) {
+        document.querySelector(".StepTwoDiv").style.zIndex = "-1";
+        document.querySelector(".StepTwoDiv").style.opacity = "0";
+        document.querySelector(".StepThreeDiv").style.zIndex = "2";
+        document.querySelector(".StepThreeDiv").style.opacity = "1";
+        document.querySelector(".currentPro").style.width = "42%";
+        crntStp++;
+    }
+    
+}
+
+function prevStp() {
+    if (crntStp === 2) {
+        document.querySelector(".StepOneDiv").style.opacity = "1";
+        document.querySelector(".preBtn").disabled = true;
+        document.querySelector(".StepTwoDiv").style.opacity = "0";
+        document.querySelector(".stepsDiv").style.zIndex = "2";
+        document.querySelector(".StepTwoDiv").style.zIndex = "-1";
+        document.querySelector(".StepOneDiv").style.zIndex = "2";
+        document.querySelector(".currentPro").style.width = "10%";
+        crntStp--;
+    }
+    else if (crntStp === 3) {
+        document.querySelector(".StepTwoDiv").style.zIndex = "2";
+        document.querySelector(".StepTwoDiv").style.opacity = "1";
+        document.querySelector(".StepThreeDiv").style.zIndex = "-1";
+        document.querySelector(".StepThreeDiv").style.opacity = "0";
+        document.querySelector(".currentPro").style.width = "30%";
+        crntStp--;
+    }
 }
 
 // End of functionalities
@@ -95,4 +227,4 @@ function proceedStp() {
 
 export default StepsDiv;
 
-export {liveTemp, proceedStp};
+export {liveTemp, proceedStp, prevStp};

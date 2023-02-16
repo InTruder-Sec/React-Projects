@@ -1,7 +1,6 @@
-import './App.css';
 import NavPannel from './NavPannel';
 import DisplayImg from './Images/desktop.svg'
-import StepsDiv, { liveTemp, proceedStp } from './StepsDiv';
+import StepsDiv, { liveTemp, proceedStp, prevStp } from './StepsDiv';
 
 
 function App() {
@@ -38,6 +37,7 @@ function startBuilding() {
   document.querySelector(".firstStepx032").style.opacity = "0";
   document.querySelector(".stepsDiv").style.opacity = "1";
   document.querySelector(".stepsDiv").style.zIndex = "2";
+  document.querySelector(".currentPro").style.width = "10%";
   let e = document.querySelectorAll('#newColor');
   e.forEach((t) => {
     t.addEventListener("click", () => {
@@ -49,6 +49,7 @@ function startBuilding() {
   document.querySelector(".nxtBtn").addEventListener("click", proceedStp);
   document.querySelector(".template1").addEventListener("click", TempOneSelect);
   document.querySelector(".template2").addEventListener("click", TempTwoSelect);
+  document.querySelector(".preBtn").addEventListener("click", prevStp);
 }
 
 
