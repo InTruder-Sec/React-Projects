@@ -68,7 +68,7 @@ body {
 .nxtBtn {
   width: fit-content;
   padding: 6px 20px;
-  margin-left: 260px;
+  margin-left: 230px;
   font-family: 'Titillium Web', sans-serif;
   font-size: 16px;
   margin-top: 20px;
@@ -326,7 +326,7 @@ body {
 }
 
 .allInpt {
-  margin-top: 25px;
+  margin-top: 18px;
 }
 
 .inputPar {
@@ -377,6 +377,8 @@ tr {
 }
 
 
+
+
 .expInput td {
   height: 60px;
 }
@@ -397,9 +399,6 @@ tr {
   height: 15px;
 }
 
-.eduInpt {
-  margin-top: 10px;
-}
 
 .StepFiveDiv {
   position: absolute;
@@ -417,9 +416,7 @@ tr {
   z-index: -1 ;
 }
 
-.skillInpt {
-  margin-top: 10px;
-}
+
 
 
 
@@ -470,10 +467,91 @@ tr {
   z-index: -1 ;
 }
 
+
+
 .proInpt td {
   height: 60px;
 }
 
 .txtArea3 {
   height: 40px;
+}
+
+.doneImg {
+  margin-top: 20px;
+}
+
+.StepNineDiv {
+  position: absolute;
+  opacity: 0;
+  transition: 0.8s;
+  margin-left: 20px;
+  z-index: -1 ;
+  height: 500px;
+  width: 100%;
+  text-align: center;
+}
+
+.Donetxt {
+  font-size: 30px;
+}
+
+.prevBtn {
+  width: fit-content;
+  padding: 7px 20px;
+  margin-left: 10px;
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 16px;
+  margin-top: 20px;
+  background-color: rgb(249, 0, 0);
+  border: 0px;
+  color: white;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.MainTemplate1 {
+  position: fixed;
+  height: 1000px;
+  width: 100%;
+  background-color: white;
+  z-index: -3;
+  opacity: 0;
+  overflow: visible;
+}
+
+.mt_01 {
+  width: 28%;
+  height: 100%;
+
+  background-color: blue;
+  display: inline-block;
+}
+
+
+
+
+
+.MainTemplate2 {
+  height: 1000px;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: -3;
+  opacity: 0;
+}
+
+.mt_02 {
+  width: 100%;
+  height: 160px;
+  background-color: blue;
+  padding: 30px;
+  text-align: center;
+  font-size: 62px;
+  color: white;
+}
+
+.p_name {
+  font-size: 22px;
+
 }

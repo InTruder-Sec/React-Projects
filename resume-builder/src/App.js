@@ -1,11 +1,23 @@
 import NavPannel from './NavPannel';
 import DisplayImg from './Images/desktop.svg'
 import StepsDiv, { liveTemp, proceedStp, prevStp } from './StepsDiv';
+import MainTemplate1 from './templates/MainTemplate1';
+import MainTemplate2 from './templates/MainTemplate2';
+
+
+// Variables
+
+let color = "#15abab";
+var template = "1";
+
+// End of variables
 
 
 function App() {
   return (
     <div className="wrapper">
+      <MainTemplate1 theme={color} />
+      <MainTemplate2 theme={color} />
       <NavPannel />
       <img className='DesktopImg' alt='image' src={DisplayImg}></img>
       <StepsDiv />
@@ -42,6 +54,7 @@ function startBuilding() {
   e.forEach((t) => {
     t.addEventListener("click", () => {
       let m = t.value;
+      color = m;
       liveTemp(m);
     })
   });
@@ -56,17 +69,22 @@ function startBuilding() {
 function TempOneSelect() {
   document.querySelector(".template1").style.border = "solid 2px blue";
   document.querySelector(".template2").style.border = "solid 1px black";
+  template = 1;
 }
 
 function TempTwoSelect() {
   document.querySelector(".template2").style.border = "solid 2px blue";
   document.querySelector(".template1").style.border = "solid 1px black";
+  template = 2;
 }
 
 
-// Emd of JS Functionalities
+
+// End of JS Functionalities
 
 
 
 export default App;
+
+
 

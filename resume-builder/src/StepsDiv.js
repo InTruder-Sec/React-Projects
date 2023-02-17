@@ -1,6 +1,7 @@
 import React from "react";
 import Template1 from "./templates/template1";
 import Template2 from "./templates/template2";
+import DoneImg from "./done.png";
 
 var crntStp = 1;
 
@@ -16,6 +17,7 @@ function StepsDiv() {
             <StepSixDiv />
             <StepSevenDiv />
             <StepEightDiv />
+            <StepNineDiv />
             <ChangeStep />
         </div>
     )
@@ -362,13 +364,23 @@ function StepEightDiv() {
     )
 }
 
+function StepNineDiv() {
+    return (
+        <div className="StepNineDiv">
+            <img className="doneImg" alt="All Set" src={DoneImg} />
+            <div className="Donetxt">You are all Set!</div>
+            <button className="prevBtn">Preview</button>
+        </div>
+    )
+}
+
 
 
 function ChangeStep() {
     return (
         <div className="changeStep">
             <button className="preBtn" disabled={true}>Previous</button>
-            <button className="nxtBtn">Next</button>
+            <button className="nxtBtn">Next Step</button>
         </div>
     )
 }
@@ -449,6 +461,16 @@ function proceedStp() {
         document.querySelector(".StepSevenDiv").style.opacity = "0";
         document.querySelector(".currentPro").style.width = "90%";
         crntStp++;  
+        document.querySelector(".nxtBtn").innerHTML = "Build Now";
+    } else if (crntStp === 8) {
+        document.querySelector(".StepEightDiv").style.opacity = "0";
+        document.querySelector(".StepEightDiv").style.zIndex = "-1";
+        document.querySelector(".StepNineDiv").style.zIndex = "2";
+        document.querySelector(".StepNineDiv").style.opacity = "1";
+        document.querySelector(".currentPro").style.width = "100%";
+        document.querySelector(".nxtBtn").style.opacity = "0";
+        // document.querySelector(".prevBtn").addEventListener("click");
+        crntStp++;
     }
 }
 
@@ -507,8 +529,17 @@ function prevStp() {
         document.querySelector(".StepEightDiv").style.opacity = "0";
         document.querySelector(".StepSevenDiv").style.zIndex = "2";
         document.querySelector(".currentPro").style.width = "82%";
+        document.querySelector(".nxtBtn").innerHTML = "Next Step";
         document.querySelector(".StepSevenDiv").style.opacity = "1";
         crntStp--;  
+    } else if (crntStp === 9) {
+        document.querySelector(".StepEightDiv").style.opacity = "1";
+        document.querySelector(".StepEightDiv").style.zIndex = "2";
+        document.querySelector(".StepNineDiv").style.zIndex = "-1";
+        document.querySelector(".StepNineDiv").style.opacity = "0";
+        document.querySelector(".currentPro").style.width = "90%";
+        document.querySelector(".nxtBtn").style.opacity = "1";
+        crntStp--;
     }
 }
 
