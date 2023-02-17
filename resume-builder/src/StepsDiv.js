@@ -11,6 +11,11 @@ function StepsDiv() {
             <StepOneDiv />
             <StepTwoDiv />
             <StepThreeDiv />
+            <StepFourDiv />
+            <StepFiveDiv />
+            <StepSixDiv />
+            <StepSevenDiv />
+            <StepEightDiv />
             <ChangeStep />
         </div>
     )
@@ -148,7 +153,211 @@ function StepFourDiv() {
     return (
         <div className="StepFourDiv">
             <div className='currHead'>Education</div>
-            
+            <div className="eduInpt">
+                <table>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Institution:</label><br/>
+                            <input className="inputPar proInpt" placeholder="School / College name"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Title:</label><br/>
+                            <input className="inputPar proInpt" placeholder="SSC"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="InputLable">Aggregate:</label><br/>
+                            <input className="inputPar" placeholder="92%"></input>
+                        </td>
+                        <td>
+                            <label className="InputLable">Year</label><br/>
+                            <input className="inputPar" placeholder="2019-2022"></input>
+                        </td>
+                    </tr>
+                    <div className="makeSpc"></div>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Institution:</label><br/>
+                            <input className="inputPar proInpt" placeholder="School / College name"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Title:</label><br/>
+                            <input className="inputPar proInpt" placeholder="HSC"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="InputLable">Aggregate:</label><br/>
+                            <input className="inputPar" placeholder="92%"></input>
+                        </td>
+                        <td>
+                            <label className="InputLable">Year</label><br/>
+                            <input className="inputPar" placeholder="2019-2022"></input>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    )
+}
+
+function StepFiveDiv() {
+    return (
+        <div className="StepFiveDiv">
+            <div className='currHead'>Education</div>
+            <div className="eduInpt">
+                <table>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Institution:</label><br/>
+                            <input className="inputPar proInpt" placeholder="School / College name"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Title:</label><br/>
+                            <input className="inputPar proInpt" placeholder="IT Engineer"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="InputLable">Aggregate:</label><br/>
+                            <input className="inputPar" placeholder="92%"></input>
+                        </td>
+                        <td>
+                            <label className="InputLable">Year</label><br/>
+                            <input className="inputPar" placeholder="2019-2022"></input>
+                        </td>
+                    </tr>
+                    <div className="makeSpc"></div>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Institution:</label><br/>
+                            <input className="inputPar proInpt" placeholder="School / College name"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Title:</label><br/>
+                            <input className="inputPar proInpt" placeholder="Cyber Security Major"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label className="InputLable">Aggregate:</label><br/>
+                            <input className="inputPar" placeholder="92%"></input>
+                        </td>
+                        <td>
+                            <label className="InputLable">Year</label><br/>
+                            <input className="inputPar" placeholder="2019-2022"></input>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    )
+}
+
+function StepSixDiv() {
+    return (
+        <div className="StepSixDiv">
+            <div className='currHead'>Skills</div>
+            <div className="skillInpt">
+                <table>
+                    <SkillsComp sId="1" skill="C++" />
+                    <SkillsComp sId="2" skill="HTML"/>
+                    <SkillsComp sId="3" skill="Javascript" />
+                    <SkillsComp sId="4" skill="React" />
+                    <SkillsComp sId="5" skill="Python" />
+                </table>
+            </div>
+        </div>
+    )
+}
+
+function StepSevenDiv() {
+    return (
+        <div className="StepSevenDiv">
+            <div className='currHead'>Skills</div>
+            <div className="skillInpt">
+                <table>
+                    <SkillsComp sId="6" skill="Django" />
+                    <SkillsComp sId="7" skill="Numpy"/>
+                    <SkillsComp sId="8" skill="Data Science" />
+                    <SkillsComp sId="9" skill="Node JS" />
+                    <SkillsComp sId="10" skill="Cloud Computing" />
+                </table>
+            </div>
+        </div>
+    )
+}
+
+
+function SkillsComp(props) {
+    let k = "skill" + props.sId;
+    return (
+        <tr>
+            <td>
+                <label className="InputLable">Skill:</label><br/>
+                <input className="inputPar" id={k} placeholder={props.skill}></input>
+            </td>
+            <td>
+                <label className="InputLable">Proficiency:</label>
+                <input className="slider" id={k} min="0" max="100"  type={"range"}></input>
+            </td>
+        </tr>
+    )
+}
+
+function StepEightDiv() {
+    return (
+        <div className="StepEightDiv">
+            <div className='currHead'>Projects</div>
+            <div className="proInpt">
+                <table>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Project Title:</label>
+                            <input className="inputPar proInpt" placeholder="Project Title"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Project URL:</label>
+                            <input className="inputPar proInpt" placeholder="https://myproject.com"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Description:</label>
+                            <textarea className="inputPar txtArea txtArea3" placeholder="Project Description"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Project Title:</label>
+                            <input className="inputPar proInpt" placeholder="Project Title"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Project URL:</label>
+                            <input className="inputPar proInpt" placeholder="https://myproject.com"></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>
+                            <label className="InputLable">Description:</label>
+                            <textarea className="inputPar txtArea txtArea3" placeholder="Project Description"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     )
 }
@@ -189,6 +398,7 @@ function proceedStp() {
         document.querySelector(".StepTwoDiv").style.zIndex = "2";
         document.querySelector(".currentPro").style.width = "30%";
         crntStp++;
+        
     }
     else if (crntStp === 2) {
         document.querySelector(".StepTwoDiv").style.zIndex = "-1";
@@ -197,8 +407,49 @@ function proceedStp() {
         document.querySelector(".StepThreeDiv").style.opacity = "1";
         document.querySelector(".currentPro").style.width = "42%";
         crntStp++;
+        
     }
-    
+    else if (crntStp === 3) {
+        document.querySelector(".StepFourDiv").style.zIndex = "2";
+        document.querySelector(".StepFourDiv").style.opacity = "1";
+        document.querySelector(".StepThreeDiv").style.zIndex = "-1";
+        document.querySelector(".StepThreeDiv").style.opacity = "0";
+        document.querySelector(".currentPro").style.width = "55%";
+        crntStp++;
+        
+    }
+    else if (crntStp === 4) {
+        document.querySelector(".StepFourDiv").style.zIndex = "-1";
+        document.querySelector(".StepFourDiv").style.opacity = "0";
+        document.querySelector(".StepFiveDiv").style.zIndex = "2";
+        document.querySelector(".StepFiveDiv").style.opacity = "1";
+        document.querySelector(".currentPro").style.width = "60%";
+
+        crntStp++;
+        
+    } else if (crntStp === 5) {
+        document.querySelector(".StepSixDiv").style.zIndex = "2";
+        document.querySelector(".StepSixDiv").style.opacity = "1";
+        document.querySelector(".StepFiveDiv").style.zIndex = "-1";
+        document.querySelector(".StepFiveDiv").style.opacity = "0";
+        document.querySelector(".currentPro").style.width = "75%";
+        crntStp++;
+    } else if (crntStp === 6) {
+        document.querySelector(".StepSixDiv").style.zIndex = "-1";
+        document.querySelector(".StepSixDiv").style.opacity = "0";
+        document.querySelector(".StepSevenDiv").style.zIndex = "2";
+        document.querySelector(".StepSevenDiv").style.opacity = "1";
+        document.querySelector(".currentPro").style.width = "82%";
+        crntStp++;  
+    }
+    else if (crntStp === 7) {
+        document.querySelector(".StepEightDiv").style.zIndex = "2";
+        document.querySelector(".StepEightDiv").style.opacity = "1";
+        document.querySelector(".StepSevenDiv").style.zIndex = "-1";
+        document.querySelector(".StepSevenDiv").style.opacity = "0";
+        document.querySelector(".currentPro").style.width = "90%";
+        crntStp++;  
+    }
 }
 
 function prevStp() {
@@ -211,6 +462,7 @@ function prevStp() {
         document.querySelector(".StepOneDiv").style.zIndex = "2";
         document.querySelector(".currentPro").style.width = "10%";
         crntStp--;
+        
     }
     else if (crntStp === 3) {
         document.querySelector(".StepTwoDiv").style.zIndex = "2";
@@ -219,6 +471,44 @@ function prevStp() {
         document.querySelector(".StepThreeDiv").style.opacity = "0";
         document.querySelector(".currentPro").style.width = "30%";
         crntStp--;
+        
+    } else if (crntStp === 4) {
+        document.querySelector(".StepFourDiv").style.zIndex = "-1";
+        document.querySelector(".StepFourDiv").style.opacity = "0";
+        document.querySelector(".StepThreeDiv").style.zIndex = "2";
+        document.querySelector(".StepThreeDiv").style.opacity = "1";
+        document.querySelector(".currentPro").style.width = "42%";
+        crntStp--;
+        
+    } else if (crntStp === 5) {
+        document.querySelector(".StepFourDiv").style.zIndex = "2";
+        document.querySelector(".StepFourDiv").style.opacity = "1";
+        document.querySelector(".StepFiveDiv").style.zIndex = "-1";
+        document.querySelector(".currentPro").style.width = "55%";
+        document.querySelector(".StepFiveDiv").style.opacity = "0";
+        crntStp--;
+        
+    } else if (crntStp === 6) {
+        document.querySelector(".StepSixDiv").style.zIndex = "-1";
+        document.querySelector(".StepSixDiv").style.opacity = "0";
+        document.querySelector(".StepFiveDiv").style.zIndex = "2";
+        document.querySelector(".StepFiveDiv").style.opacity = "1";
+        document.querySelector(".currentPro").style.width = "60%";
+        crntStp--;  
+    } else if (crntStp === 7) {
+        document.querySelector(".StepSixDiv").style.zIndex = "2";
+        document.querySelector(".StepSixDiv").style.opacity = "1";
+        document.querySelector(".StepSevenDiv").style.zIndex = "-1";
+        document.querySelector(".currentPro").style.width = "75%";
+        document.querySelector(".StepSevenDiv").style.opacity = "0";
+        crntStp--;  
+    } else if (crntStp === 8) {
+        document.querySelector(".StepEightDiv").style.zIndex = "-1";
+        document.querySelector(".StepEightDiv").style.opacity = "0";
+        document.querySelector(".StepSevenDiv").style.zIndex = "2";
+        document.querySelector(".currentPro").style.width = "82%";
+        document.querySelector(".StepSevenDiv").style.opacity = "1";
+        crntStp--;  
     }
 }
 
