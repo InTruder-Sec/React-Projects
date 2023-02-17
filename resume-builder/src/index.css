@@ -511,8 +511,8 @@ tr {
 }
 
 .MainTemplate1 {
-  position: fixed;
-  height: 1000px;
+  position: absolute;
+  height: 1200px;
   width: 100%;
   background-color: white;
   z-index: -3;
@@ -523,35 +523,32 @@ tr {
 .mt_01 {
   width: 28%;
   height: 100%;
-
   background-color: blue;
   display: inline-block;
+
 }
 
-
-
-
-
-.MainTemplate2 {
-  height: 1000px;
-  width: 100%;
-  position: fixed;
-  background-color: white;
-  z-index: -3;
-  opacity: 0;
+.mt_01_temp {
+  position: absolute;
+  margin-left: 28%;
+  width: 72%;
+  padding-left: 30px;
+  height: 100%;
 }
 
-.mt_02 {
-  width: 100%;
-  height: 160px;
-  background-color: blue;
-  padding: 30px;
-  text-align: center;
+.f_name {
   font-size: 62px;
-  color: white;
+  margin-top: 20px;
 }
 
 .p_name {
-  font-size: 22px;
-
+  margin-left: 10px;
+  margin-top: -5px;
 }
+
+.t_hr_name {
+  width: 90%;
+  margin-left: 10px;
+}
+
+

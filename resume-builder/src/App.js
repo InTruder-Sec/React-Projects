@@ -17,7 +17,6 @@ function App() {
   return (
     <div className="wrapper">
       <MainTemplate1 theme={color} />
-      <MainTemplate2 theme={color} />
       <NavPannel />
       <img className='DesktopImg' alt='image' src={DisplayImg}></img>
       <StepsDiv />
