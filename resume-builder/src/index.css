@@ -557,6 +557,7 @@ tr {
 
 .head {
   font-size: 22px;
+  font-weight: 600;
 }
 
 .about_t_1 {
@@ -582,4 +583,17 @@ tr {
 .abtDiv {
   margin-left: 50px;
   padding-top: 8px;
+}
+
+.details_Div {
+  font-size: 19px;
+  font-weight: 400;
+  margin-top: 25px;
+  margin-left: 40px;
+  width: 60vw;
+}
+
+.ExpDiv_01 {
+  margin-top: 40px;
+  margin-left: 10px;
 }
