@@ -15,6 +15,7 @@ body {
   font-family: 'Titillium Web', sans-serif;
   transition: 0.5s;
   cursor: default;
+  overflow-x: hidden;
 }
 
 
@@ -515,8 +516,8 @@ tr {
   height: 1200px;
   width: 100%;
   background-color: white;
-  z-index: -3;
-  opacity: 0;
+  z-index: 3;
+  opacity: 1;
   overflow: visible;
 }
 
@@ -538,17 +539,47 @@ tr {
 
 .f_name {
   font-size: 62px;
-  margin-top: 20px;
+  margin-top: 40px;
+  color: blue;
 }
 
 .p_name {
   margin-left: 10px;
-  margin-top: -5px;
+  margin-top: 0px;
+  font-weight: 500;
 }
 
 .t_hr_name {
   width: 90%;
   margin-left: 10px;
+  margin-top: 30px;
+}
+
+.head {
+  font-size: 22px;
+}
+
+.about_t_1 {
+  margin-left: 10px;
+  margin-top: 40px;
+  font-weight: 600;
+}
+
+.c_details {
+  position: absolute;
+  margin-top: 60px;
+  right: 100px;
+  text-align: right;
+}
+
+.profSVG {
+  width: 40px;
+  height: 40px;
+  position: absolute;
 }
 
 
+.abtDiv {
+  margin-left: 50px;
+  padding-top: 8px;
+}
