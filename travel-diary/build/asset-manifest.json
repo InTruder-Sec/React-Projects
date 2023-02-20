@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b6b2fc36.css",
+    "main.js": "/static/js/main.646a141b.js",
+    "static/media/KulluManali.jpg": "/static/media/KulluManali.a88d00955ce0d33bb558.jpg",
+    "static/media/world.png": "/static/media/world.d60144041c6d68a0e5dc.png",
+    "index.html": "/index.html",
+    "main.b6b2fc36.css.map": "/static/css/main.b6b2fc36.css.map",
+    "main.646a141b.js.map": "/static/js/main.646a141b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6b2fc36.css",
+    "static/js/main.646a141b.js"
+  ]
+}
