@@ -516,8 +516,8 @@ tr {
   height: 1200px;
   width: 100%;
   background-color: white;
-  z-index: 3;
-  opacity: 1;
+  z-index: -3;
+  opacity: 0;
   overflow: visible;
 }
 
@@ -579,10 +579,13 @@ tr {
   position: absolute;
 }
 
+.jobTitle {
+  font-weight: 500;
+}
 
 .abtDiv {
   margin-left: 50px;
-  padding-top: 8px;
+  padding-top: 12px;
 }
 
 .details_Div {
@@ -595,8 +598,45 @@ tr {
 
 
 .ExpDiv_01 {
-  margin-top: 40px;
+  margin-top: 60px;
   margin-left: 10px;
 }
 
+.job1 {
+  margin-top: 50px;
+}
 
+.jobComp {
+  display: inline-block;
+  opacity: 0.6;
+  margin-top: 2px;
+  margin-left: 70px;
+}
+
+.jobDur {
+  display: inline-block;
+  margin-left: 140px;
+  opacity: 0.6;
+  margin-top: 2px;
+  font-size: 15px;
+}
+
+.jobTitle {
+  margin-left: 70px;
+}
+
+.jobDis {
+  margin-top: 10px;
+  width: 55vw;
+  margin-left: 70px;
+}
+
+.jobSvg {
+  position: absolute;
+  width: 30px;
+  height: 40px;
+}
+
+.job2 {
+  margin-top: 50px;
+}
