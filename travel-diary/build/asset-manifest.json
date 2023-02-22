@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.34ee16a5.css",
-    "main.js": "/static/js/main.d4dafa80.js",
+    "main.css": "/static/css/main.560a9344.css",
+    "main.js": "/static/js/main.129801e8.js",
     "static/media/KulluManali.jpg": "/static/media/KulluManali.a88d00955ce0d33bb558.jpg",
     "static/media/Mumbai.jpg": "/static/media/Mumbai.eddd43470b18a176a6aa.jpg",
     "static/media/goa.jpg": "/static/media/goa.42938f0726e08ec98ef3.jpg",
     "static/media/world.png": "/static/media/world.d60144041c6d68a0e5dc.png",
     "index.html": "/index.html",
-    "main.34ee16a5.css.map": "/static/css/main.34ee16a5.css.map",
-    "main.d4dafa80.js.map": "/static/js/main.d4dafa80.js.map"
+    "main.560a9344.css.map": "/static/css/main.560a9344.css.map",
+    "main.129801e8.js.map": "/static/js/main.129801e8.js.map"
   },
   "entrypoints": [
-    "static/css/main.34ee16a5.css",
-    "static/js/main.d4dafa80.js"
+    "static/css/main.560a9344.css",
+    "static/js/main.129801e8.js"
   ]
 }

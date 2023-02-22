@@ -5,7 +5,7 @@ function Cards(props) {
     return (
         <div className="cards">
             <div className="table-border">
-            <table>
+            <table className="main">
                 <tr>
                     <td rowSpan={5}>
                         <img className="cards--img" src={props.img} alt={`image ${props.title}`}></img>

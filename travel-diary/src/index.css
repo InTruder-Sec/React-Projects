@@ -9,7 +9,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 code {
@@ -19,8 +18,7 @@ code {
 
 
 .root--nav {
-  width: 100vw;
-  height: 8vh;
+  width: 100%;
   background-color: rgb(33, 209, 240);
   padding: 5px;
 }
@@ -41,10 +39,8 @@ code {
 }
 
 .cards {
-  width: 100vw;
-  height: 260px;
   margin-top: 50px;
-  padding: 5px 100px ;
+  padding: 5px 6%;
 }
 
 .cards--img {
@@ -88,15 +84,13 @@ code {
   padding: 5px 15px 5px 15px;
   width: 85vw;
   border-radius: 10px;
-  height: 255px;
   background-color: rgb(219, 248, 255);
 }
 
 .footer {
-  height: 24vh;
-  width: 100vw;
+  position: absolute;
+  width: 100%;
   padding-top: 10px;
-  margin-top: 70px;
   background-color: rgb(33, 209, 240);
 }
 
@@ -122,5 +116,12 @@ code {
 
 .footer-copy {
   margin-top: 20px;
+  padding-bottom: 20px;
   color: rgb(45, 45, 45);
+}
+
+@media (max-width: 1080px) {
+  .footer {
+    bottom: 0px;
+  }
 }
