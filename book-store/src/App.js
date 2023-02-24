@@ -3,6 +3,7 @@ import './index.css';
 import logo from './images/logo.png';
 import Main from "./components/main";
 import BackgroundImg from './images/background.png';
+import Category from "./components/category";
 
 function App() {
   return (
@@ -35,13 +36,15 @@ function Hero() {
         THE<br/> <div className="hero--details2">BOOKMARK.</div>
         <div className="hero--details3">
           FIND! READ! DOWNLOAD! ANY BOOKS ANYTIME ANYWHERE...<br/>
-          <input className="searchInpt" placeholder="Seacrh your book..."></input>
+          <input className="searchInpt" placeholder="Search your book..."></input><button className="searchBtn">→</button>
         </div> 
         
       </div>
     </div>
   )
 }
+
+
 
 function Footer() {
   return (

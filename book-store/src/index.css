@@ -15,7 +15,7 @@ body {
     z-index: 2;
     font-size: 32px;
     margin-top: 10px;
-    margin-left: 10px;
+    margin-left: 25px;
 }
 
 .hero--details3 {
@@ -33,13 +33,14 @@ body {
 }
 
 .logo {
-    height: 70px;
+    height: 60px;
 }
 
 .hero {
     position: static;
-    height: 350px;
+    height: 700px;
     width: 100%;
+    -webkit-text-fill-color: (transparent);
 }
 
 .backgroundImg {
@@ -58,7 +59,7 @@ td {
 }
 
 .logo--td {
-    width: 80px;
+    width: 60px;
 }
 
 
@@ -82,12 +83,46 @@ footer {
 .hero--details {
     font-size: 80px;
     font-weight: 700;
-    padding-top: 150px;
+    padding-top: 180px;
     padding-left: 50px;
+    padding-bottom: 200px;
+    lighting-color: aqua;
+}
+
+.searchBtn:hover {
+    background-color: aqua;
 }
 
 .hero--details2 {
     margin-top: -25px;
+}
+
+.searchBtn {
+    height: 40px;
+    transition: 0.8s;
+    font-size: 20px;
+    width: 40px;
+    border-radius: 20px;
+    margin-left: 10px;
+    border: solid 1px black;
+    background-color: rgb(127, 218, 215);
+}
+
+.category {
+    width: 100%;
+    height: 400px;
+}
+
+.category-td {
+    height: 140px;
+    width: 200px;
+    background-color: aqua;
+}
+
+.genre {
+    position: absolute;
+    width: 200px;
+    height: 140px;
 }
 
 
