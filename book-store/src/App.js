@@ -34,8 +34,10 @@ function Hero() {
       <div className="hero--details">
         THE<br/> <div className="hero--details2">BOOKMARK.</div>
         <div className="hero--details3">
-          FIND! READ! DOWNLOAD! ANY BOOKS ANYTIME ANYWHERE...
+          FIND! READ! DOWNLOAD! ANY BOOKS ANYTIME ANYWHERE...<br/>
+          <input className="searchInpt" placeholder="Seacrh your book..."></input>
         </div> 
+        
       </div>
     </div>
   )
