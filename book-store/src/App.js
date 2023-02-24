@@ -2,16 +2,13 @@ import React from "react";
 import './index.css';
 import logo from './images/logo.png';
 import Main from "./components/main";
+import BackgroundImg from './images/background.png';
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <Hero />
-      <center>
-        <Main />
-      </center>
-      <Footer />
     </div>
   );
 }
@@ -20,14 +17,12 @@ function App() {
 function NavBar() {
   return (
     <div className="Nav">
-      <center>
         <table>
           <tr>
             <td className="logo--td"><img alt="logo" className="logo" src={logo}></img></td>
             <td>The Bookmark</td>
           </tr>
         </table>
-      </center>
     </div>
   )
 }
@@ -35,8 +30,13 @@ function NavBar() {
 function Hero() {
   return (
     <div className="hero">
-      <div className="hero--background"></div>
-      <div className="hero--details">LOTS OF EBOOKS. 100% FREE.</div>
+      <img className="backgroundImg" src={BackgroundImg} alt="background"></img>
+      <div className="hero--details">
+        THE<br/> <div className="hero--details2">BOOKMARK.</div>
+        <div className="hero--details3">
+          FIND! READ! DOWNLOAD! ANY BOOKS ANYTIME ANYWHERE...
+        </div> 
+      </div>
     </div>
   )
 }

@@ -4,21 +4,24 @@
 body {
     margin: 0px;
     font-family: 'Titillium Web', sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
+
 
 .Nav {
-    position: fixed;
-    top: 0;
-    z-index: 3;
-    width: 100%;
-    height: 75px;
-    padding: 5px 25px;
-    background-color: aliceblue;
-    box-shadow: 0 5px 8px 0 rgba(0,0,0,.2);
+    position: absolute;
     font-family: 'Zeyada', cursive;
-    font-size: 38px;
+    z-index: 2;
+    font-size: 32px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
+.hero--details3 {
+    font-size: 24px;
+    margin-left: 10px;
+}
 
 .logo {
     height: 70px;
@@ -26,33 +29,18 @@ body {
 
 .hero {
     position: static;
-    margin-top: 75px;
     height: 350px;
     width: 100%;
 }
 
-.hero--background {
+.backgroundImg {
+    filter: blur(0.5px);
     position: absolute;
-    filter: blur(1px);
-    opacity: 0.9;
-    height: 350px;
-    width: 100%;
-    background-image: url("./images/wallpaperflare.com_wallpaper.jpg");
-}
-
-.hero--details {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    color: white;
-    font-size: 40px;
-    font-weight: 700;
-    width: 100%;
+    z-index: -1;
 }
 
 
 table {
-    margin-left: -40px;
     border-collapse: collapse;
 }
 td {
@@ -80,6 +68,17 @@ footer {
     padding-top: 10px;
     background-color: aliceblue;
     box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.hero--details {
+    font-size: 80px;
+    font-weight: 700;
+    padding-top: 150px;
+    padding-left: 50px;
+}
+
+.hero--details2 {
+    margin-top: -25px;
 }
 
 
