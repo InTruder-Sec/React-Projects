@@ -65,21 +65,13 @@ td {
 
 
 .main {
-    height: 2250px;
-    width: 60%;
-    margin-top: 90px;
+    padding-bottom: 40px;
+    width: 80%;
+    margin-top: 10px;
     margin-left: -50px;
 }
 
-footer {
-    font-family: 'Titillium Web', sans-serif;
-    margin-top: 50px;
-    height: 30px;
-    width: 100%;  
-    padding-top: 10px;
-    background-color: aliceblue;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
+
 
 .hero--details {
     font-size: 80px;
@@ -184,18 +176,19 @@ footer {
 .card {
     font-family: 'Titillium Web', sans-serif;
     padding: 10px 15px;
-    width: 220px;
+    width: 180px;
     display: inline-block;
     margin-top: 50px;
-    height: 310px;
+    height: 260px;
     margin-left: 5%;
     background-color: rgb(250, 250, 250);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card--img--main {
-    width: 170px;
-    height: 190px;
+    margin-top: 6px;
+    width: 100px;
+    height: 140px;
 }
 
 .card--title {
@@ -219,4 +212,56 @@ footer {
 
 .card--download:hover {
     background-color: rgb(164, 247, 243);
+}
+
+
+
+.footerDiv {
+    height: 100px;
+    color: white;
+    width: 100%;
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+    bottom: 0;
+}
+
+
+.footer--header {
+    font-family: 'Zeyada', cursive;
+    z-index: 2;
+    font-size: 36px;
+    color: white;
+    padding-left: 10px;
+}
+
+footer {
+    font-family: 'Titillium Web', sans-serif;
+    margin-top: 50px;
+    width: 100%;  
+    padding-top: 10px;
+    background-color: rgb(64, 64, 64);
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.footer-hr {
+    width: 450px;
+    margin-bottom: 10px;
+}
+
+.foot-pic{
+    height: 50px;
+    width: 40px;
+}
+
+.foot-d{
+    display: flex;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer--dis {
+    margin-top: 20px;
+    padding-bottom: 20px;
+    color: white;
 }
