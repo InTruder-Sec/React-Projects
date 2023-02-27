@@ -181,6 +181,7 @@ td {
     margin-top: 50px;
     height: 260px;
     margin-left: 5%;
+    border-radius: 10px;
     background-color: rgb(250, 250, 250);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -264,4 +265,24 @@ footer {
     margin-top: 20px;
     padding-bottom: 20px;
     color: white;
+}
+
+@media (max-width:480px) {
+    .hero--details {
+        padding-left: 25px;
+        padding-right: 25px;
+        font-size: 50px;
+    }
+    .hero--details2 {
+        margin-top: 10px;
+    }
+    .hero--details3 {
+        margin-top: 50px;
+    }
+    .searchBtn {
+        margin-top: 60px;
+    }
+    .main {
+        margin-left: 0px;
+    }
 }
