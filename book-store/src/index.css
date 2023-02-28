@@ -43,10 +43,17 @@ body {
     -webkit-text-fill-color: (transparent);
 }
 
-.backgroundImg {
-    filter: blur(0.5px);
+.backgroundDiv {
     position: absolute;
+    overflow: hidden;
+    width: 100%;
+}
+
+.backgroundImg {
+    position: relative;
+    filter: blur(0.5px);
     z-index: -1;
+    overflow-x: hidden;
 }
 
 
@@ -92,6 +99,8 @@ td {
 
 .searchBtn {
     height: 44px;
+    padding-top: 5px;
+    margin-top: 2px;
     transition: 0.8s;
     font-size: 20px;
     width: 44px;
@@ -271,7 +280,7 @@ footer {
     .hero--details {
         padding-left: 25px;
         padding-right: 25px;
-        font-size: 50px;
+        font-size: 60px;
     }
     .hero--details2 {
         margin-top: 10px;
@@ -284,5 +293,11 @@ footer {
     }
     .main {
         margin-left: 0px;
+    }
+    .footer-hr {
+        width: 100%;
+    }
+    .searchInpt {
+        width: 65%;
     }
 }
