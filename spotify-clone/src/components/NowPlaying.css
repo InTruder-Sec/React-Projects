@@ -1,0 +1,39 @@
+.nowplaying {
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-image: linear-gradient(90deg, #af2896, #509bf5);
+  text-align: left;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.nowplaying--title {
+  font-weight: 600;
+}
+
+.nowplaying--details {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.signup--div {
+  position: absolute;
+  right: 60px;
+  height: 30px;
+  width: 110px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  padding-left: 25px;
+  background-color: white;
+  padding-top: 10px;
+  color: black;
+  cursor: pointer;
+}
+
+.signup--div:hover {
+  scale: 1.05;
+}

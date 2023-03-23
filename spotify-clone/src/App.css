@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
 .App {
   text-align: center;
   background-color: #121212;
   height: 100vh;
   width: 100vw;
+  color: white;
 }
 
 .App-logo {

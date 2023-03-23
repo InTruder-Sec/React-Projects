@@ -1,5 +1,63 @@
 .NavBar {
-  height: 50px;
-  width: 100vw;
-  background-color: rgba(0, 0, 0, 0.3);
+  height: 55px;
+  margin-left: 250px;
+  background-color: rgba(8, 8, 8, 0.7);
+}
+
+.nb--account {
+  display: flex;
+  position: absolute;
+  width: 160px;
+  justify-content: space-between;
+  right: 50px;
+  margin-top: 5px;
+}
+
+.login--btn {
+  height: 30px;
+  width: 80px;
+  background-color: white;
+  color: black;
+  padding-top: 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.login--btn:hover {
+  scale: 1.05;
+}
+
+.sign-in--btn {
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(200, 200, 200);
+}
+
+.sign-in--btn:hover {
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.change--display {
+  display: flex;
+  position: absolute;
+  width: 70px;
+  justify-content: space-between;
+  margin-left: 25px;
+}
+
+.change--arrow {
+  font-size: 22px;
+  width: 28px;
+  height: 28px;
+  background-color: black;
+  border-radius: 15px;
+  margin-top: 12px;
+  opacity: 0.5;
+  cursor: not-allowed;
 }

@@ -5,3 +5,52 @@
   position: absolute;
   left: 0;
 }
+
+.controllers--img--main {
+  filter: invert(100%);
+  width: 105px;
+  position: absolute;
+  left: -10px;
+  top: -5px;
+}
+
+.controllers--logo--txt {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-left: -10px;
+}
+
+.controllers--home {
+  display: flex;
+  margin-top: 10px;
+  width: 100%;
+  align-content: center;
+  opacity: 0.6;
+  transition: 0.6s;
+  cursor: pointer;
+}
+
+.controllers--home:hover {
+  opacity: 1;
+}
+
+.controllers--main {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.home--icon {
+  width: 20%;
+  text-align: right;
+  margin-right: 15px;
+}
+
+.home--title {
+  width: 60%;
+  margin-top: 7px;
+  font-size: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: white;
+}
