@@ -1,0 +1,41 @@
+.main {
+  padding-top: 30px;
+  margin-left: 270px;
+}
+
+.main--category--head {
+  text-align: left;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 0px 20px 10px 20px;
+  cursor: pointer;
+  margin-top: 60px;
+  width: fit-content;
+}
+
+.main--category--head:hover {
+  text-decoration: underline;
+}
+
+.main--category--cards {
+  margin-left: 20px;
+  height: 240px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.main--category--more {
+  position: absolute;
+  right: 60px;
+  margin-top: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.endline {
+  width: 96%;
+  margin-top: 60px;
+  opacity: 0.6;
+  margin-right: 40px;
+}
