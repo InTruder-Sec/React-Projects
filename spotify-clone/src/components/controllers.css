@@ -4,7 +4,7 @@
   background-color: #000;
   position: fixed;
   left: 0;
-  z-index: 2;
+  z-index: 4;
 }
 
 .controllers--img--main {

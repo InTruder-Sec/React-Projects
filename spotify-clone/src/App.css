@@ -6,3 +6,7 @@
   color: white;
   height: 1200px;
 }
+
+body {
+  background-color: rgb(41, 41, 41);
+}
