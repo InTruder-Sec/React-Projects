@@ -6,6 +6,7 @@ import library from "./../images/lib.png";
 import search from "./../images/search.png";
 import add from "./../images/add.png";
 import like from "./../images/liked.png";
+import { ChangeWindow } from "../App";
 
 function Controllers() {
   const GetControllers = ControllerData.map((e) => {
@@ -24,7 +25,12 @@ function Controllers() {
 
 function CreateController(props) {
   return (
-    <div className="controllers--home">
+    <div
+      className="controllers--home"
+      onClick={(e) => {
+        ChangeWindow(props.title);
+      }}
+    >
       <div className="home--icon">
         <img width={"30px"} alt={props.title} src={props.icon} />
       </div>

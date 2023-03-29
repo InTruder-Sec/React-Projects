@@ -31,8 +31,17 @@ function Search() {
 
 function CategoryCards() {
   return (
-    <div className="category--cards">
+    <div className="category--cards" style={{ backgroundColor: "#343432" }}>
       <div className="cat--card--head">Podcast</div>
+      <div
+        className="cat--card--img"
+        style={{
+          backgroundImage:
+            "url(" +
+            "https://i.scdn.co/image/567158eb895ad26718a814345af0fc43ee785ec5" +
+            ")",
+        }}
+      ></div>
     </div>
   );
 }
