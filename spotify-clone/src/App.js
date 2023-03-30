@@ -5,32 +5,40 @@ import NowPlaying from "./components/NowPlaying";
 import Main from "./components/Main";
 import Search from "./components/Search";
 import { useState } from "react";
-import GetToken from "./api/access";
-import { GetCategories } from "./api/access";
 let ChangeWindow;
 
 function App() {
-  const [Current, ChangeCurrent] = useState(Main);
+  const [window, SetWindow] = useState({
+    home: true,
+    search: false,
+    library: false,
+  });
 
   ChangeWindow = (e) => {
     if (e === "HOME") {
-      ChangeCurrent(Main);
+      SetWindow((prev) => {
+        return {
+          ...prev,
+          home: true,
+        };
+      });
     } else if (e === "SEARCH") {
-      ChangeCurrent(Search);
+      console.log("search");
+      SetWindow((prev) => {
+        return {
+          ...prev,
+          search: true,
+        };
+      });
     }
+    // console.log(e);
   };
-
-  GetToken().then((TOKEN) => {
-    GetCategories(TOKEN.access_token).then((CATEGORY) => {
-      console.log(CATEGORY);
-    });
-  });
 
   return (
     <div className="App">
       <Controllers />
       <NavBar />
-      {Current}
+      {/* {window} */}
       <NowPlaying />
     </div>
   );

@@ -28,7 +28,8 @@ function CreateController(props) {
     <div
       className="controllers--home"
       onClick={(e) => {
-        ChangeWindow(props.title);
+        ChangeWindow(e.target.textContent);
+        // console.log(e.target.textContent);
       }}
     >
       <div className="home--icon">

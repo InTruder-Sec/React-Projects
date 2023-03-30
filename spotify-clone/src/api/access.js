@@ -1,7 +1,6 @@
 const CLIENT_ID = "fcbded662beb4c43b6a56f7a7f5ea1d9";
 const CLIENT_SECRET = "6fe0d82f44284068b2c057daec29e2cb";
 const ENDPOINT = "https://accounts.spotify.com/api/token";
-const API_ENDPOINT = "https://api.spotify.com/v1";
 
 async function GetToken() {
   const response = await fetch(ENDPOINT, {
