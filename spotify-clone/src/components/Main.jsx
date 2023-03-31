@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
 import Cards from "./Cards";
-import GetToken, { GetCategories } from "../api/access";
+import GetToken, { GetCategories, GetCategorySongs } from "../api/access";
+let ChangeWindow;
 
-function Main() {
-  // const [token, setToken] = useState("");
+function Main(props) {
   const [title, setTitle] = useState({
     trending: "",
     playlist: "",
     latest: "",
   });
+
   useEffect(() => {
     GetToken().then((Response) => {
       GetCategories(Response.access_token).then((Response) => {
@@ -21,6 +22,9 @@ function Main() {
             latest: Response.categories.items[2].name,
           };
         });
+      });
+      GetCategorySongs(Response.access_token).then((Response) => {
+        console.log(Response);
       });
     });
   }, []);
@@ -54,3 +58,4 @@ function Category(props) {
 }
 
 export default Main;
+export { ChangeWindow };

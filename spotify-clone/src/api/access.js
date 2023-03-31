@@ -27,5 +27,18 @@ async function GetCategories(TOKEN) {
   return Category;
 }
 
+async function GetCategorySongs(TOKEN) {
+  const response = await fetch(
+    "https://api.spotify.com/v1/browse/categories/toplists",
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    }
+  );
+  const Category = await response.json();
+  return Category;
+}
+
 export default GetToken;
-export { GetCategories };
+export { GetCategories, GetCategorySongs };

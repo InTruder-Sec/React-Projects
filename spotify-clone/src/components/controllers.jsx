@@ -6,11 +6,18 @@ import library from "./../images/lib.png";
 import search from "./../images/search.png";
 import add from "./../images/add.png";
 import like from "./../images/liked.png";
-import { ChangeWindow } from "../App";
 
 function Controllers() {
   const GetControllers = ControllerData.map((e) => {
-    return <CreateController title={e.title} key={e.title} icon={e.icon} />;
+    return (
+      <CreateController
+        title={e.title}
+        key={e.title}
+        icon={e.icon}
+        link={e.link}
+        id={e.id}
+      />
+    );
   });
   return (
     <div className="controllers">
@@ -25,18 +32,14 @@ function Controllers() {
 
 function CreateController(props) {
   return (
-    <div
-      className="controllers--home"
-      onClick={(e) => {
-        ChangeWindow(e.target.textContent);
-        // console.log(e.target.textContent);
-      }}
-    >
-      <div className="home--icon">
-        <img width={"30px"} alt={props.title} src={props.icon} />
+    <a href={`/${props.link}`}>
+      <div className="controllers--home">
+        <div className="home--icon">
+          <img width={"30px"} alt={props.title} src={props.icon} />
+        </div>
+        <div className="home--title">{props.title}</div>
       </div>
-      <div className="home--title">{props.title}</div>
-    </div>
+    </a>
   );
 }
 
@@ -44,22 +47,31 @@ const ControllerData = [
   {
     title: "HOME",
     icon: home,
+    link: "",
+    id: 0,
   },
   {
     title: "SEARCH",
     icon: search,
+    link: "search",
+    id: 1,
   },
   {
     title: "LIBRARY",
     icon: library,
+    link: "library",
+    id: 3,
   },
   {
     title: "CREATE PLAYLIST",
     icon: add,
+    link: "",
   },
   {
     title: "LIKED SONGS",
     icon: like,
+    link: "",
+    id: 4,
   },
 ];
 
