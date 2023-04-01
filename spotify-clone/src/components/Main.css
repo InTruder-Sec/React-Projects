@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+}
+
 .main--category--head {
   text-align: left;
   font-size: 24px;

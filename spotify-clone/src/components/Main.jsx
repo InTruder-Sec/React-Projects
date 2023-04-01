@@ -4,55 +4,118 @@ import Cards from "./Cards";
 import GetToken, { GetCategories, GetCategorySongs } from "../api/access";
 let ChangeWindow;
 
-function Main(props) {
+function Main() {
+  let limit = Math.floor((window.screen.width - 250) / 200) + 1;
   const [title, setTitle] = useState({
-    trending: "",
-    playlist: "",
-    latest: "",
+    trending: { t: "", trendingCards: {} },
+    playlist: { t: "", playlistCards: {} },
+    latest: { t: "", latestCards: {} },
   });
 
   useEffect(() => {
     GetToken().then((Response) => {
-      GetCategories(Response.access_token).then((Response) => {
+      GetCategories(Response.access_token).then((category) => {
         setTitle((prevtitle) => {
           return {
             ...prevtitle,
-            trending: Response.categories.items[0].name,
-            playlist: Response.categories.items[1].name,
-            latest: Response.categories.items[2].name,
+            trending: {
+              t: category.categories.items[0].name,
+              trendingCards: {},
+            },
+            playlist: {
+              t: category.categories.items[1].name,
+              playlistCards: {},
+            },
+            latest: {
+              t: category.categories.items[2].name,
+              playlistCards: {},
+            },
           };
         });
-      });
-      GetCategorySongs(Response.access_token).then((Response) => {
-        console.log(Response);
+        GetCategorySongs(
+          Response.access_token,
+          category.categories.items[0].id,
+          limit
+        ).then((Response) => {
+          setTitle((prevtitle) => {
+            return {
+              ...prevtitle,
+              trending: {
+                t: category.categories.items[0].name,
+                trendingCards: Response,
+              },
+            };
+          });
+        });
+        GetCategorySongs(
+          Response.access_token,
+          category.categories.items[1].id,
+          limit
+        ).then((Response) => {
+          setTitle((prevtitle) => {
+            return {
+              ...prevtitle,
+              playlist: {
+                t: category.categories.items[1].name,
+                playlistCards: Response,
+              },
+            };
+          });
+        });
+        GetCategorySongs(
+          Response.access_token,
+          category.categories.items[2].id,
+          limit
+        ).then((Response) => {
+          setTitle((prevtitle) => {
+            return {
+              ...prevtitle,
+              latest: {
+                t: category.categories.items[2].name,
+                latestCards: Response,
+              },
+            };
+          });
+        });
       });
     });
   }, []);
-
   return (
     <div className="main">
-      <Category title={title.trending} />
-      <Category title={title.playlist} />
-      <Category title={title.latest} />
+      <Category
+        title={title.trending.t}
+        cardDetails={title.trending.trendingCards}
+      />
+      <Category
+        title={title.playlist.t}
+        cardDetails={title.playlist.playlistCards}
+      />
+      <Category title={title.latest.t} cardDetails={title.latest.latestCards} />
       <hr className="endline" />
     </div>
   );
 }
 
 function Category(props) {
+  let res;
+  const t = props.cardDetails;
+  try {
+    console.log(t.playlists.items);
+    res = t.playlists.items.map((item) => {
+      return (
+        <Cards
+          img={item.images[0].url}
+          title={item.name}
+          description={item.description}
+        />
+      );
+    });
+  } catch (err) {}
   return (
     <div className="main--category">
       <div className="main--category--more">Show all</div>
       <div className="main--category--head">{props.title}</div>
-      <div className="main--category--cards">
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-      </div>
+      <div className="main--category--cards">{res}</div>
     </div>
   );
 }

@@ -11,7 +11,8 @@
 }
 
 .cards--img--main {
-  width: 85%;
+  width: 130px;
+  height: 130px;
   margin-top: 12px;
   border-radius: 2px;
 }
@@ -43,6 +44,7 @@
   height: 40px;
   width: 40px;
   position: absolute;
+  overflow: hidden;
   display: block;
   margin-top: 105px;
   margin-left: 107px;
