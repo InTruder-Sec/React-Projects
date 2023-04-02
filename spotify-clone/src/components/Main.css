@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.main--hide {
+  display: none;
+}
+
 a {
   text-decoration: none;
 }
@@ -27,6 +31,7 @@ a {
   height: 240px;
   overflow: hidden;
   text-align: left;
+  transition: 0.6s;
 }
 
 .main--category--more {

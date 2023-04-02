@@ -1,6 +1,5 @@
 import React from "react";
 import "./Cards.css";
-import playBtn from "./../images/play.png";
 
 function Cards(props) {
   let newDescription;
@@ -9,6 +8,16 @@ function Cards(props) {
     newTitle = props.title.slice(0, 17) + "...";
     newDescription = props.description.slice(0, 45) + "...";
   } catch {}
+
+  // function NewWindow() {
+  //   props.win(() => {
+  //     return {
+  //       home: false,
+  //       playwin: true,
+  //     };
+  //   });
+  // }
+
   return (
     <div className="cards">
       <div className="cards--play--btn">

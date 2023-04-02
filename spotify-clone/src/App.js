@@ -4,7 +4,7 @@ import NavBar from "./components/Nav-Bar";
 import Search from "./components/Search";
 import NowPlaying from "./components/NowPlaying";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Main from "./components/Main";
+import Home from "./components/Main";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <NavBar />
 
         <Routes>
-          <Route path="/" exact element={<Main />} />
+          <Route path="/" exact element={<Home />} />
           <Route path="/search" element={<Search />} />
           {/* <Route path="/library" element={<Library />} /> */}
         </Routes>
