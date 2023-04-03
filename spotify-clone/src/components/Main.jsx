@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Main.css";
 import Cards from "./Cards";
+import Playlist from "./Playlist";
 import GetToken, { GetCategories, GetCategorySongs } from "../api/access";
-let ChangeWindow;
 let ShowAll;
 let More;
 let Less;
@@ -14,7 +14,7 @@ function Home() {
     home: true,
     playwin: false,
   });
-  return <Main win={win} SetWin={SetWin} />;
+  return <Main win={win} ChangeWindow={SetWin} />;
 }
 
 function Main(props) {
@@ -168,27 +168,33 @@ function Main(props) {
   }, []);
 
   return (
-    <div className={`${props.win.home ? "main" : "main--hide"}`}>
-      <Category
-        title={title.trending.t}
-        cardDetails={title.trending.Cards}
-        id={0}
-        window={props.SetWin}
-      />
-      <Category
-        title={title.playlist.t}
-        cardDetails={title.playlist.Cards}
-        window={props.SetWin}
-        id={1}
-      />
-      <Category
-        title={title.latest.t}
-        cardDetails={title.latest.Cards}
-        win={props.SetWin}
-        id={2}
-      />
-      <hr className="endline" />
-    </div>
+    <>
+      <Playlist SetWindow={props.ChangeWindow} win={props.win} />
+      <div className={`${props.win.home ? "main" : "main--hide"}`}>
+        <Category
+          title={title.trending.t}
+          cardDetails={title.trending.Cards}
+          id={0}
+          win={props.win}
+          ChangeWindow={props.ChangeWindow}
+        />
+        <Category
+          title={title.playlist.t}
+          win={props.win}
+          cardDetails={title.playlist.Cards}
+          ChangeWindow={props.ChangeWindow}
+          id={1}
+        />
+        <Category
+          title={title.latest.t}
+          cardDetails={title.latest.Cards}
+          win={props.win}
+          ChangeWindow={props.ChangeWindow}
+          id={2}
+        />
+        <hr className="endline" />
+      </div>
+    </>
   );
 }
 
@@ -203,6 +209,7 @@ function Category(props) {
           title={item.name}
           description={item.description}
           win={props.win}
+          ChangeWindow={props.ChangeWindow}
           url={item.href}
         />
       );
@@ -228,4 +235,3 @@ function Category(props) {
 }
 
 export default Home;
-export { ChangeWindow };

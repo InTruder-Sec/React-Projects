@@ -1,25 +1,32 @@
 import React from "react";
 import "./Cards.css";
+let Playlisturl;
 
 function Cards(props) {
   let newDescription;
   let newTitle;
   try {
-    newTitle = props.title.slice(0, 17) + "...";
-    newDescription = props.description.slice(0, 45) + "...";
+    if (props.title.length > 17) {
+      newTitle = props.title.slice(0, 17) + "...";
+      newDescription = props.description.slice(0, 45) + "...";
+    } else {
+      newTitle = props.title;
+      newDescription = props.description.slice(0, 45) + "...";
+    }
   } catch {}
 
-  // function NewWindow() {
-  //   props.win(() => {
-  //     return {
-  //       home: false,
-  //       playwin: true,
-  //     };
-  //   });
-  // }
+  function NewWindow(url) {
+    Playlisturl = url;
+    props.ChangeWindow(() => {
+      return {
+        home: false,
+        playwin: true,
+      };
+    });
+  }
 
   return (
-    <div className="cards">
+    <div className="cards" onClick={() => NewWindow(props.url)}>
       <div className="cards--play--btn">
         {/* <img className="cards--play--img" src={playBtn} alt="playbtn"></img> */}
       </div>
@@ -35,3 +42,4 @@ function Cards(props) {
 }
 
 export default Cards;
+export { Playlisturl };

@@ -1,0 +1,14 @@
+.playlist {
+  display: block;
+  padding-top: 70px;
+  margin-left: 270px;
+}
+.playlist--hide {
+  display: none;
+}
+
+.temp {
+  width: 400px;
+  height: 500px;
+  background-color: blue;
+}

@@ -43,5 +43,15 @@ async function GetCategorySongs(TOKEN, categoryID, limit) {
   return Category;
 }
 
+async function GetPLaylist(url, token) {
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const playlist = await response;
+  return playlist;
+}
+
 export default GetToken;
-export { GetCategories, GetCategorySongs };
+export { GetCategories, GetCategorySongs, GetPLaylist };
