@@ -12,14 +12,34 @@ a {
   text-decoration: none;
 }
 
+.loadingWindow {
+  height: 25px;
+  margin-top: 60px;
+  width: 200px;
+  background: #ffffff;
+  background: linear-gradient(150deg, #181818 8%, #282828 18%, #181818 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
 .main--category--head {
   text-align: left;
   font-size: 24px;
   font-weight: 600;
-  padding: 0px 20px 10px 20px;
   cursor: pointer;
   margin-top: 60px;
   width: fit-content;
+}
+
+.main--category--more::before {
+  content: "Show all";
 }
 
 .main--category--head:hover {
@@ -41,6 +61,22 @@ a {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  display: block;
+}
+
+.loadingMore {
+  position: absolute;
+  right: 60px;
+  font-size: 12px;
+  font-weight: 600;
+  height: 25px;
+  width: 100px;
+  cursor: pointer;
+  background: #ffffff;
+  background: linear-gradient(150deg, #181818 8%, #282828 18%, #181818 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
 }
 
 .endline {

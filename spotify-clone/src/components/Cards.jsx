@@ -1,4 +1,5 @@
 import React from "react";
+import GetToken, { GetPLaylist } from "../api/access";
 import "./Cards.css";
 let Playlisturl;
 
@@ -9,14 +10,21 @@ function Cards(props) {
     if (props.title.length > 17) {
       newTitle = props.title.slice(0, 17) + "...";
       newDescription = props.description.slice(0, 45) + "...";
+      document.querySelectorAll(".loadingCards").forEach((e) => {
+        e.style.display = "none";
+      });
     } else {
       newTitle = props.title;
       newDescription = props.description.slice(0, 45) + "...";
     }
   } catch {}
 
-  function NewWindow(url) {
-    Playlisturl = url;
+  function NewWindow(playlistId) {
+    GetToken().then((token) => {
+      GetPLaylist(playlistId, token.access_token).then((data) => {
+        console.log(data);
+      });
+    });
     props.ChangeWindow(() => {
       return {
         home: false,
@@ -26,12 +34,17 @@ function Cards(props) {
   }
 
   return (
-    <div className="cards" onClick={() => NewWindow(props.url)}>
-      <div className="cards--play--btn">
-        {/* <img className="cards--play--img" src={playBtn} alt="playbtn"></img> */}
-      </div>
+    <div
+      className={`${props.isLoading ? "loadingCards" : "cards"}`}
+      onClick={() => NewWindow(props.playlistId)}
+    >
+      <div className="cards--play--btn"></div>
       <div className="cards--img">
-        <img className="cards--img--main" alt="image1" src={props.img}></img>
+        <img
+          className={`${props.isLoading ? "" : "cards--img--main"}`}
+          alt=""
+          src={props.img}
+        ></img>
       </div>
       <div className="cards--details">
         <div className="cards--title">{newTitle}</div>

@@ -43,14 +43,21 @@ async function GetCategorySongs(TOKEN, categoryID, limit) {
   return Category;
 }
 
-async function GetPLaylist(url, token) {
+async function GetPLaylist(playlistId, token) {
+  const url = "https://api.spotify.com/v1/playlists/" + playlistId;
   const response = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  const playlist = await response;
-  return playlist;
+  const playlist = await response.json();
+  console.log(playlist);
+  // .then((response) => {
+  //   response.json();
+  // })
+  // .then((playlist) => {
+  //   return playlist;
+  // });
 }
 
 export default GetToken;

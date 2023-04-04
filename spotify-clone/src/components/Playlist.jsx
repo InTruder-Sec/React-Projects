@@ -1,17 +1,34 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Playlist.css";
-import { Playlisturl } from "./Cards";
-import GetToken from "../api/access";
-import { GetPLaylist } from "../api/access";
+import palyBtn from "./../images/mainPlay.png";
 
 function Playlist(props) {
-  console.log(Playlisturl);
-  GetToken().then((response) => {
-    GetPLaylist(Playlisturl, response.access_token).then((playlist) => {});
-  });
   return (
     <div className={`${props.win.playwin ? "playlist" : "playlist--hide"}`}>
-      <div className="">hello</div>
+      <div className="playlist--hero">
+        <div className="playlist--hero--img">
+          <img
+            src={
+              "https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebce202eea14763b8b7696936e/1/en/default"
+            }
+            alt="Playlist Image"
+          ></img>
+        </div>
+        <div className="playlist--hero--details">
+          <div className="playlist--hero--title">Playlist</div>
+          <div className="playlist--hero--name">Daily Mix 1</div>
+          <div className="playlist--hero--auth">Alan Walker, Rival...</div>
+        </div>
+      </div>
+      <div className="playlist--list">
+        <div className="play--btn>">
+          <img
+            className="play--btn--img"
+            alt="playlist--playBtn"
+            src={palyBtn}
+          ></img>
+        </div>
+      </div>
     </div>
   );
 }

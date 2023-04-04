@@ -146,12 +146,13 @@ function Main(props) {
         More = (e) => {
           ShowAll(e, 20);
           document.getElementById("categories" + e).style.height = "unset";
-          document.getElementById("show" + e).innerText = "Hide";
+          document.querySelectorAll(".loadingCards").forEach((e) => {
+            e.style.display = "none";
+          });
         };
         Less = (e) => {
           ShowAll(e, LimitCards);
           document.getElementById("categories" + e).style.height = "240px";
-          document.getElementById("show" + e).innerText = "Show All";
         };
 
         Check = (e) => {
@@ -166,7 +167,6 @@ function Main(props) {
       });
     });
   }, []);
-
   return (
     <>
       <Playlist SetWindow={props.ChangeWindow} win={props.win} />
@@ -176,6 +176,7 @@ function Main(props) {
           cardDetails={title.trending.Cards}
           id={0}
           win={props.win}
+          key="trending"
           ChangeWindow={props.ChangeWindow}
         />
         <Category
@@ -184,10 +185,12 @@ function Main(props) {
           cardDetails={title.playlist.Cards}
           ChangeWindow={props.ChangeWindow}
           id={1}
+          key="playlist"
         />
         <Category
           title={title.latest.t}
           cardDetails={title.latest.Cards}
+          key="latest"
           win={props.win}
           ChangeWindow={props.ChangeWindow}
           id={2}
@@ -209,26 +212,37 @@ function Category(props) {
           title={item.name}
           description={item.description}
           win={props.win}
+          playlistId={item.id}
           ChangeWindow={props.ChangeWindow}
           url={item.href}
+          key={item.title}
         />
       );
     });
   } catch (err) {}
+  let NewHeadClass;
+  let NewMoreClass;
+  if (props.title === "") {
+    NewHeadClass = "loadingWindow";
+    NewMoreClass = "loadingMore";
+  } else {
+    NewHeadClass = "main--category--head";
+    NewMoreClass = "main--category--more";
+  }
   return (
     <div className="main--category">
       <div
-        className="main--category--more"
+        className={NewMoreClass}
         onClick={() => {
           Check(props.id);
         }}
         id={`show${props.id}`}
-      >
-        Show all
-      </div>
-      <div className="main--category--head">{props.title}</div>
+      ></div>
+      <div className={NewHeadClass}>{props.title}</div>
       <div className="main--category--cards" id={`categories${props.id}`}>
         {res}
+        <Cards isLoading={true} />
+        <Cards isLoading={true} />
       </div>
     </div>
   );

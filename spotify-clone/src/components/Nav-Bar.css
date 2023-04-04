@@ -51,6 +51,7 @@
   width: 70px;
   justify-content: space-between;
   margin-left: 270px;
+  z-index: 10;
 }
 
 .change--arrow {
