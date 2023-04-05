@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Space+Grotesk:wght@500&display=swap");
+
 .playlist {
   display: block;
   margin-left: 250px;
@@ -14,7 +16,7 @@
   height: 600px;
   width: 100%;
   position: absolute;
-  background: linear-gradient(#474fc4, #292929);
+  background: linear-gradient(#f49b23, #292929);
 }
 
 .playlist--hero--img {
@@ -33,7 +35,6 @@
   vertical-align: top;
   width: 60%;
   padding-left: 30px;
-  padding-top: 20px;
   height: 200px;
 }
 
@@ -70,10 +71,173 @@
   overflow: hidden;
   background-color: #292929;
   opacity: 0.3;
-  z-index: 1;
+  z-index: -1;
 }
 
 .play--btn--img {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.play--btn--img:hover {
+  scale: 1.08;
+}
+
+.playlist--controllers {
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.playlist--liked {
+  height: 50px;
+  width: 50px;
+  opacity: 0.3;
+  transition: 0.3s;
+  vertical-align: top;
+  margin-top: 6px;
+  margin-left: 15px;
+}
+
+.playlist--liked:hover {
+  opacity: 1;
+}
+
+.playlist--more {
+  height: 50px;
+  width: 50px;
+  filter: invert(1);
+  margin-left: 15px;
+  opacity: 0.3;
+  transition: 0.3s;
+}
+
+.playlist--brand {
+  display: flex;
+}
+
+.playlist--brand--logo {
+  width: 70px;
+  height: 60px;
+  filter: invert(1);
+  margin-left: -15px;
+}
+
+.playlist--brand--title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 18px;
+  margin-left: -10px;
+}
+
+.playlist--count::before {
+  position: absolute;
+  margin-left: -12px;
+  margin-top: 7px;
+  border-radius: 5px;
+  width: 5px;
+  height: 5px;
+  display: block;
+  content: "";
+  background-color: white;
+}
+
+.playlist--count {
+  margin-left: 20px;
+}
+
+.playlist--more:hover {
+  opacity: 1;
+}
+
+.playlist--clock {
+  width: 15px;
+  height: 15px;
+  margin-top: 5px;
+}
+
+.playlist--table--head {
+  opacity: 0.6;
+  font-size: 13px;
+  font-weight: 600;
+}
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin-left: 10px;
+  margin-top: 20px;
+  font-family: "Poppins", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.table--sr {
+  width: 4%;
+  text-align: center;
+  border-bottom: 1px solid rgb(195, 195, 195);
+  padding-bottom: 15px;
+}
+
+.table--title {
+  width: 45%;
+  border-bottom: 1px solid rgb(195, 195, 195);
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.table--album {
+  padding-left: 10px;
+  width: 30%;
+  border-bottom: 1px solid rgb(195, 195, 195);
+  padding-bottom: 10px;
+}
+.table--duration {
+  width: 5%;
+  border-bottom: 1px solid rgb(195, 195, 195);
+  padding-bottom: 10px;
+}
+
+.playlist--title--song {
+  display: flex;
+  vertical-align: middle;
+}
+
+.playlist--song {
+  padding-left: 15px;
+  vertical-align: top;
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 5px;
+  padding-top: 6px;
+}
+
+.playlist--song--img {
+  width: 40px;
+  height: 40px;
+  padding-top: 5px;
+  vertical-align: middle;
+  padding-bottom: 4px;
+  padding-left: 5px;
+}
+
+.playlist--song--author {
+  font-size: 12px;
+  opacity: 0.8;
+}
+.playlist--songs {
+  border-radius: 100px;
+}
+
+.playlist--sr {
+  text-align: right;
+  padding-right: 20px;
+}
+
+.playlist--songs:hover {
+  background-color: rgb(70, 70, 70);
+}
+
+td {
+  font-size: 13px;
+  opacity: 0.8;
+  padding-left: 6px;
 }
