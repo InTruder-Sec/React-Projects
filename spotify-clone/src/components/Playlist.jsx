@@ -7,6 +7,7 @@ import clock from "./../images/clock.png";
 import logo from "./../images/logo.png";
 
 function Playlist(props) {
+  // console.log(props.avi);
   return (
     <div className={`${props.win.playwin ? "playlist" : "playlist--hide"}`}>
       <div className="playlist--hero">
@@ -57,18 +58,21 @@ function Playlist(props) {
             </tr>
             <br></br>
             <MakePLaylist
+              id="1"
               key="1"
               title="Perfect"
               album="ED's World"
               img="https://m.media-amazon.com/images/M/MV5BMGU5YTRjMTUtZDU4Mi00NjFlLWExYTAtMjVkN2JmOTE1Y2Q2XkEyXkFqcGdeQXVyNjE0ODc0MDc@._V1_.jpg"
             />
             <MakePLaylist
+              id="2"
               key="2"
               title="Faded"
               album="Alan's World"
               img="https://m.media-amazon.com/images/M/MV5BMGU5YTRjMTUtZDU4Mi00NjFlLWExYTAtMjVkN2JmOTE1Y2Q2XkEyXkFqcGdeQXVyNjE0ODc0MDc@._V1_.jpg"
             />
             <MakePLaylist
+              id="3"
               key="3"
               title="Alone Pt. II"
               album="Alan's World"
@@ -84,7 +88,7 @@ function Playlist(props) {
 function MakePLaylist(props) {
   return (
     <tr className="playlist--songs">
-      <td className="playlist--sr">{props.key}</td>
+      <td className="playlist--sr">{props.id}</td>
       <td className="playlist--title--song">
         <img className="playlist--song--img" src={props.img} alt="song"></img>
         <div className="playlist--song">

@@ -1,6 +1,7 @@
 import React from "react";
 import GetToken, { GetPLaylist } from "../api/access";
 import "./Cards.css";
+import Playlist from "./Playlist";
 let Playlisturl;
 
 function Cards(props) {
@@ -22,7 +23,11 @@ function Cards(props) {
   function NewWindow(playlistId) {
     GetToken().then((token) => {
       GetPLaylist(playlistId, token.access_token).then((data) => {
-        console.log(data);
+        <Playlist
+          SetWindow={props.ChangeWindow}
+          win={props.win}
+          avi={playlistId}
+        />;
       });
     });
     props.ChangeWindow(() => {

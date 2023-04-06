@@ -51,13 +51,7 @@ async function GetPLaylist(playlistId, token) {
     },
   });
   const playlist = await response.json();
-  console.log(playlist);
-  // .then((response) => {
-  //   response.json();
-  // })
-  // .then((playlist) => {
-  //   return playlist;
-  // });
+  return playlist;
 }
 
 export default GetToken;
