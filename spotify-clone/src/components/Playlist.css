@@ -16,18 +16,18 @@
   height: 600px;
   width: 100%;
   position: absolute;
-  background: linear-gradient(#f49b23, #292929);
+  background: linear-gradient(#000000, #292929);
 }
 
 .playlist--hero--img {
   display: inline-block;
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
 }
 
 .playlist--hero--img img {
-  width: 200px;
-  height: 200px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-color: #292929;
 }
 
 .playlist--hero--details {
@@ -240,4 +240,44 @@ td {
   font-size: 13px;
   opacity: 0.8;
   padding-left: 6px;
+}
+
+.loadingCardsPlaylist {
+  width: 160px;
+  height: 160px;
+  margin-left: 20px;
+  display: inline-block;
+  transition: 0.4s;
+  margin-top: 15px;
+  background: #ffffff;
+  background: linear-gradient(110deg, #181818 20%, #282828 55%, #181818 80%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.disableImg {
+  display: none;
+  height: 0;
+  width: 0;
+  z-index: -10;
+}
+
+.loadingBar {
+  width: 300px;
+  height: 20px;
+  color: #181818;
+  display: inline-block;
+  transition: 0.4s;
+  background: #ffffff;
+  background: linear-gradient(110deg, #181818 20%, #282828 55%, #181818 80%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import "./Main.css";
 import Cards from "./Cards";
 import Playlist from "./Playlist";
@@ -8,6 +8,7 @@ let More;
 let Less;
 let Check;
 let LimitCards;
+let playlistData;
 
 function Home() {
   const [win, SetWin] = useState({
@@ -18,6 +19,9 @@ function Home() {
 }
 
 function Main(props) {
+  const [playData, ChangePLay] = useState("");
+  playlistData = createContext(playData);
+
   LimitCards = Math.floor((window.screen.width - 250) / 200) + 1;
   const [title, setTitle] = useState({
     trending: { t: "", Cards: {} },
@@ -178,6 +182,7 @@ function Main(props) {
           win={props.win}
           key="trending"
           ChangeWindow={props.ChangeWindow}
+          changeData={ChangePLay}
         />
         <Category
           title={title.playlist.t}
@@ -185,6 +190,7 @@ function Main(props) {
           cardDetails={title.playlist.Cards}
           ChangeWindow={props.ChangeWindow}
           id={1}
+          changeData={ChangePLay}
           key="playlist"
         />
         <Category
@@ -193,6 +199,7 @@ function Main(props) {
           key="latest"
           win={props.win}
           ChangeWindow={props.ChangeWindow}
+          changeData={ChangePLay}
           id={2}
         />
         <hr className="endline" />
@@ -216,6 +223,7 @@ function Category(props) {
           ChangeWindow={props.ChangeWindow}
           url={item.href}
           key={item.title}
+          changeData={props.changeData}
         />
       );
     });
@@ -249,3 +257,4 @@ function Category(props) {
 }
 
 export default Home;
+export { playlistData };
