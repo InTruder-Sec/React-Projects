@@ -36,7 +36,10 @@ function Cards(props) {
   return (
     <div
       className={`${props.isLoading ? "loadingCards" : "cards"}`}
-      onClick={() => NewWindow(props.playlistId)}
+      onClick={() => {
+        NewWindow(props.playlistId);
+        window.scrollTo(0, 0);
+      }}
     >
       <div className="cards--play--btn"></div>
       <div className="cards--img">

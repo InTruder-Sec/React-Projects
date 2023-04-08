@@ -16,7 +16,6 @@
   height: 600px;
   width: 100%;
   position: absolute;
-  background: linear-gradient(#000000, #292929);
 }
 
 .playlist--hero--img {
@@ -44,7 +43,7 @@
 }
 
 .playlist--hero--name {
-  font-size: 92px;
+  font-size: 420%;
   font-weight: 1000;
 }
 
@@ -161,8 +160,14 @@
   font-size: 13px;
   font-weight: 600;
 }
+
+.endlinePlaylist {
+  position: absolute;
+}
+
 table {
   width: 95%;
+  margin-bottom: 160px;
   border-collapse: collapse;
   margin-left: 10px;
   margin-top: 20px;
@@ -243,8 +248,8 @@ td {
 }
 
 .loadingCardsPlaylist {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
   margin-left: 20px;
   display: inline-block;
   transition: 0.4s;
@@ -273,11 +278,32 @@ td {
   width: 300px;
   height: 20px;
   color: #181818;
-  display: inline-block;
   transition: 0.4s;
   background: #ffffff;
   background: linear-gradient(110deg, #181818 20%, #282828 55%, #181818 80%);
   border-radius: 5px;
   background-size: 200% 100%;
   animation: 1.5s shine linear infinite;
+}
+
+.loadingBarDetailed {
+  width: 300px;
+  height: 70px;
+  color: #181818;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: 0.4s;
+  background: #ffffff;
+  background: linear-gradient(110deg, #181818 20%, #282828 55%, #181818 80%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+.errorDiv {
+  position: absolute;
+  margin-top: 10px;
+  text-align: center;
+  width: 100vw;
+  margin-left: -150px;
 }

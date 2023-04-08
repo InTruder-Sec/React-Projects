@@ -10,14 +10,47 @@ import { playlistData } from "./Main";
 function Playlist(props) {
   let isDataLoaded;
   const data = useContext(playlistData);
+  var randomColor = Math.floor(Math.random() * 16777215).toString(16);
   if (data === "") {
     isDataLoaded = false;
+    var color = "linear-gradient(#000000 , #292929)";
   } else {
     isDataLoaded = true;
+    var color = "linear-gradient(#" + randomColor + ", #292929)";
   }
+  let PlaylistLength;
+  let playlistTable;
+  let time;
+  try {
+    PlaylistLength = data.tracks.items.length + " Songs";
+    let newId = 0;
+    playlistTable = data.tracks.items.map((e) => {
+      console.log(e);
+      newId = newId + 1;
+      time = millisToMinutesAndSeconds(e.track.duration_ms);
+
+      return (
+        <MakePLaylist
+          id={newId}
+          key={e.uri}
+          title={e.track.name}
+          album={e.track.album.artists[0].name}
+          img={e.track.album.images[0].url}
+          artist={e.track.album.type}
+          time={time}
+        />
+      );
+    });
+  } catch {
+    PlaylistLength = "";
+    playlistTable = "";
+  }
+
+  console.log(data);
+
   return (
     <div className={`${props.win.playwin ? "playlist" : "playlist--hide"}`}>
-      <div className="playlist--hero">
+      <div className="playlist--hero" style={{ backgroundImage: color }}>
         <div
           className={`${
             isDataLoaded ? "playlist--hero--img" : "loadingCardsPlaylist"
@@ -32,18 +65,36 @@ function Playlist(props) {
         <div className="playlist--hero--details">
           <div
             className={`${
-              props.win.playwin ? "loadingBar" : "playlist--hero--details"
+              isDataLoaded ? "playlist--hero--title" : "loadingBar"
             }`}
           >
             Playlist
           </div>
-          <div className="playlist--hero--name">Daily Mix 1</div>
-          <div className="playlist--hero--auth">Alan Walker, Rival...</div>
-          <div className="playlist--brand">
-            <img className="playlist--brand--logo" alt="logo" src={logo}></img>
+          <div
+            className={`${
+              isDataLoaded ? "playlist--hero--name" : "loadingBarDetailed"
+            }`}
+          >
+            {data.name}
+          </div>
+          <div
+            className={`${
+              isDataLoaded ? "playlist--hero--auth" : "loadingBar"
+            }`}
+          >
+            {data.description}
+          </div>
+          <div className={`${isDataLoaded ? "playlist--brand" : "loadingBar"}`}>
+            <img
+              className={`${
+                isDataLoaded ? "playlist--brand--logo" : "disableImg"
+              }`}
+              alt="logo"
+              src={logo}
+            ></img>
             <div className="playlist--brand--title">Playify</div>
             <div className="playlist--brand--title playlist--count">
-              50 Songs
+              {PlaylistLength}
             </div>
           </div>
         </div>
@@ -73,27 +124,8 @@ function Playlist(props) {
               </td>
             </tr>
             <br></br>
-            <MakePLaylist
-              id="1"
-              key="1"
-              title="Perfect"
-              album="ED's World"
-              img="https://m.media-amazon.com/images/M/MV5BMGU5YTRjMTUtZDU4Mi00NjFlLWExYTAtMjVkN2JmOTE1Y2Q2XkEyXkFqcGdeQXVyNjE0ODc0MDc@._V1_.jpg"
-            />
-            <MakePLaylist
-              id="2"
-              key="2"
-              title="Faded"
-              album="Alan's World"
-              img="https://m.media-amazon.com/images/M/MV5BMGU5YTRjMTUtZDU4Mi00NjFlLWExYTAtMjVkN2JmOTE1Y2Q2XkEyXkFqcGdeQXVyNjE0ODc0MDc@._V1_.jpg"
-            />
-            <MakePLaylist
-              id="3"
-              key="3"
-              title="Alone Pt. II"
-              album="Alan's World"
-              img="https://dailymix-images.scdn.co/v2/img/ab6761610000e5ebce202eea14763b8b7696936e/1/en/default"
-            />
+            {playlistTable}
+            <hr className="endline endlinePlaylist"></hr>
           </table>
         </div>
       </div>
@@ -109,13 +141,19 @@ function MakePLaylist(props) {
         <img className="playlist--song--img" src={props.img} alt="song"></img>
         <div className="playlist--song">
           <div className="playlist--song--title">{props.title}</div>
-          <div className="playlist--song--author">Alan Walker</div>
+          <div className="playlist--song--author">Playify</div>
         </div>
       </td>
       <td>{props.album}</td>
-      <td>3:26</td>
+      <td>{props.time}</td>
     </tr>
   );
+}
+
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
 }
 
 export default Playlist;
