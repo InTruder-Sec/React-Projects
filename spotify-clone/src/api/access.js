@@ -54,5 +54,18 @@ async function GetPLaylist(playlistId, token) {
   return playlist;
 }
 
+async function SearchQuery(query, token) {
+  const url = `https://api.spotify.com/v1/search?type=album,artist,playlist,track,show,episode&q=${encodeURIComponent(
+    query
+  )}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await response.json();
+  return result;
+}
+
 export default GetToken;
-export { GetCategories, GetCategorySongs, GetPLaylist };
+export { GetCategories, GetCategorySongs, GetPLaylist, SearchQuery };

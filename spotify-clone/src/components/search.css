@@ -1,4 +1,14 @@
 .search {
+  padding-top: 10px;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hideSearch {
+  display: none;
+}
+
+.main--search {
   padding-top: 30px;
   margin-left: 270px;
   overflow: hidden;

@@ -4,6 +4,7 @@
   display: block;
   margin-left: 250px;
   text-align: left;
+  width: 100vw;
 }
 
 .playlist--hide {
