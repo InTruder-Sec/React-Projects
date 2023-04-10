@@ -1,7 +1,8 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import "./search.css";
 import searchImg from "../images/search.png";
 import GetToken, { SearchQuery } from "../api/access";
+import Cards from "./Cards";
 let SearchData;
 
 function SearchWindow() {
@@ -12,10 +13,17 @@ function SearchWindow() {
   const [SearchResult, SetSearchResult] = useState("");
   SearchData = createContext(SearchResult);
 
-  return <Search CurrentWindow={SearchWindow} ChangeWindow={SetSearchWindow} />;
+  return (
+    <Search
+      CurrentWindow={SearchWindow}
+      ChangeWindow={SetSearchWindow}
+      SearchResult={SearchResult}
+      SetSearchResult={SetSearchResult}
+    />
+  );
 }
 
-function SearchFor(ChangeWindow) {
+function SearchFor(ChangeWindow, SetSearchResult) {
   const sq = document.getElementById("search--inpt--main").value;
   if (document.getElementById("search--inpt--main").value !== "") {
     ChangeWindow({
@@ -27,22 +35,85 @@ function SearchFor(ChangeWindow) {
       main: true,
       searching: false,
     });
+
+    SetSearchResult("");
   }
+  const LimitCards = Math.floor((window.screen.width - 250) / 200) + 1;
   GetToken().then((Token) => {
-    SearchQuery(sq, Token.access_token).then((Response) => {
-      console.log(Response);
+    SearchQuery(sq, LimitCards, Token.access_token).then((Response) => {
+      SetSearchResult(Response);
     });
   });
 }
 
 function SearchValue(props) {
+  const SD = useContext(SearchData);
+  console.log(SD);
+  let topImage;
+  let toptitle;
+  let topartists;
+  let type;
+  try {
+    topImage = SD.albums.items[0].images[0].url;
+    toptitle = SD.albums.items[0].name;
+    topartists = SD.albums.items[0].artists[0].name;
+    type = SD.albums.items[0].type;
+    if (toptitle.length > 30) {
+      toptitle = toptitle.slice(0, 30) + "...";
+    }
+  } catch {
+    topImage = "";
+    toptitle = "";
+    topartists = "";
+    type = "";
+  }
+
   return (
     <div
       className={`${
-        props.CurrentWindow.searching ? "SeachWindow" : "hideSearch"
+        props.CurrentWindow.searching ? "SearchWindow" : "hideSearch"
       }`}
     >
-      Loading
+      <div className="featuring-search">
+        <div className="feature--song">
+          <div className="headline">Top Result</div>
+          <div className="search--featured">
+            <div className="top-result-img">
+              <img className="top-result" src={topImage} alt=""></img>
+            </div>
+            <div className="top--result--title">{toptitle}</div>
+            <div className="artists--display">{topartists}</div>
+            <div className="album--btn">{type}</div>
+          </div>
+        </div>
+        <div className="search--song--list">
+          <div className="headline">Songs</div>
+          <div className="search--songs">
+            <CreateTracks />
+          </div>
+        </div>
+      </div>
+      <Category title={"Albums"} />
+      <Category title={"Artists"} />
+      <Category title={"Episodes"} />
+      <Category title={"Playlists"} />
+      <Category title={"Shows"} />
+    </div>
+  );
+}
+
+function CreateTracks() {
+  return (
+    <div className="tracks">
+      <table>
+        <tr className="playlist--table--head">
+          <td className="table--sr noborder">#</td>
+          <td className="table--title noborder">Title</td>
+          <td className="table--duration noborder">
+            <img className="playlist--clock" alt="clock"></img>
+          </td>
+        </tr>
+      </table>
     </div>
   );
 }
@@ -57,13 +128,15 @@ function Search(props) {
           placeholder="What do you want to listen to?"
           id="search--inpt--main"
           onChange={(e) => {
-            SearchFor(props.ChangeWindow);
+            SearchFor(props.ChangeWindow, props.SetSearchResult);
           }}
         ></input>
       </div>
       <SearchValue
         CurrentWindow={props.CurrentWindow}
         ChangeWindow={props.ChangeWindow}
+        SearchResult={props.SearchResult}
+        SetSearchResult={props.SetSearchResult}
       />
       <div className={`${props.CurrentWindow.main ? "search" : "hideSearch"}`}>
         <div className="cat--main">
@@ -97,6 +170,28 @@ function CategoryCards() {
             ")",
         }}
       ></div>
+    </div>
+  );
+}
+
+function Category(props) {
+  const SD = useContext(SearchData);
+  let NewMoreClass;
+  if (SD === "") {
+    NewMoreClass = "loadingMore";
+  } else {
+    NewMoreClass = "main--category--more";
+  }
+  return (
+    <div className="main--category">
+      <div className={NewMoreClass}></div>
+      <div className="main--category--head">{props.title}</div>
+      <div className="main--category--cards" id={`categories${props.id}`}>
+        {/* {res} */}
+        <Cards isLoading={true} />
+        <Cards isLoading={true} />
+        <Cards isLoading={true} />
+      </div>
     </div>
   );
 }
