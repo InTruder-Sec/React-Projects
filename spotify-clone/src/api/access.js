@@ -54,10 +54,10 @@ async function GetPLaylist(playlistId, token) {
   return playlist;
 }
 
-async function SearchQuery(query, token) {
+async function SearchQuery(query, limit, token) {
   const url = `https://api.spotify.com/v1/search?type=album,artist,playlist,track,show,episode&q=${encodeURIComponent(
     query
-  )}`;
+  )}&limit=${encodeURIComponent(limit)}`;
   const response = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
