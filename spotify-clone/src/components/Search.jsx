@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import "./search.css";
 import searchImg from "../images/search.png";
-import GetToken, { SearchQuery } from "../api/access";
+import GetToken, { GetTracks, SearchQuery } from "../api/access";
 import Cards from "./Cards";
 let SearchData;
+let sq;
 
 function SearchWindow() {
   const [SearchWindow, SetSearchWindow] = useState({
@@ -24,7 +25,7 @@ function SearchWindow() {
 }
 
 function SearchFor(ChangeWindow, SetSearchResult) {
-  const sq = document.getElementById("search--inpt--main").value;
+  sq = document.getElementById("search--inpt--main").value;
   if (document.getElementById("search--inpt--main").value !== "") {
     ChangeWindow({
       main: false,
@@ -48,7 +49,6 @@ function SearchFor(ChangeWindow, SetSearchResult) {
 
 function SearchValue(props) {
   const SD = useContext(SearchData);
-  console.log(SD);
   let topImage;
   let toptitle;
   let topartists;
@@ -89,7 +89,7 @@ function SearchValue(props) {
         <div className="search--song--list">
           <div className="headline">Songs</div>
           <div className="search--songs">
-            <CreateTracks />
+            <CreateTracks data={SD.tracks} />
           </div>
         </div>
       </div>
@@ -103,18 +103,44 @@ function SearchValue(props) {
 }
 
 function CreateTracks() {
+  const [Newresult, SetNewResult] = useState("");
+  useEffect(() => {
+    GetToken().then((Token) => {
+      GetTracks(sq, 5, Token.access_token).then((Response) => {
+        SetNewResult(
+          Response.tracks.items.map((e) => {
+            // console.log(e);
+            return <CreateSingleTrack img={e} />;
+          })
+        );
+      });
+    });
+  });
+
   return (
     <div className="tracks">
       <table>
-        <tr className="playlist--table--head">
-          <td className="table--sr noborder">#</td>
-          <td className="table--title noborder">Title</td>
-          <td className="table--duration noborder">
-            <img className="playlist--clock" alt="clock"></img>
-          </td>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
+        {Newresult}
       </table>
     </div>
+  );
+}
+
+function CreateSingleTrack() {
+  return (
+    <tr className="playlist--table--head">
+      <td className="table--sr playlist--img noborder"></td>
+      <td className="table--title noborder">Title</td>
+      <td className="table--duration noborder">
+        <img className="playlist--clock" alt="clock"></img>
+      </td>
+    </tr>
   );
 }
 

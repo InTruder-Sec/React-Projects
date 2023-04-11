@@ -67,5 +67,18 @@ async function SearchQuery(query, limit, token) {
   return result;
 }
 
+async function GetTracks(query, limit, token) {
+  const url = `https://api.spotify.com/v1/search?type=track&q=${encodeURIComponent(
+    query
+  )}&limit=${limit}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await response.json();
+  return result;
+}
+
 export default GetToken;
-export { GetCategories, GetCategorySongs, GetPLaylist, SearchQuery };
+export { GetCategories, GetCategorySongs, GetPLaylist, SearchQuery, GetTracks };
