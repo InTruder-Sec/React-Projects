@@ -106,7 +106,7 @@ input:focus {
 }
 
 .search--featured {
-  width: 440px;
+  width: 400px;
   border-radius: 5px;
   height: 225px;
   background-color: #181818;
@@ -122,7 +122,7 @@ input:focus {
 .search--songs {
   border-radius: 5px;
   height: 260px;
-  background-color: #181818;
+  overflow: hidden;
 }
 
 .search--song--list {
@@ -132,6 +132,7 @@ input:focus {
 .headline {
   font-size: 22px;
   font-weight: 600;
+  margin-top: 15px;
   padding: 0px 10px 20px 0px;
 }
 
@@ -170,4 +171,44 @@ input:focus {
 
 .noborder {
   border-bottom: none !important;
+}
+
+.top-result {
+  border: none;
+}
+
+.song--list table {
+  margin-top: 0px;
+}
+
+.track--tr {
+  height: 50px;
+  text-align: top;
+}
+
+.track--img {
+  height: 42px;
+  width: 42px;
+  margin-top: 4px;
+}
+
+.track--tr--img {
+  width: 55px;
+}
+
+.track--tr--name {
+  font-size: 16px;
+}
+
+.track--tr--artist {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.track--tr {
+  border-radius: 5px;
+}
+
+.track--tr:hover {
+  background-color: rgb(74, 74, 74);
 }

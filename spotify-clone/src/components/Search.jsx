@@ -3,6 +3,7 @@ import "./search.css";
 import searchImg from "../images/search.png";
 import GetToken, { GetTracks, SearchQuery } from "../api/access";
 import Cards from "./Cards";
+import { millisToMinutesAndSeconds } from "./Playlist";
 let SearchData;
 let sq;
 
@@ -67,6 +68,7 @@ function SearchValue(props) {
     topartists = "";
     type = "";
   }
+  console.log(SD);
 
   return (
     <div
@@ -89,7 +91,7 @@ function SearchValue(props) {
         <div className="search--song--list">
           <div className="headline">Songs</div>
           <div className="search--songs">
-            <CreateTracks data={SD.tracks} />
+            <SongLists data={SD.tracks} />
           </div>
         </div>
       </div>
@@ -102,44 +104,43 @@ function SearchValue(props) {
   );
 }
 
-function CreateTracks() {
-  const [Newresult, SetNewResult] = useState("");
-  useEffect(() => {
-    GetToken().then((Token) => {
-      GetTracks(sq, 5, Token.access_token).then((Response) => {
-        SetNewResult(
-          Response.tracks.items.map((e) => {
-            // console.log(e);
-            return <CreateSingleTrack img={e} />;
-          })
-        );
-      });
+function SongLists(props) {
+  let res = "";
+  let time;
+  try {
+    res = props.data.items.map((e) => {
+      time = millisToMinutesAndSeconds(e.duration_ms);
+      return (
+        <SingleTrack
+          img={e.album.images[0].url}
+          title={e.name}
+          artist={e.album.artists[0].name}
+          time={time}
+        />
+      );
     });
-  });
+  } catch {
+    console.log("Error Occured");
+  }
 
   return (
-    <div className="tracks">
-      <table>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        {Newresult}
-      </table>
+    <div className="song--list">
+      <table>{res}</table>
     </div>
   );
 }
 
-function CreateSingleTrack() {
+function SingleTrack(props) {
   return (
-    <tr className="playlist--table--head">
-      <td className="table--sr playlist--img noborder"></td>
-      <td className="table--title noborder">Title</td>
-      <td className="table--duration noborder">
-        <img className="playlist--clock" alt="clock"></img>
+    <tr className="track--tr">
+      <td className="track--tr--img">
+        <img className="track--img" src={props.img}></img>
       </td>
+      <td className="track--tr--details">
+        <div className="track--tr--name">{props.title}</div>
+        <div className="track--tr--artist">{props.artist}</div>
+      </td>
+      <td className="time">{props.time}</td>
     </tr>
   );
 }

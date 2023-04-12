@@ -46,8 +46,6 @@ function Playlist(props) {
     playlistTable = "";
   }
 
-  console.log(data);
-
   return (
     <div className={`${props.win.playwin ? "playlist" : "playlist--hide"}`}>
       <div className="playlist--hero" style={{ backgroundImage: color }}>
@@ -157,3 +155,4 @@ function millisToMinutesAndSeconds(millis) {
 }
 
 export default Playlist;
+export { millisToMinutesAndSeconds };
