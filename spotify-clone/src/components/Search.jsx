@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import "./search.css";
 import searchImg from "../images/search.png";
-import GetToken, { GetTracks, SearchQuery } from "../api/access";
+import GetToken, { SearchQuery } from "../api/access";
 import Cards from "./Cards";
 import { millisToMinutesAndSeconds } from "./Playlist";
 let SearchData;
@@ -69,6 +69,14 @@ function SearchValue(props) {
     type = "";
   }
   console.log(SD);
+  let imageClass;
+  if (topImage === "") {
+    imageClass = "imgLoading";
+  } else {
+    imageClass = "top-result";
+  }
+
+  console.log(SD);
 
   return (
     <div
@@ -81,7 +89,7 @@ function SearchValue(props) {
           <div className="headline">Top Result</div>
           <div className="search--featured">
             <div className="top-result-img">
-              <img className="top-result" src={topImage} alt=""></img>
+              <img className={imageClass} src={topImage} alt=""></img>
             </div>
             <div className="top--result--title">{toptitle}</div>
             <div className="artists--display">{topartists}</div>

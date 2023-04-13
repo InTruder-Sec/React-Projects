@@ -212,3 +212,17 @@ input:focus {
 .track--tr:hover {
   background-color: rgb(74, 74, 74);
 }
+
+.imgLoading {
+  display: none;
+}
+
+.top-result-img {
+  height: 85px;
+  width: 85px;
+  background: #ffffff;
+  background: linear-gradient(110deg, #181818 16%, #282828 18%, #181818 33%);
+  border-radius: 5px;
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
