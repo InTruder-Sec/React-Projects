@@ -4,6 +4,7 @@ import searchImg from "../images/search.png";
 import GetToken, { SearchQuery } from "../api/access";
 import Cards from "./Cards";
 import { millisToMinutesAndSeconds } from "./Playlist";
+import CardCategory from "./SearchCards";
 let SearchData;
 let sq;
 
@@ -103,11 +104,11 @@ function SearchValue(props) {
           </div>
         </div>
       </div>
-      <Category title={"Albums"} />
-      <Category title={"Artists"} />
-      <Category title={"Episodes"} />
-      <Category title={"Playlists"} />
-      <Category title={"Shows"} />
+      <CardCategory title={"Albums"} cardDetails={SD.albums} />
+      <CardCategory title={"Artists"} cardDetails={SD.artists} />
+      <CardCategory title={"Episodes"} cardDetails={SD.episodes} />
+      <CardCategory title={"Playlists"} cardDetails={SD.playlists} />
+      <CardCategory title={"Shows"} cardDetails={SD.shows} />
     </div>
   );
 }

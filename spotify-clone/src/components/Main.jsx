@@ -177,7 +177,7 @@ function Main(props) {
       <div className={`${props.win.home ? "main" : "main--hide"}`}>
         <Category
           title={title.trending.t}
-          cardDetails={title.trending.Cards}
+          cardDetails={title.trending.Cards.playlists}
           id={0}
           win={props.win}
           key="trending"
@@ -187,7 +187,7 @@ function Main(props) {
         <Category
           title={title.playlist.t}
           win={props.win}
-          cardDetails={title.playlist.Cards}
+          cardDetails={title.playlist.Cards.playlists}
           ChangeWindow={props.ChangeWindow}
           id={1}
           changeData={ChangePLay}
@@ -195,7 +195,7 @@ function Main(props) {
         />
         <Category
           title={title.latest.t}
-          cardDetails={title.latest.Cards}
+          cardDetails={title.latest.Cards.playlists}
           key="latest"
           win={props.win}
           ChangeWindow={props.ChangeWindow}
@@ -211,8 +211,9 @@ function Main(props) {
 function Category(props) {
   let res;
   const t = props.cardDetails;
+  console.log(t);
   try {
-    res = t.playlists.items.map((item) => {
+    res = t.items.map((item) => {
       return (
         <Cards
           img={item.images[0].url}
