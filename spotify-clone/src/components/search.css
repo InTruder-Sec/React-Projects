@@ -226,3 +226,16 @@ input:focus {
   background-size: 200% 100%;
   animation: 1.5s shine linear infinite;
 }
+
+.cards--img--main--artists {
+  width: 130px;
+  height: 130px;
+  margin-top: 12px;
+  border-radius: 75px;
+  border: none;
+}
+
+.cards--details--artists {
+  width: 100%;
+  text-align: center;
+}

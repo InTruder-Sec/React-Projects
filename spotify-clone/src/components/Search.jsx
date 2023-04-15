@@ -69,15 +69,12 @@ function SearchValue(props) {
     topartists = "";
     type = "";
   }
-  console.log(SD);
   let imageClass;
   if (topImage === "") {
     imageClass = "imgLoading";
   } else {
     imageClass = "top-result";
   }
-
-  console.log(SD);
 
   return (
     <div
@@ -100,7 +97,7 @@ function SearchValue(props) {
         <div className="search--song--list">
           <div className="headline">Songs</div>
           <div className="search--songs">
-            <SongLists data={SD.tracks} />
+            <SongLists data={SD.tracks} key="1321" />
           </div>
         </div>
       </div>
@@ -125,28 +122,37 @@ function SongLists(props) {
           title={e.name}
           artist={e.album.artists[0].name}
           time={time}
+          key={e.name}
         />
       );
     });
-  } catch {
-    console.log("Error Occured");
-  }
+  } catch {}
 
   return (
     <div className="song--list">
-      <table>{res}</table>
+      <table>
+        <tbody>{res}</tbody>
+      </table>
     </div>
   );
 }
 
 function SingleTrack(props) {
+  let SearchTrackTitle = "";
+  try {
+    if (props.title.length > 25) {
+      SearchTrackTitle = props.title.slice(0, 40) + "...";
+    } else {
+      SearchTrackTitle = props.title;
+    }
+  } catch {}
   return (
     <tr className="track--tr">
       <td className="track--tr--img">
         <img className="track--img" src={props.img}></img>
       </td>
       <td className="track--tr--details">
-        <div className="track--tr--name">{props.title}</div>
+        <div className="track--tr--name">{SearchTrackTitle}</div>
         <div className="track--tr--artist">{props.artist}</div>
       </td>
       <td className="time">{props.time}</td>

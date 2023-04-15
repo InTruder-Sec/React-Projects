@@ -1,57 +1,47 @@
 import React from "react";
 
 function CardCategory(props) {
-  let res;
-  const t = props.cardDetails;
+  let result;
+  let isArtitst = false;
+  if (props.title === "Artists") {
+    isArtitst = true;
+  }
+  let t;
   try {
-    res = t.items.map((item) => {
+    t = props.cardDetails;
+  } catch {
+    t = "";
+  }
+  try {
+    if (t.items.length === 0 || t.items[0] === null) {
+      return "";
+    }
+  } catch {}
+
+  let ArtistName;
+  try {
+    result = t.items.map((item) => {
+      try {
+        ArtistName = item.artists[0].name;
+      } catch {
+        ArtistName = item.description;
+      }
       return (
         <Cards
-          img={item.images[0].url}
           title={item.name}
-          description={item.description}
-          win={props.win}
-          playlistId={item.id}
-          ChangeWindow={props.ChangeWindow}
-          url={item.href}
-          key={item.title}
-          changeData={props.changeData}
+          img={item.images[0].url}
+          artists={ArtistName}
+          isArtitst={isArtitst}
         />
       );
     });
   } catch (err) {}
-  let HideCategory = false;
-  try {
-    if (
-      props.cardDetails.items.length === 0 ||
-      props.cardDetails.items[0] === null
-    ) {
-      HideCategory = true;
-    } else {
-      HideCategory = false;
-    }
-  } catch {}
-  let NewHeadClass;
-  let NewMoreClass;
-  if (props.title === "") {
-    NewHeadClass = "loadingWindow";
-    NewMoreClass = "loadingMore";
-  } else {
-    NewHeadClass = "main--category--head";
-    NewMoreClass = "main--category--more";
-  }
   return (
-    <div className={`${HideCategory ? "imgLoading" : "main--category"}`}>
-      <div
-        className={NewMoreClass}
-        onClick={() => {
-          // Check(props.id);
-        }}
-        id={`show${props.id}`}
-      ></div>
-      <div className={NewHeadClass}>{props.title}</div>
+    <div className="main--category">
+      <div className="main--category--more" id={`show${props.id}`}></div>
+      <div className="main--category--head">{props.title}</div>
       <div className="main--category--cards" id={`categories${props.id}`}>
-        {res}
+        {result}
         <Cards isLoading={true} />
         <Cards isLoading={true} />
       </div>
@@ -65,26 +55,44 @@ function Cards(props) {
   try {
     if (props.title.length > 17) {
       newTitle = props.title.slice(0, 17) + "...";
-      newDescription = props.description.slice(0, 25) + "...";
+      newDescription = props.artists.slice(0, 25) + "...";
       document.querySelectorAll(".loadingCards").forEach((e) => {
         e.style.display = "none";
       });
     } else {
       newTitle = props.title;
-      newDescription = props.description.slice(0, 25) + "...";
+      newDescription = props.artists.slice(0, 25) + "...";
     }
   } catch {}
+  let imageClass;
+  if (props.isArtitst) {
+    imageClass = "cards--img--main--artists";
+  } else {
+    imageClass = "cards--img--main";
+  }
   return (
-    <div className={`${props.isLoading ? "loadingCards" : "cards"}`}>
+    <div
+      className={`${props.isLoading ? "loadingCards" : "cards"}`}
+      onClick={() => {
+        window.scrollTo(0, 0);
+      }}
+    >
+      <div className="cards--play--btn"></div>
       <div className="cards--img">
         <img
-          className={`${props.isLoading ? "" : "cards--img--main"}`}
+          className={`${props.isLoading ? "" : imageClass}`}
           alt=""
           src={props.img}
         ></img>
       </div>
       <div className="cards--details">
-        <div className="cards--title">{newTitle}</div>
+        <div
+          className={`${
+            props.isArtitst ? "cards--details--artists" : "cards--title"
+          }`}
+        >
+          {newTitle}
+        </div>
         <div className="cards--dis">{newDescription}</div>
       </div>
     </div>
