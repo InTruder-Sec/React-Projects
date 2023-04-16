@@ -56,6 +56,7 @@ function Playlist(props) {
         >
           <img
             src={`${isDataLoaded ? data.images[0].url : ""}`}
+            loading="lazy"
             className={`${isDataLoaded ? "playlist--hero--img" : ""}`}
             alt=""
           ></img>
@@ -87,6 +88,7 @@ function Playlist(props) {
               className={`${
                 isDataLoaded ? "playlist--brand--logo" : "disableImg"
               }`}
+              loading="lazy"
               alt="logo"
               src={logo}
             ></img>
@@ -103,13 +105,19 @@ function Playlist(props) {
             className="play--btn--img"
             alt="playlist--playBtn"
             src={palyBtn}
+            loading="lazy"
           ></img>
           <img
             className="playlist--liked"
             alt="playlist--like"
             src={likeBtn}
           ></img>
-          <img className="playlist--more" alt="playlist--more" src={more} />
+          <img
+            className="playlist--more"
+            alt="playlist--more"
+            src={more}
+            loading="lazy"
+          />
         </div>
         <div className="playlist--list--main">
           <table>
@@ -118,7 +126,12 @@ function Playlist(props) {
               <td className="table--title">Title</td>
               <td className="table--album">Album</td>
               <td className="table--duration">
-                <img className="playlist--clock" alt="clock" src={clock}></img>
+                <img
+                  className="playlist--clock"
+                  alt="clock"
+                  src={clock}
+                  loading="lazy"
+                ></img>
               </td>
             </tr>
             <br></br>
@@ -136,7 +149,12 @@ function MakePLaylist(props) {
     <tr className="playlist--songs">
       <td className="playlist--sr">{props.id}</td>
       <td className="playlist--title--song">
-        <img className="playlist--song--img" src={props.img} alt="song"></img>
+        <img
+          className="playlist--song--img"
+          src={props.img}
+          loading="lazy"
+          alt="song"
+        ></img>
         <div className="playlist--song">
           <div className="playlist--song--title">{props.title}</div>
           <div className="playlist--song--author">Playify</div>

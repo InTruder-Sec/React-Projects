@@ -238,4 +238,6 @@ input:focus {
 .cards--details--artists {
   width: 100%;
   text-align: center;
+  font-size: 13px;
+  font-weight: 600;
 }

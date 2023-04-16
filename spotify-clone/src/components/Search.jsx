@@ -5,6 +5,7 @@ import GetToken, { SearchQuery } from "../api/access";
 import Cards from "./Cards";
 import { millisToMinutesAndSeconds } from "./Playlist";
 import CardCategory from "./SearchCards";
+import CategoryData from "./searchCategoriesData";
 let SearchData;
 let sq;
 
@@ -161,6 +162,10 @@ function SingleTrack(props) {
 }
 
 function Search(props) {
+  const CategoryDetails = CategoryData.map((e) => {
+    return <CategoryCards name={e.name} img={e.url} color={e.color} />;
+  });
+
   return (
     <div className="main--search">
       <div className="search--inpt">
@@ -183,57 +188,23 @@ function Search(props) {
       <div className={`${props.CurrentWindow.main ? "search" : "hideSearch"}`}>
         <div className="cat--main">
           <div className="main--category--head cat-head">Browse</div>
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
-          <CategoryCards />
+          {CategoryDetails}
         </div>
       </div>
     </div>
   );
 }
 
-function CategoryCards() {
+function CategoryCards(props) {
   return (
-    <div className="category--cards" style={{ backgroundColor: "#343432" }}>
-      <div className="cat--card--head">Podcast</div>
+    <div className="category--cards" style={{ backgroundColor: props.color }}>
+      <div className="cat--card--head">{props.name}</div>
       <div
         className="cat--card--img"
         style={{
-          backgroundImage:
-            "url(" +
-            "https://i.scdn.co/image/567158eb895ad26718a814345af0fc43ee785ec5" +
-            ")",
+          backgroundImage: "url(" + props.img + ")",
         }}
       ></div>
-    </div>
-  );
-}
-
-function Category(props) {
-  const SD = useContext(SearchData);
-  let NewMoreClass;
-  if (SD === "") {
-    NewMoreClass = "loadingMore";
-  } else {
-    NewMoreClass = "main--category--more";
-  }
-  return (
-    <div className="main--category">
-      <div className={NewMoreClass}></div>
-      <div className="main--category--head">{props.title}</div>
-      <div className="main--category--cards" id={`categories${props.id}`}>
-        {/* {res} */}
-        <Cards isLoading={true} />
-        <Cards isLoading={true} />
-        <Cards isLoading={true} />
-      </div>
     </div>
   );
 }
