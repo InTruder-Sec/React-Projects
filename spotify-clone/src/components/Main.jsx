@@ -10,12 +10,19 @@ let Check;
 let LimitCards;
 let playlistData;
 
-function Home() {
+function Home(props) {
   const [win, SetWin] = useState({
     home: true,
     playwin: false,
   });
-  return <Main win={win} ChangeWindow={SetWin} />;
+  return (
+    <Main
+      win={win}
+      ChangeNextWindow={props.ChangeNextWindow}
+      ChangePrevWindow={props.ChangePrevWindow}
+      ChangeWindow={SetWin}
+    />
+  );
 }
 
 function Main(props) {
