@@ -5,13 +5,15 @@ import Search from "./components/Search";
 import NowPlaying from "./components/NowPlaying";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Main";
-import { useContext, useState } from "react";
+import { createContext, useState } from "react";
+let previousWindow;
+let nxtWindow;
 
 function App() {
   const [prevWindow, ChangePrevWindow] = useState("");
   const [nextWindow, ChangeNextWindow] = useState("");
-  const previousWindow = useContext(prevWindow);
-  const nxtWindow = useContext(nextWindow);
+  previousWindow = createContext(prevWindow);
+  nxtWindow = createContext(nextWindow);
 
   return (
     <BrowserRouter>
@@ -56,3 +58,4 @@ function App() {
 }
 
 export default App;
+export { previousWindow, nxtWindow };

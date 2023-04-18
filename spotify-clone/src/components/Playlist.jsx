@@ -25,7 +25,6 @@ function Playlist(props) {
     PlaylistLength = data.tracks.items.length + " Songs";
     let newId = 0;
     playlistTable = data.tracks.items.map((e) => {
-      console.log(e);
       newId = newId + 1;
       time = millisToMinutesAndSeconds(e.track.duration_ms);
 

@@ -9,12 +9,14 @@ let Less;
 let Check;
 let LimitCards;
 let playlistData;
+let MainWindow;
 
 function Home(props) {
   const [win, SetWin] = useState({
     home: true,
     playwin: false,
   });
+  MainWindow = createContext(SetWin);
   return (
     <Main
       win={win}
@@ -190,6 +192,8 @@ function Main(props) {
           key="trending"
           ChangeWindow={props.ChangeWindow}
           changeData={ChangePLay}
+          ChangeNextWindow={props.ChangeNextWindow}
+          ChangePrevWindow={props.ChangePrevWindow}
         />
         <Category
           title={title.playlist.t}
@@ -198,6 +202,8 @@ function Main(props) {
           ChangeWindow={props.ChangeWindow}
           id={1}
           changeData={ChangePLay}
+          ChangeNextWindow={props.ChangeNextWindow}
+          ChangePrevWindow={props.ChangePrevWindow}
           key="playlist"
         />
         <Category
@@ -206,6 +212,8 @@ function Main(props) {
           key="latest"
           win={props.win}
           ChangeWindow={props.ChangeWindow}
+          ChangeNextWindow={props.ChangeNextWindow}
+          ChangePrevWindow={props.ChangePrevWindow}
           changeData={ChangePLay}
           id={2}
         />
@@ -218,7 +226,6 @@ function Main(props) {
 function Category(props) {
   let res;
   const t = props.cardDetails;
-  console.log(t);
   try {
     res = t.items.map((item) => {
       return (
@@ -232,6 +239,8 @@ function Category(props) {
           url={item.href}
           key={item.title}
           changeData={props.changeData}
+          ChangeNextWindow={props.ChangeNextWindow}
+          ChangePrevWindow={props.ChangePrevWindow}
         />
       );
     });
@@ -265,4 +274,4 @@ function Category(props) {
 }
 
 export default Home;
-export { playlistData };
+export { playlistData, MainWindow };

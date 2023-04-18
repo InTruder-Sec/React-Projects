@@ -1,6 +1,6 @@
 import GetToken, { GetPLaylist } from "../api/access";
 import "./Cards.css";
-import Playlist from "./Playlist";
+import { playlistData } from "./Main";
 let Playlisturl;
 
 function Cards(props) {
@@ -20,11 +20,17 @@ function Cards(props) {
   } catch {}
 
   function NewWindow(playlistId) {
+    playlistData._currentValue = "";
     GetToken().then((token) => {
       GetPLaylist(playlistId, token.access_token).then((data) => {
         props.changeData(data);
       });
     });
+    document.getElementById("prev--arrow").style.cursor = "pointer";
+    document.getElementById("prev--arrow").style.opacity = "1";
+    document.getElementById("next--arrow").style.cursor = "not-allowed";
+    document.getElementById("next--arrow").style.opacity = "0.5";
+    props.ChangePrevWindow("home");
     props.ChangeWindow(() => {
       return {
         home: false,
@@ -39,6 +45,7 @@ function Cards(props) {
       onClick={() => {
         NewWindow(props.playlistId);
         window.scrollTo(0, 0);
+        playlistData._currentValue = "";
       }}
     >
       <div className="cards--play--btn"></div>

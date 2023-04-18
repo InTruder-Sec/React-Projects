@@ -13,7 +13,6 @@ function CardCategory(props) {
     t = "";
   }
   try {
-    console.log(t.items.length);
     if (t.items.length === 0 || t.items[0] === null) {
       return "";
     }
