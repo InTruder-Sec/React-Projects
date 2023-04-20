@@ -20,7 +20,6 @@ function Cards(props) {
   } catch {}
 
   function NewWindow(playlistId) {
-    playlistData._currentValue = "";
     GetToken().then((token) => {
       GetPLaylist(playlistId, token.access_token).then((data) => {
         props.changeData(data);
@@ -45,7 +44,6 @@ function Cards(props) {
       onClick={() => {
         NewWindow(props.playlistId);
         window.scrollTo(0, 0);
-        playlistData._currentValue = "";
       }}
     >
       <div className="cards--play--btn"></div>

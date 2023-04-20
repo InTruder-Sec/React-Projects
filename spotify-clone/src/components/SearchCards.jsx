@@ -53,8 +53,8 @@ function Cards(props) {
   let newDescription;
   let newTitle;
   try {
-    if (props.title.length > 17) {
-      newTitle = props.title.slice(0, 17) + "...";
+    if (props.title.length > 13) {
+      newTitle = props.title.slice(0, 13) + "...";
       newDescription = props.artists.slice(0, 25) + "...";
       document.querySelectorAll(".loadingCards").forEach((e) => {
         e.style.display = "none";

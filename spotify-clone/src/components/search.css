@@ -112,6 +112,11 @@ input:focus {
   background-color: #181818;
   margin-right: 60px;
   padding: 25px 10px 10px 25px;
+  cursor: pointer;
+}
+
+.search--featured:hover {
+  background-color: #414141;
 }
 
 .featuring-search {
@@ -184,6 +189,7 @@ input:focus {
 .track--tr {
   height: 50px;
   text-align: top;
+  cursor: pointer;
 }
 
 .track--img {

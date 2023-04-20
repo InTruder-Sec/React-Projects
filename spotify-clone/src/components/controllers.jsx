@@ -6,6 +6,7 @@ import library from "./../images/lib.png";
 import search from "./../images/search.png";
 import add from "./../images/add.png";
 import like from "./../images/liked.png";
+import { Link } from "react-router-dom";
 
 function Controllers() {
   const GetControllers = ControllerData.map((e) => {
@@ -32,14 +33,14 @@ function Controllers() {
 
 function CreateController(props) {
   return (
-    <a href={`/${props.link}`}>
+    <Link to={`/${props.link}`}>
       <div className="controllers--home">
         <div className="home--icon">
           <img width={"30px"} alt={props.title} src={props.icon} />
         </div>
         <div className="home--title">{props.title}</div>
       </div>
-    </a>
+    </Link>
   );
 }
 

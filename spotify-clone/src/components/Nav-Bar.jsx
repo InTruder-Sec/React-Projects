@@ -1,33 +1,38 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import "./Nav-Bar.css";
 import { previousWindow, nxtWindow } from "../App";
 import { MainWindow, SongsData } from "./Main";
 
 function ForwardWindow() {
-  const value = useContext(MainWindow);
-  MainWindow._currentValue(() => {
-    return {
-      home: false,
-      playwin: true,
-    };
-  });
-  document.getElementById("next--arrow").style.cursor = "not-allowed";
-  document.getElementById("next--arrow").style.opacity = "0.5";
-  document.getElementById("prev--arrow").style.cursor = "pointer";
-  document.getElementById("prev--arrow").style.opacity = "1";
+  // let value = useContext(MainWindow);
+  // value(() => {
+  //   return {
+  //     home: false,
+  //     playwin: true,
+  //   };
+  // });
+  // document.getElementById("next--arrow").style.cursor = "not-allowed";
+  // document.getElementById("next--arrow").style.opacity = "0.5";
+  // document.getElementById("prev--arrow").style.cursor = "pointer";
+  // document.getElementById("prev--arrow").style.opacity = "1";
 }
 
 function PreWindow() {
-  MainWindow._currentValue(() => {
-    return {
-      home: true,
-      playwin: false,
-    };
-  });
-  document.getElementById("next--arrow").style.cursor = "pointer";
-  document.getElementById("next--arrow").style.opacity = "1";
-  document.getElementById("prev--arrow").style.cursor = "not-allowed";
-  document.getElementById("prev--arrow").style.opacity = "0.5";
+  const first = useContext(MainWindow);
+  alert(first);
+
+  // let value = useContext(MainWindow);
+  // value(() => {
+  //   return {
+  //     home: true,
+  //     playwin: false,
+  //   };
+  // });
+  // document.getElementById("next--arrow").style.cursor = "pointer";
+  // document.getElementById("next--arrow").style.opacity = "1";
+  // document.getElementById("prev--arrow").style.cursor = "not-allowed";
+  // document.getElementById("prev--arrow").style.opacity = "0.5";
 }
 
 function NavBar() {
