@@ -1,13 +1,21 @@
-import React from "react";
+import React, { createContext, useState } from "react";
 import "./login.css";
+import { ToastContainer, toast } from "react-toastify";
+import { LoginAccount } from "../../../v1/account/account";
+import "react-toastify/dist/ReactToastify.css";
 import Slider from "react-slick";
 import logo from "./../../../images/logo.png";
 import loginImg1 from "./../../../images/loginImg1.png";
 import loginImg2 from "./../../../images/loginImg2.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -34,28 +42,43 @@ function Login() {
                   "Saving is the gap between your ego and your income"
                 </div>
                 <div className="login--form">
-                  <form>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      LoginAccount(email, password).then((e) => {
+                        if (e) {
+                          navigate("/dashboard");
+                        }
+                      });
+                    }}
+                  >
                     <label htmlFor="email">Email</label>
                     <br />
                     <input
+                      value={email}
                       className="login--input"
                       placeholder="example@company.com"
                       type="email"
                       required
+                      onChange={(e) => setemail(e.target.value)}
                     ></input>
                     <br />
                     <label htmlFor="password">Password</label>
                     <br />
                     <input
+                      value={password}
                       className="login--input"
                       placeholder="********"
                       type="password"
                       required
+                      onChange={(e) => setpassword(e.target.value)}
                     ></input>
                     <div className="forgot--pasword">
                       <a href="/forgot-password">Forgot Password?</a>
                     </div>
-                    <button className="login--submit">Login</button>
+                    <button type="submit" className="login--submit">
+                      Login
+                    </button>
                   </form>
                   <div className="other--options">
                     <hr />

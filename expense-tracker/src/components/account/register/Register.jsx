@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import logo from "./../../../images/logo.png";
 import loginImg1 from "./../../../images/loginImg1.png";
 import loginImg2 from "./../../../images/loginImg2.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { createAcc } from "../../../v1/account/account";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
+
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [username, setusername] = useState("");
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -18,6 +27,7 @@ function Register() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
   return (
     <div className="login--main">
       <center>
@@ -30,19 +40,43 @@ function Register() {
                 </div>
                 <h1 className="login--head">Sign Up</h1>
                 <div className="login--quote">
-                  "Saving is the gap between your ego and your income"
+                  "We are glad to have you onboard"
                 </div>
                 <div className="login--form">
-                  <form>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      createAcc(email, username, password).then((e) => {
+                        if (e) {
+                          navigate("/");
+                          setpassword("");
+                          setemail("");
+                          setusername("");
+                        }
+                      });
+                    }}
+                  >
                     <label htmlFor="email">Email</label>
                     <br />
                     <input
+                      value={email}
                       className="login--input"
                       placeholder="example@company.com"
                       type="email"
                       required
+                      onChange={(e) => setemail(e.target.value)}
                     ></input>
                     <br />
+                    <label htmlFor="username">Username</label>
+                    <br />
+                    <input
+                      className="login--input"
+                      value={username}
+                      placeholder="Superstar"
+                      type="name"
+                      required
+                      onChange={(e) => setusername(e.target.value)}
+                    ></input>
                     <label htmlFor="password">Password</label>
                     <br />
                     <input
@@ -50,16 +84,13 @@ function Register() {
                       placeholder="********"
                       type="password"
                       required
+                      value={password}
+                      onChange={(e) => setpassword(e.target.value)}
                     ></input>
-                    <label htmlFor="cnfpassword">Confirm Password</label>
-                    <br />
-                    <input
-                      className="login--input"
-                      placeholder="********"
-                      type="password"
-                      required
-                    ></input>
-                    <button className="login--submit">Create Account</button>
+
+                    <button type="submit" className="login--submit">
+                      Create Account
+                    </button>
                   </form>
                   <div className="other--options">
                     <hr />
