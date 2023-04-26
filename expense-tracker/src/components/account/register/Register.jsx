@@ -105,9 +105,6 @@ function Register() {
             </div>
           </div>
           <div className="login--swiper">
-            <h2 style={({ zIndex: "-1000" }, { position: "absolute" })}>
-              Auto Play
-            </h2>
             <Slider {...settings}>
               <div className="login--image1">
                 <img className="loginImg1" src={loginImg1}></img>

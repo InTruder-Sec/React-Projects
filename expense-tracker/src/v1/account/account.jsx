@@ -1,4 +1,5 @@
 import { Client, Account, ID } from "appwrite";
+import { json } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const client = new Client();
@@ -17,10 +18,10 @@ const createAcc = async (email, username, password) => {
       password,
       username
     );
-    toast.success("Created Successfully");
+    toast.success("Account Created Successfully");
     return 1;
   } catch (err) {
-    toast.error("Something Went Wrong");
+    toast.error(err.message);
     return 0;
   }
 };
@@ -28,13 +29,42 @@ const createAcc = async (email, username, password) => {
 const LoginAccount = async (email, password) => {
   try {
     const promise = await account.createEmailSession(email, password);
+    document.cookie = "session=" + JSON.stringify(promise);
     toast.success("Signed in successfully");
-    // alert(promise);
     return 1;
-  } catch {
-    toast.error("Invalid username or password");
+  } catch (err) {
+    toast.error(err.message);
     return 0;
   }
 };
 
-export { createAcc, LoginAccount };
+const ForgotPasswordSend = async (email) => {
+  try {
+    const promise = await account.createRecovery(
+      email,
+      "http://localhost/reset"
+    );
+    console.log(promise);
+    return 1;
+  } catch (err) {
+    toast.error(err.message);
+    return 0;
+  }
+};
+
+const UpdateRecovery = async (userId, secret, password, cnfpassword) => {
+  try {
+    const promise = await account.updateRecovery(
+      userId,
+      secret,
+      password,
+      cnfpassword
+    );
+    return 1;
+  } catch (err) {
+    toast.error(err.message);
+    return 0;
+  }
+};
+
+export { createAcc, LoginAccount, ForgotPasswordSend, UpdateRecovery };

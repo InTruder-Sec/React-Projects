@@ -8,12 +8,28 @@ import loginImg2 from "./../../../images/loginImg2.png";
 import mail from "../../../images/mail.mp4";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { ForgotPasswordSend } from "../../../v1/account/account";
+import {
+  ForgotPasswordSend,
+  UpdateRecovery,
+} from "../../../v1/account/account";
 import { useNavigate } from "react-router-dom";
 
-function ForgotPass() {
+function ResetPass() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+
+  let userId;
+  let secret;
   const navigate = useNavigate();
-  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  try {
+    secret = urlParams.get("secret");
+    userId = urlParams.get("userId");
+  } catch {
+    userId = "";
+    secret = "";
+  }
+  const [cnfpassword, setcnfpassword] = useState("");
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -53,47 +69,56 @@ function ForgotPass() {
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      ForgotPasswordSend(email).then((e) => {
+                      UpdateRecovery(
+                        userId,
+                        secret,
+                        password,
+                        cnfpassword
+                      ).then((e) => {
                         if (e) {
-                          toast.success("Recovery link sent");
+                          toast.success("Password reset successfull");
                           navigate("/");
                         }
                       });
                     }}
                   >
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Password</label>
                     <br />
                     <input
-                      value={email}
+                      value={password}
                       className="login--input"
-                      placeholder="example@company.com"
-                      type="email"
+                      placeholder="********"
+                      type="password"
                       onChange={(e) => {
-                        setemail(e.target.value);
+                        setpassword(e.target.value);
                       }}
                       required
                     ></input>
                     <br />
-
+                    <label htmlFor="email">Confirm Password</label>
+                    <br />
+                    <input
+                      value={cnfpassword}
+                      className="login--input"
+                      placeholder="********"
+                      type="password"
+                      onChange={(e) => {
+                        setcnfpassword(e.target.value);
+                      }}
+                      required
+                    ></input>
+                    <br />
                     <button className="login--submit" type="submit">
                       Reset Password
                     </button>
                   </form>
                   <div className="other--options">
                     <hr />
-                    Already Have an account?
+                    Back to login page?
                     <hr />
                   </div>
                   <a href="/">
                     <div className="create--account">Login</div>
-                  </a>
-                  <div className="other--options">
-                    <hr />
-                    Not registered yet?
-                    <hr />
-                  </div>
-                  <a href="./register">
-                    <div className="create--account">Create Account</div>
                   </a>
                 </div>
               </div>
@@ -150,4 +175,4 @@ function SamplePrevArrow(props) {
   );
 }
 
-export default ForgotPass;
+export default ResetPass;

@@ -195,3 +195,25 @@ a:active {
 .create--account {
   color: #7000ed;
 }
+
+@media (max-width: 1232px) {
+  .login--background {
+    width: 80%;
+  }
+}
+
+@media (max-width: 821px) {
+  .login--background {
+    width: 80%;
+  }
+  .login--swiper {
+    display: none;
+  }
+}
+
+@media (max-width: 1232px) {
+  .other--options hr {
+    width: 80px;
+    height: 0px;
+  }
+}
