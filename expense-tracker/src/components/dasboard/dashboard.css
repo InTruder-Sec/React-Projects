@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap");
+
+.navbar {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.dashboard {
+  padding: 25px 20px 20px 40px;
+}
+
+.logo--nav {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 80%;
+}
+
+.nav--logo--et {
+  width: 50px;
+  height: 50px;
+}
+
+.nav--logo--title {
+  margin-top: 8px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  margin-left: 10px;
+}
+
+.notification {
+  padding-top: 5px;
+}
+
+.username--nav {
+  margin-top: 8px;
+  margin-left: 30px;
+}
+
+.user--details--nav {
+  display: flex;
+  font-weight: 600;
+}
+
+.user--profile {
+  margin-top: 0px;
+  margin-left: 15px;
+}
+
+.dasboard--main {
+  display: flex;
+  margin-top: 30px;
+}
+
+.dashboard--card--main {
+  width: 470px;
+  height: 600px;
+  background-color: rgb(234, 234, 234);
+  float: right;
+  border-radius: 10px;
+  padding: 20px 10px 20px 20px;
+}
+
+.dashboard--details {
+  width: 100%;
+}
+
+.dashboard--card--details {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.image--card {
+  margin-top: 20px;
+  width: 350px;
+  margin-left: -5px;
+  text-shadow: 1px 1px black;
+}
+
+.card--details--main {
+  position: absolute;
+  margin-top: 25px;
+  width: 300px;
+  height: 145px;
+  padding-left: 20px;
+  padding-top: 30px;
+  color: white;
+  text-shadow: 1px 0.6px rgb(0, 0, 0);
+  font-weight: 600;
+}
+
+.balance--amount {
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.card--no {
+  font-size: 21px;
+  margin-top: 25px;
+  letter-spacing: 2px;
+}
+
+.card--holder--name {
+  padding-top: 6px;
+}
+
+.transaction--head {
+  margin-top: 15px;
+}
+
+.transaction--icon {
+  width: 44px;
+  font-size: 20px;
+  font-weight: 600;
+  height: 36px;
+  border-radius: 22px;
+  padding-top: 8px;
+}
+
+.transaction--history {
+  padding: 20px 10px 20px 10px;
+  height: 240px;
+  overflow: scroll;
+}
+
+.transction--main {
+  padding: 5px 2px 5px 2px;
+}

@@ -1,5 +1,4 @@
 import { Client, Account, ID } from "appwrite";
-import { json } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const client = new Client();

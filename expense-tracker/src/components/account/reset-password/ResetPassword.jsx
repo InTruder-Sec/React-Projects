@@ -8,10 +8,7 @@ import loginImg2 from "./../../../images/loginImg2.png";
 import mail from "../../../images/mail.mp4";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import {
-  ForgotPasswordSend,
-  UpdateRecovery,
-} from "../../../v1/account/account";
+import { UpdateRecovery } from "../../../v1/account/account";
 import { useNavigate } from "react-router-dom";
 
 function ResetPass() {
@@ -49,7 +46,7 @@ function ResetPass() {
             <div className="login--head">
               <div className="login--content">
                 <div className="login--logo">
-                  <img className="login--logo--img" src={logo}></img>
+                  <img className="login--logo--img" alt="logo" src={logo}></img>
                 </div>
                 <h1 className="login--head">Forgot Password?</h1>
                 <div className="login--quote">
@@ -127,10 +124,10 @@ function ResetPass() {
           <div className="login--swiper">
             <Slider {...settings}>
               <div className="login--image1">
-                <img className="loginImg1" src={loginImg1}></img>
+                <img className="loginImg1" alt="slider" src={loginImg1}></img>
               </div>
               <div className="login--image2">
-                <img className="loginImg1" src={loginImg2}></img>
+                <img className="loginImg1" alt="slider" src={loginImg2}></img>
               </div>
             </Slider>
           </div>

@@ -209,6 +209,9 @@ a:active {
   .login--swiper {
     display: none;
   }
+  .login--content {
+    margin-left: 10px;
+  }
 }
 
 @media (max-width: 1232px) {

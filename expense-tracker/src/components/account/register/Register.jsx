@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import logo from "./../../../images/logo.png";
 import loginImg1 from "./../../../images/loginImg1.png";
@@ -36,7 +35,7 @@ function Register() {
             <div className="login--head">
               <div className="login--content">
                 <div className="login--logo">
-                  <img className="login--logo--img" src={logo}></img>
+                  <img className="login--logo--img" alt="logo" src={logo}></img>
                 </div>
                 <h1 className="login--head">Sign Up</h1>
                 <div className="login--quote">
@@ -107,10 +106,10 @@ function Register() {
           <div className="login--swiper">
             <Slider {...settings}>
               <div className="login--image1">
-                <img className="loginImg1" src={loginImg1}></img>
+                <img className="loginImg1" alt="slider" src={loginImg1}></img>
               </div>
               <div className="login--image2">
-                <img className="loginImg1" src={loginImg2}></img>
+                <img className="loginImg1" alt="slider" src={loginImg2}></img>
               </div>
             </Slider>
           </div>
