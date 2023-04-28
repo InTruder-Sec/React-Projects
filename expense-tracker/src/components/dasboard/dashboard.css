@@ -63,6 +63,7 @@
 
 .dashboard--details {
   width: 100%;
+  padding: 20px;
 }
 
 .dashboard--card--details {
@@ -118,11 +119,150 @@
 }
 
 .transaction--history {
-  padding: 20px 10px 20px 10px;
+  margin-top: 15px;
+  padding: 0px 0px 20px 0px;
   height: 240px;
   overflow: scroll;
 }
 
 .transction--main {
-  padding: 5px 2px 5px 2px;
+  padding: 5px 2px 5px 5px;
+  display: flex;
+  flex-wrap: nowrap;
+  cursor: default;
+  border-radius: 5px;
+}
+
+.transction--main:hover {
+  background-color: white;
+}
+
+.transaction--details {
+  padding-left: 10px;
+  font-weight: 600;
+  width: 60%;
+  padding-top: 3px;
+}
+
+.transaction--date {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.transaction--amount {
+  padding-top: 3px;
+  font-weight: 600;
+}
+
+.transaction--money {
+  width: 50%;
+  display: flex;
+}
+
+.input-container {
+  height: 50px;
+  position: relative;
+  width: 60%;
+  display: inline-block;
+}
+
+.ic1 {
+  margin-top: 40px;
+}
+.input {
+  background-color: #cacaca;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #4072e8;
+  font-size: 18px;
+  height: 100%;
+  outline: 0;
+  padding: 4px 20px 0;
+  width: 70%;
+  float: left;
+}
+
+.cut {
+  background-color: #ffffff;
+  border-radius: 10px;
+  height: 20px;
+  left: 20px;
+  position: absolute;
+  top: -20px;
+  transform: translateY(0);
+  transition: transform 200ms;
+  width: 76px;
+}
+
+.cut-short {
+  width: 50px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+  transform: translateY(8px);
+}
+
+.placeholder {
+  color: #4b4b4b;
+  font-family: sans-serif;
+  left: 20px;
+  line-height: 14px;
+  pointer-events: none;
+  position: absolute;
+  transform-origin: 0 50%;
+  transition: transform 200ms, color 200ms;
+  top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+  transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+  color: #808097;
+}
+
+.input:focus ~ .placeholder {
+  color: #5039d0;
+}
+
+.transaction--buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-top: 45px;
+  justify-content: left;
+  margin-left: -80px;
+}
+
+.transaction--button {
+  width: 90px;
+  height: 40px;
+  position: relative;
+  color: white;
+  border-radius: 26px;
+  background-image: linear-gradient(
+    90deg,
+    #0065ff,
+    #6942ef,
+    #6554c0,
+    #008cff,
+    #0065ff,
+    #6942ef
+  );
+  background-size: 400%;
+  background-position: 0% 0%;
+  border: none;
+  margin-left: 20px;
+  transition: 0.6s;
+}
+
+.transaction--debit {
+  width: 120px;
+}
+
+.transaction--button:hover {
+  scale: 1.05;
 }

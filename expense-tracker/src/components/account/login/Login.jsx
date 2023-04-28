@@ -72,8 +72,13 @@ function Login() {
                       required
                       onChange={(e) => setpassword(e.target.value)}
                     ></input>
-                    <div className="forgot--pasword">
-                      <a href="/forgot-password">Forgot Password?</a>
+                    <div
+                      className="forgot--pasword"
+                      onClick={(e) => {
+                        navigate("/forgot-password");
+                      }}
+                    >
+                      Forgot Password?
                     </div>
                     <button type="submit" className="login--submit">
                       Login
@@ -161,9 +166,15 @@ function Login() {
                     Not registered yet?
                     <hr />
                   </div>
-                  <a href="./register">
-                    <div className="create--account">Create Account</div>
-                  </a>
+
+                  <div
+                    className="create--account"
+                    onClick={(e) => {
+                      navigate("register");
+                    }}
+                  >
+                    Create Account
+                  </div>
                 </div>
               </div>
             </div>

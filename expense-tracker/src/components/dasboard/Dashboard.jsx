@@ -16,7 +16,35 @@ function Dashboard() {
     <div className="dashboard">
       <NavBar />
       <div className="dasboard--main">
-        <div className="dashboard--details"></div>
+        <div className="dashboard--details">
+          <div className="dashboard--transction--head dashboard--card--details">
+            Transaction Menu
+          </div>
+          <center>
+            <div className="transaction--money">
+              <div class="input-container ic1">
+                <input
+                  id="firstname"
+                  class="input"
+                  type="number"
+                  placeholder=" "
+                />
+                <div class="cut"></div>
+                <label for="firstname" class="placeholder">
+                  Amount
+                </label>
+              </div>
+              <div className="transaction--buttons">
+                <button className="transaction--button transaction--add">
+                  Add
+                </button>
+                <button className="transaction--button transaction--debit">
+                  Withdraw
+                </button>
+              </div>
+            </div>
+          </center>
+        </div>
         <div className="dashboard--card--main">
           <div className="dashboard--card--details">Phoeinix Card</div>
           <div className="card--main">
@@ -145,10 +173,25 @@ function Transaction() {
   const background = `rgb(${r},${g},${b}, 0.5)`;
   const textcolor = `rgb(${r},${g},${b})`;
   const styles = { background: background, color: textcolor };
+  let textstyle;
+  let transactionAmount = "+ 600"; //Pass through props
+  if (transactionAmount.slice(0, 1) === "+") {
+    textstyle = { color: "green" };
+  } else {
+    textstyle = { color: "red" };
+  }
+
   return (
     <div className="transction--main">
       <div style={styles} className="transaction--icon">
         <center>AD</center>
+      </div>
+      <div className="transaction--details">
+        Advance Details
+        <div className="transaction--date">17/12/2022</div>
+      </div>
+      <div className="transaction--amount" style={textstyle}>
+        {transactionAmount}
       </div>
     </div>
   );
