@@ -2,16 +2,29 @@ import React from "react";
 import logo from "./../../images/logo.png";
 import "./dashboard.css";
 import card from "./../../images/card.png";
+let amount;
 
 function Dashboard() {
   let data = getCookie("session");
-  console.log(data);
+  amount = "";
 
   if (data === "undefined") {
     // navigate("/");
   } else {
     // data = JSON.parse(data);
   }
+
+  function CheckAmount(amt) {
+    var regexp = /^\d+(\.\d{1,2})?$/;
+    if (regexp.test(amt)) {
+      amount = amount + amt;
+      console.log(amount);
+      document.getElementById("amount").value = amount;
+    } else {
+      document.getElementById("amount").value = amount;
+    }
+  }
+
   return (
     <div className="dashboard">
       <NavBar />
@@ -24,9 +37,11 @@ function Dashboard() {
             <div className="transaction--money">
               <div class="input-container ic1">
                 <input
-                  id="firstname"
+                  id="amount"
                   class="input"
-                  type="number"
+                  onKeyDown={(e) => {
+                    CheckAmount(e.key);
+                  }}
                   placeholder=" "
                 />
                 <div class="cut"></div>

@@ -1,6 +1,6 @@
 import "./login.css";
 import { useState } from "react";
-import { LoginAccount } from "../../../v1/account/account";
+import { LoginAccount, OAuthGoogle } from "../../../v1/account/account";
 import "react-toastify/dist/ReactToastify.css";
 import Slider from "react-slick";
 import logo from "./../../../images/logo.png";
@@ -89,7 +89,14 @@ function Login() {
                     Other signin options
                     <hr />
                   </div>
-                  <div className="o-auth--google">
+                  <div
+                    className="o-auth--google"
+                    onClick={(e) => {
+                      OAuthGoogle().then((e) => {
+                        alert(e);
+                      });
+                    }}
+                  >
                     <svg
                       width="22px"
                       height="22px"

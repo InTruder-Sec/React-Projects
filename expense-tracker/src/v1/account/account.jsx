@@ -66,4 +66,29 @@ const UpdateRecovery = async (userId, secret, password, cnfpassword) => {
   }
 };
 
-export { createAcc, LoginAccount, ForgotPasswordSend, UpdateRecovery };
+const OAuthGoogle = async () => {
+  try {
+    const scopes = [
+      "https://www.googleapis.com/auth/userinfo.email",
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "openid",
+    ];
+    const promise = await account.createOAuth2Session(
+      "google",
+      "http://localhost:3000/dashboard",
+      "http://localhost:3000/",
+      scopes
+    );
+    return promise;
+  } catch (er) {
+    console.log(er);
+  }
+};
+
+export {
+  createAcc,
+  LoginAccount,
+  ForgotPasswordSend,
+  UpdateRecovery,
+  OAuthGoogle,
+};
