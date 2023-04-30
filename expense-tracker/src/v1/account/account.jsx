@@ -66,22 +66,26 @@ const UpdateRecovery = async (userId, secret, password, cnfpassword) => {
   }
 };
 
-const OAuthGoogle = async () => {
+const OAuthGoogle = (e) => {
+  e.preventDefault();
   try {
-    const scopes = [
-      "https://www.googleapis.com/auth/userinfo.email",
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "openid",
-    ];
-    const promise = await account.createOAuth2Session(
+    account.createOAuth2Session(
       "google",
       "http://localhost:3000/dashboard",
-      "http://localhost:3000/",
-      scopes
+      "http://localhost:3000/"
     );
-    return promise;
   } catch (er) {
     console.log(er);
+  }
+};
+
+const FetchUser = async (setuserDetails) => {
+  try {
+    const data = await account.get();
+    await setuserDetails(data);
+    console.log(data);
+  } catch (err) {
+    setuserDetails("loggedOut");
   }
 };
 
@@ -91,4 +95,5 @@ export {
   ForgotPasswordSend,
   UpdateRecovery,
   OAuthGoogle,
+  FetchUser,
 };

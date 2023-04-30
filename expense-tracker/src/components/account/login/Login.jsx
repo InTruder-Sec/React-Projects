@@ -92,9 +92,7 @@ function Login() {
                   <div
                     className="o-auth--google"
                     onClick={(e) => {
-                      OAuthGoogle().then((e) => {
-                        alert(e);
-                      });
+                      OAuthGoogle(e);
                     }}
                   >
                     <svg
