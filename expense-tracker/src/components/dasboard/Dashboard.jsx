@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import logo from "./../../images/logo.png";
@@ -7,15 +7,23 @@ import card from "./../../images/card.png";
 import { FetchUser } from "../../v1/account/account";
 import TransactionGraph from "./TransactionGraph";
 import CreateSummary from "./CreateSummay";
+import LoadingEffect from "./LoadingEffect";
 let amount;
 
 function Dashboard() {
   const navigate = useNavigate();
-
+  var TransactionAmount = createContext();
+  var TransactionDetails = createContext();
   const [userDetails, setuserDetails] = useState("");
-
   useEffect(() => {
-    FetchUser(setuserDetails);
+    const status = FetchUser(setuserDetails);
+    console.log(status.PromiseState);
+    if (!status) {
+      navigate("/");
+      toast.error("Something went wrong");
+    } else {
+      document.cookie = "session=" + status;
+    }
   }, []);
 
   function CheckAmount(amt) {
@@ -28,49 +36,52 @@ function Dashboard() {
       document.getElementById("amount").value = amount;
     }
   }
-
-  return (
-    <div className="dashboard">
-      <NavBar userDetails={userDetails} />
-      <div className="dasboard--main">
-        <div className="dashboard--details">
-          <TransactionSummary />
-          <div className="dashboard--graph--main">
-            <TransactionGraph />
-            <TransactionMain />
-          </div>
-        </div>
-
-        <div className="dashboard--card--main">
-          <div className="dashboard--card--details">Phoeinix Card</div>
-          <div className="card--main">
-            <div className="card--details--main">
-              <div className="balance--head">Balance</div>
-              <div className="balance--amount">&#8377;3,232.20</div>
-              <div className="card--no">8263 9038 4590 2224</div>
-              <div className="card--holder--name">InTruder Security</div>
+  if (userDetails !== "") {
+    return (
+      <div className="dashboard">
+        <NavBar userDetails={userDetails} />
+        <div className="dasboard--main">
+          <div className="dashboard--details">
+            <TransactionSummary />
+            <div className="dashboard--graph--main">
+              <TransactionGraph />
+              <TransactionMain />
             </div>
-            <img
-              className="image--card"
-              src={card}
-              alt="Phoeinix Card"
-              draggable="false"
-            ></img>
           </div>
-          <div className="dashboard--card--details transaction--head">
-            Transaction History
-          </div>
-          <div className="transaction--history">
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
-            <Transaction />
+
+          <div className="dashboard--card--main">
+            <div className="dashboard--card--details">Phoeinix Card</div>
+            <div className="card--main">
+              <div className="card--details--main">
+                <div className="balance--head">Balance</div>
+                <div className="balance--amount">&#8377;0.00</div>
+                <div className="card--no">8263 9038 4590 2224</div>
+                <div className="card--holder--name">InTruder Security</div>
+              </div>
+              <img
+                className="image--card"
+                src={card}
+                alt="Phoeinix Card"
+                draggable="false"
+              ></img>
+            </div>
+            <div className="dashboard--card--details  transaction--head">
+              Transaction History
+            </div>
+            <div className="transaction--history">
+              <Transaction />
+              <Transaction />
+              <Transaction />
+              <Transaction />
+              <Transaction />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <LoadingEffect />;
+  }
 }
 
 function getCookie(name) {
@@ -192,23 +203,68 @@ function TransactionSummary() {
   );
 }
 
-function TransactionMain() {
+function TransactionMain(props) {
+  let TransactionAmount = useContext("TransactionAmount");
+  let TransactionDetails = useContext("TransactionDetails");
   return (
     <>
       <div className="transaction--money">
-        <div className="dashboard--transction--head dashboard--card--details">
+        <div className="dashboard--transction--head dashboard--card--details padding--b-2">
           Transaction Menu
         </div>
         <div class="input-container ic1">
-          <input id="amount" class="input" placeholder=" " />
+          <input
+            value={TransactionAmount}
+            id="amount"
+            class="input"
+            placeholder=""
+            required
+            onChange={(e) => {
+              TransactionAmount = e.target.value;
+            }}
+          />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">
             Amount
           </label>
         </div>
+        <div class="input-container ic1 ic2">
+          <input
+            id="paid-to"
+            class="input"
+            placeholder=" "
+            required
+            value={TransactionDetails}
+            onChange={(e) => {
+              TransactionDetails = e.target.value;
+            }}
+          />
+          <div class="cut"></div>
+          <label for="firstname" class="placeholder">
+            Detials
+          </label>
+        </div>
         <div className="transaction--buttons">
-          <button className="transaction--button transaction--add">Add</button>
-          <button className="transaction--button transaction--debit">
+          <button
+            className="transaction--button transaction--add"
+            type="submit"
+            onClick={(e) => {
+              MakeTransaction(TransactionAmount, TransactionDetails, "deposit");
+            }}
+          >
+            Add
+          </button>
+          <button
+            className="transaction--button transaction--debit"
+            type="submit"
+            onClick={(e) => {
+              MakeTransaction(
+                TransactionAmount,
+                TransactionDetails,
+                "withdraw"
+              );
+            }}
+          >
             Withdraw
           </button>
         </div>
@@ -248,6 +304,10 @@ function Transaction() {
       </div>
     </div>
   );
+}
+
+function MakeTransaction(amount, details, type) {
+  console.log(amount, details, type);
 }
 
 export default Dashboard;

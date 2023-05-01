@@ -60,9 +60,11 @@
 
 .dashboard--card--main {
   width: 470px;
-  background-color: rgb(234, 234, 234);
+  background-color: #ffffff;
   float: right;
   height: 82vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
   border-radius: 10px;
   padding: 20px 10px 20px 20px;
 }
@@ -70,11 +72,20 @@
 .dashboard--details {
   width: 100%;
   padding: 20px;
+  padding-top: 0px;
 }
 
 .dashboard--card--details {
   font-size: 24px;
   font-weight: 500;
+  padding-bottom: 0px;
+}
+
+.padding--b {
+  padding-bottom: 10px;
+}
+
+.padding--b-2 {
   padding-bottom: 20px;
 }
 
@@ -132,6 +143,12 @@
   padding: 0px 0px 20px 0px;
   height: 50%;
   overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.transaction--history::-webkit-scrollbar {
+  display: none;
 }
 
 .transction--main {
@@ -170,11 +187,14 @@
 .input-container {
   height: 50px;
   position: relative;
-  width: 60%;
+  width: 70%;
   display: inline-block;
 }
 
 .ic1 {
+  margin-top: 10px;
+}
+.ic2 {
   margin-top: 20px;
 }
 .input {
@@ -191,7 +211,7 @@
 }
 
 .cut {
-  background-color: #ffffff;
+  background-color: #f2f4f8;
   border-radius: 10px;
   height: 20px;
   left: 20px;
@@ -237,7 +257,7 @@
 }
 
 .transaction--buttons {
-  padding-top: 45px;
+  padding-top: 15px;
   margin-left: -20px;
 }
 
@@ -312,4 +332,98 @@
 
 .transaction--graph {
   width: 80%;
+}
+
+/* Loading Effect CSS */
+
+.loadingEffect {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  padding-top: 40vh;
+}
+
+.lds-roller {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000000;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

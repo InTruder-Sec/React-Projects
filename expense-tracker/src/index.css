@@ -20,3 +20,8 @@ textarea:focus,
 input:focus {
   outline: none;
 }
+
+.App {
+  background-color: #ecf0f9;
+  background-color: #f4f6fa;
+}

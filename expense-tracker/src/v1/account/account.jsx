@@ -1,5 +1,7 @@
 import { Client, Account, ID } from "appwrite";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Route, Navigate } from "react-router-dom";
 
 const client = new Client();
 
@@ -69,11 +71,13 @@ const UpdateRecovery = async (userId, secret, password, cnfpassword) => {
 const OAuthGoogle = (e) => {
   e.preventDefault();
   try {
-    account.createOAuth2Session(
-      "google",
-      "http://localhost:3000/dashboard",
-      "http://localhost:3000/"
-    );
+    account
+      .createOAuth2Session(
+        "google",
+        "http://localhost:3000/dashboard",
+        "http://localhost:3000/"
+      )
+      .then(FetchUser());
   } catch (er) {
     console.log(er);
   }
@@ -81,11 +85,12 @@ const OAuthGoogle = (e) => {
 
 const FetchUser = async (setuserDetails) => {
   try {
-    const data = await account.get();
-    await setuserDetails(data);
-    console.log(data);
+    const e = await account.get();
+    setuserDetails(e);
+    return 1;
   } catch (err) {
-    setuserDetails("loggedOut");
+    // setuserDetails("logge");
+    return 0;
   }
 };
 

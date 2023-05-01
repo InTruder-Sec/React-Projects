@@ -59,10 +59,10 @@ const data = [
 function TransactionGraph() {
   return (
     <div className="transaction--graph">
-      <div className="dashboard--transction--head dashboard--card--details">
+      <div className="dashboard--transction--head padding--b dashboard--card--details">
         Statistical
       </div>
-      <ResponsiveContainer width="90%" minWidth={"460px"} height="100%">
+      <ResponsiveContainer width="90%" minWidth={"560px"} height="100%">
         <BarChart
           width={500}
           height={300}
@@ -76,12 +76,24 @@ function TransactionGraph() {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-          <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
-          <Tooltip />
+          <YAxis yAxisId="left" orientation="left" stroke="#666" />
+          <YAxis yAxisId="right" orientation="right" stroke="#666" />
+          {/* <Tooltip /> */}
           <Legend />
-          <Bar yAxisId="left" dataKey="Deposit" fill="#8884d8" />
-          <Bar yAxisId="right" dataKey="Withdraw" fill="#82ca9d" />
+          <Bar
+            yAxisId="left"
+            dataKey="Deposit"
+            fill="#88E570"
+            barSize={20}
+            radius={[15, 15, 15, 15]}
+          />
+          <Bar
+            yAxisId="right"
+            dataKey="Withdraw"
+            fill="#5853BC"
+            radius={[15, 15, 15, 15]}
+            barSize={20}
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>
