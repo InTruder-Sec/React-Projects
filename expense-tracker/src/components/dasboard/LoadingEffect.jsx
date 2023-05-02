@@ -1,5 +1,4 @@
 import React from "react";
-
 function LoadingEffect() {
   return (
     <div className="loadingEffect">
@@ -13,6 +12,9 @@ function LoadingEffect() {
         <div></div>
         <div></div>
       </div>
+      <br />
+      <br />
+      <div className="loading--quote">"Still faster than Windows update"</div>
     </div>
   );
 }

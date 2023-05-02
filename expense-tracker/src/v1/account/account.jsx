@@ -1,7 +1,5 @@
 import { Client, Account, ID } from "appwrite";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Route, Navigate } from "react-router-dom";
 
 const client = new Client();
 
@@ -39,6 +37,15 @@ const LoginAccount = async (email, password) => {
   }
 };
 
+const DeleteSession = async () => {
+  try {
+    await account.deleteSession("current");
+    await toast.success("Logged out successfully");
+  } catch {
+    toast.error("Something Went wrong");
+  }
+};
+
 const ForgotPasswordSend = async (email) => {
   try {
     const promise = await account.createRecovery(
@@ -48,7 +55,7 @@ const ForgotPasswordSend = async (email) => {
     console.log(promise);
     return 1;
   } catch (err) {
-    toast.error(err.message);
+    toast.error("Something went wrong");
     return 0;
   }
 };
@@ -101,4 +108,5 @@ export {
   UpdateRecovery,
   OAuthGoogle,
   FetchUser,
+  DeleteSession,
 };

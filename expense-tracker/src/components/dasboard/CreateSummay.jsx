@@ -1,13 +1,5 @@
-import React, { PureComponent } from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import React from "react";
+import { AreaChart, Area, ResponsiveContainer } from "recharts";
 
 function CreateSummary(props) {
   const data = [

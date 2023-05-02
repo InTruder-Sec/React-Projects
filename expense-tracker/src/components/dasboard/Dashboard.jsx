@@ -1,42 +1,30 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import logo from "./../../images/logo.png";
 import "./dashboard.css";
 import card from "./../../images/card.png";
-import { FetchUser } from "../../v1/account/account";
+import { DeleteSession, FetchUser } from "../../v1/account/account";
 import TransactionGraph from "./TransactionGraph";
 import CreateSummary from "./CreateSummay";
 import LoadingEffect from "./LoadingEffect";
 let amount;
 
 function Dashboard() {
+  let isLoading = true;
   const navigate = useNavigate();
-  var TransactionAmount = createContext();
-  var TransactionDetails = createContext();
+  var TransactionAmount = createContext("");
+  var TransactionDetails = createContext("");
   const [userDetails, setuserDetails] = useState("");
   useEffect(() => {
-    const status = FetchUser(setuserDetails);
-    console.log(status.PromiseState);
-    if (!status) {
-      navigate("/");
-      toast.error("Something went wrong");
-    } else {
-      document.cookie = "session=" + status;
-    }
+    FetchUser(setuserDetails).then((e) => {
+      if (!e) {
+        navigate("/");
+      }
+    });
   }, []);
 
-  function CheckAmount(amt) {
-    var regexp = /^\d+(\.\d{1,2})?$/;
-    if (regexp.test(amt)) {
-      amount = amount + amt;
-      console.log(amount);
-      document.getElementById("amount").value = amount;
-    } else {
-      document.getElementById("amount").value = amount;
-    }
-  }
   if (userDetails !== "") {
+    isLoading = false;
     return (
       <div className="dashboard">
         <NavBar userDetails={userDetails} />
@@ -80,14 +68,9 @@ function Dashboard() {
       </div>
     );
   } else {
-    return <LoadingEffect />;
+    isLoading = true;
+    return <LoadingEffect isLoading={isLoading} />;
   }
-}
-
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
 function NavBar({ userDetails }) {
@@ -98,7 +81,17 @@ function NavBar({ userDetails }) {
         <div className="nav--logo--title">PHOEINIX.</div>
       </div>
       <div className="right--nav">
-        <div className="notification">
+        <div
+          className="notification"
+          onMouseEnter={(e) => {
+            PopupStay("notificationPop");
+          }}
+          onMouseLeave={(e) => {
+            PopupRemove("notificationPop");
+          }}
+        >
+          <MakePopup id={"notificationPop"} details={"No new notifications"} />
+
           <svg
             width="34px"
             height="34px"
@@ -139,7 +132,15 @@ function NavBar({ userDetails }) {
             </g>
           </svg>
         </div>
-        <div className="user--details--nav">
+        <div
+          className="user--details--nav"
+          onMouseEnter={(e) => {
+            PopupStay("profilePop");
+          }}
+          onMouseLeave={(e) => {
+            PopupRemove("profilePop");
+          }}
+        >
           <div className="username--nav">{userDetails.name}</div>
           <div className="user--profile">
             <svg
@@ -167,6 +168,7 @@ function NavBar({ userDetails }) {
               </g>
             </svg>
           </div>
+          <MakePopup id={"profilePop"} details={"Logout"} />
         </div>
       </div>
     </div>
@@ -176,9 +178,6 @@ function NavBar({ userDetails }) {
 function TransactionSummary() {
   return (
     <>
-      <div className="dashboard--transction--head dashboard--card--details">
-        Transaction Summary
-      </div>
       <div className="summary">
         <CreateSummary
           color="#0F4C75"
@@ -205,6 +204,7 @@ function TransactionSummary() {
 
 function TransactionMain(props) {
   let TransactionAmount = useContext("TransactionAmount");
+  console.log(TransactionAmount);
   let TransactionDetails = useContext("TransactionDetails");
   return (
     <>
@@ -217,7 +217,7 @@ function TransactionMain(props) {
             value={TransactionAmount}
             id="amount"
             class="input"
-            placeholder=""
+            placeholder=" "
             required
             onChange={(e) => {
               TransactionAmount = e.target.value;
@@ -268,6 +268,26 @@ function TransactionMain(props) {
             Withdraw
           </button>
         </div>
+        <div className="total--tran">
+          <div className="total--transaction r1">
+            Total
+            <br /> Transactions
+            <br />
+            <div className="amount--value">232</div>
+          </div>
+          <div className="total--transaction r2">
+            Deposited
+            <br />
+            Amount
+            <br />
+            <div className="amount--value">4000</div>
+          </div>
+          <div className="total--transaction r3">
+            Amount
+            <br /> Spent
+            <div className="amount--value">3200</div>
+          </div>
+        </div>
       </div>
     </>
   );
@@ -307,7 +327,41 @@ function Transaction() {
 }
 
 function MakeTransaction(amount, details, type) {
-  console.log(amount, details, type);
+  console.log(amount, details, type); //Transaction code here
+}
+
+function MakePopup(props) {
+  const navigate = useNavigate();
+  return (
+    <div
+      className="div--pop"
+      id={props.id}
+      onMouseEnter={(e) => {
+        PopupStay(props.id);
+      }}
+      onMouseLeave={(e) => {
+        PopupRemove(props.id);
+      }}
+      onClick={(e) => {
+        if (props.id === "profilePop") {
+          DeleteSession();
+          navigate("/");
+        }
+      }}
+    >
+      <div className="logout--btn">{props.details}</div>
+    </div>
+  );
+}
+
+function PopupStay(id) {
+  document.getElementById(id).style.opacity = "1";
+  document.getElementById(id).style.height = "70px";
+}
+
+function PopupRemove(id) {
+  document.getElementById(id).style.opacity = "0";
+  document.getElementById(id).style.height = "0px";
 }
 
 export default Dashboard;
