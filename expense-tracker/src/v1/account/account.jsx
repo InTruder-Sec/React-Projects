@@ -1,13 +1,18 @@
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID, Databases } from "appwrite";
 import { toast } from "react-toastify";
 
 const client = new Client();
 
 const account = new Account(client);
 
+const databases = new Databases(client);
+
 client
   .setEndpoint("https://cloud.appwrite.io/v1")
   .setProject("644652ef2083b98c6c6b");
+
+const databaseID = "64477883cee991eae1a7";
+const collectionId = "644778ca0d7933b1732d";
 
 const createAcc = async (email, username, password) => {
   try {
@@ -94,10 +99,34 @@ const FetchUser = async (setuserDetails) => {
   try {
     const e = await account.get();
     setuserDetails(e);
+    // console.log(e);
     return 1;
   } catch (err) {
     // setuserDetails("logge");
     return 0;
+  }
+};
+
+const FetchData = async () => {
+  try {
+    const data = await databases.listDocuments(databaseID, collectionId);
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+    toast.error("Something went wrong");
+  }
+};
+
+const CreateUserTransaction = async (uID) => {
+  try {
+    const data = await databases.createDocument(databaseID, collectionId, uID, {
+      UserTransaction: ["Grocery", "300", "14/10/2003"],
+    });
+    console.log(data);
+    FetchData();
+    toast.success("transactionAdded");
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -109,4 +138,6 @@ export {
   OAuthGoogle,
   FetchUser,
   DeleteSession,
+  FetchData,
+  CreateUserTransaction,
 };

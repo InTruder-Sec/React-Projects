@@ -3,22 +3,27 @@ import { useNavigate } from "react-router-dom";
 import logo from "./../../images/logo.png";
 import "./dashboard.css";
 import card from "./../../images/card.png";
-import { DeleteSession, FetchUser } from "../../v1/account/account";
+import {
+  CreateUserTransaction,
+  DeleteSession,
+  FetchData,
+  FetchUser,
+} from "../../v1/account/account";
 import TransactionGraph from "./TransactionGraph";
 import CreateSummary from "./CreateSummay";
 import LoadingEffect from "./LoadingEffect";
+import { toast } from "react-toastify";
 let amount;
 
 function Dashboard() {
   let isLoading = true;
   const navigate = useNavigate();
-  var TransactionAmount = createContext("");
-  var TransactionDetails = createContext("");
-  const [userDetails, setuserDetails] = useState("");
+  let [userDetails, setuserDetails] = useState("");
   useEffect(() => {
     FetchUser(setuserDetails).then((e) => {
       if (!e) {
         navigate("/");
+        toast.error("Something went wrong");
       }
     });
   }, []);
@@ -33,7 +38,7 @@ function Dashboard() {
             <TransactionSummary />
             <div className="dashboard--graph--main">
               <TransactionGraph />
-              <TransactionMain />
+              <TransactionMain userDetails={userDetails} />
             </div>
           </div>
 
@@ -204,7 +209,6 @@ function TransactionSummary() {
 
 function TransactionMain(props) {
   let TransactionAmount = useContext("TransactionAmount");
-  console.log(TransactionAmount);
   let TransactionDetails = useContext("TransactionDetails");
   return (
     <>
@@ -249,7 +253,7 @@ function TransactionMain(props) {
             className="transaction--button transaction--add"
             type="submit"
             onClick={(e) => {
-              MakeTransaction(TransactionAmount, TransactionDetails, "deposit");
+              MakeTransaction(props.userDetails);
             }}
           >
             Add
@@ -326,8 +330,8 @@ function Transaction() {
   );
 }
 
-function MakeTransaction(amount, details, type) {
-  console.log(amount, details, type); //Transaction code here
+function MakeTransaction(details) {
+  CreateUserTransaction(details.$id);
 }
 
 function MakePopup(props) {
