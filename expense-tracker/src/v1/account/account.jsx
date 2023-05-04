@@ -95,37 +95,52 @@ const OAuthGoogle = (e) => {
   }
 };
 
-const FetchUser = async (setuserDetails) => {
+const FetchUser = async (setuserDetails, setusrTransaction) => {
   try {
-    const e = await account.get();
-    setuserDetails(e);
-    // console.log(e);
+    account.get().then(async (e) => {
+      setuserDetails(e);
+      let uID = e.$id;
+      try {
+        GetTransaction(uID, setusrTransaction);
+      } catch {}
+    });
     return 1;
   } catch (err) {
-    // setuserDetails("logge");
     return 0;
   }
 };
 
-const FetchData = async () => {
+const CreateUserTransaction = async (uID, newTransaction) => {
   try {
-    const data = await databases.listDocuments(databaseID, collectionId);
-    console.log(data);
+    const data = await databases.createDocument(databaseID, collectionId, uID, {
+      UserTransaction: newTransaction,
+    });
+    toast.success("Transaction added successfully!");
   } catch (err) {
     console.log(err);
-    toast.error("Something went wrong");
+    console.log("something went wrong");
   }
 };
 
-const CreateUserTransaction = async (uID) => {
+const GetTransaction = async (uID, setusrTransaction) => {
   try {
-    const data = await databases.createDocument(databaseID, collectionId, uID, {
-      UserTransaction: ["Grocery", "300", "14/10/2003"],
+    databases.getDocument(databaseID, collectionId, uID).then((e) => {
+      setusrTransaction(e.UserTransaction);
+      return e;
     });
-    console.log(data);
-    FetchData();
-    toast.success("transactionAdded");
+  } catch (err) {}
+};
+
+const UpdateTransaction = async (uID, newTran) => {
+  console.log(newTran);
+  try {
+    databases
+      .updateDocument(databaseID, collectionId, uID, newTran)
+      .then((e) => {
+        toast.success("Transaction added successfully");
+      });
   } catch (err) {
+    toast.error("Transaction  Failed");
     console.log(err);
   }
 };
@@ -138,6 +153,7 @@ export {
   OAuthGoogle,
   FetchUser,
   DeleteSession,
-  FetchData,
   CreateUserTransaction,
+  GetTransaction,
+  UpdateTransaction,
 };

@@ -8,25 +8,29 @@ import {
   DeleteSession,
   FetchData,
   FetchUser,
+  GetTransaction,
+  UpdateTransaction,
 } from "../../v1/account/account";
 import TransactionGraph from "./TransactionGraph";
 import CreateSummary from "./CreateSummay";
 import LoadingEffect from "./LoadingEffect";
 import { toast } from "react-toastify";
-let amount;
 
 function Dashboard() {
   let isLoading = true;
   const navigate = useNavigate();
   let [userDetails, setuserDetails] = useState("");
   useEffect(() => {
-    FetchUser(setuserDetails).then((e) => {
+    FetchUser(setuserDetails, setusrTransaction).then((e) => {
       if (!e) {
         navigate("/");
         toast.error("Something went wrong");
+      } else {
       }
     });
   }, []);
+
+  const [usrTransaction, setusrTransaction] = useState("");
 
   if (userDetails !== "") {
     isLoading = false;
@@ -38,7 +42,11 @@ function Dashboard() {
             <TransactionSummary />
             <div className="dashboard--graph--main">
               <TransactionGraph />
-              <TransactionMain userDetails={userDetails} />
+              <TransactionMain
+                userDetails={userDetails}
+                setusrTransaction={setusrTransaction}
+                usrTransaction={usrTransaction}
+              />
             </div>
           </div>
 
@@ -208,8 +216,6 @@ function TransactionSummary() {
 }
 
 function TransactionMain(props) {
-  let TransactionAmount = useContext("TransactionAmount");
-  let TransactionDetails = useContext("TransactionDetails");
   return (
     <>
       <div className="transaction--money">
@@ -217,32 +223,14 @@ function TransactionMain(props) {
           Transaction Menu
         </div>
         <div class="input-container ic1">
-          <input
-            value={TransactionAmount}
-            id="amount"
-            class="input"
-            placeholder=" "
-            required
-            onChange={(e) => {
-              TransactionAmount = e.target.value;
-            }}
-          />
+          <input id="amount" class="input" placeholder=" " required />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">
             Amount
           </label>
         </div>
         <div class="input-container ic1 ic2">
-          <input
-            id="paid-to"
-            class="input"
-            placeholder=" "
-            required
-            value={TransactionDetails}
-            onChange={(e) => {
-              TransactionDetails = e.target.value;
-            }}
-          />
+          <input id="paid-to" class="input" placeholder=" " required />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">
             Detials
@@ -253,7 +241,12 @@ function TransactionMain(props) {
             className="transaction--button transaction--add"
             type="submit"
             onClick={(e) => {
-              MakeTransaction(props.userDetails);
+              MakeTransaction(
+                props.userDetails,
+                props.setusrTransaction,
+                props.usrTransaction,
+                1
+              );
             }}
           >
             Add
@@ -263,9 +256,10 @@ function TransactionMain(props) {
             type="submit"
             onClick={(e) => {
               MakeTransaction(
-                TransactionAmount,
-                TransactionDetails,
-                "withdraw"
+                props.userDetails,
+                props.setusrTransaction,
+                props.usrTransaction,
+                0
               );
             }}
           >
@@ -330,8 +324,38 @@ function Transaction() {
   );
 }
 
-function MakeTransaction(details) {
-  CreateUserTransaction(details.$id);
+function MakeTransaction(
+  details,
+  setTransaction,
+  usrTransaction,
+  transactionStatus
+) {
+  let amount = document.getElementById("amount").value;
+  let summary = document.getElementById("paid-to").value;
+  const date = new Date().toJSON().slice(0, 10);
+  let newTransaction = `[${amount}, "${summary}", "${date}"]`;
+  if (amount === "" && summary === "") {
+    toast.error("Please fill all parameters");
+  } else {
+    if (usrTransaction === "") {
+      newTransaction = [newTransaction];
+      CreateUserTransaction(details.$id, newTransaction).then((e) => {
+        GetTransaction(details.$id, setTransaction);
+        document.getElementById("paid-to").value = "";
+        document.getElementById("amount").value = "";
+      });
+    } else {
+      let newT = usrTransaction;
+      newT.push(newTransaction);
+
+      let temp = { UserTransaction: newT };
+      document.getElementById("paid-to").value = "";
+      document.getElementById("amount").value = "";
+      UpdateTransaction(details.$id, temp).then((e) => {
+        GetTransaction(details.$id, setTransaction);
+      });
+    }
+  }
 }
 
 function MakePopup(props) {
