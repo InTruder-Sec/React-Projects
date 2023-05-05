@@ -21,6 +21,8 @@ function Dashboard() {
   const navigate = useNavigate();
   let [userDetails, setuserDetails] = useState("");
   let TempAmount = 0.0;
+  let DepositedAmount = 0;
+  let DebitedAmount = 0;
 
   useEffect(() => {
     FetchUser(setuserDetails, setusrTransaction).then((e) => {
@@ -33,6 +35,7 @@ function Dashboard() {
   }, []);
 
   const [usrTransaction, setusrTransaction] = useState("");
+  let totalTransc = usrTransaction.length;
 
   if (userDetails !== "") {
     isLoading = false;
@@ -41,9 +44,11 @@ function Dashboard() {
       transc = usrTransaction.map((e) => {
         let t = e.split(",");
         if (t[3] === "1") {
-          TempAmount = TempAmount + parseInt(t[0]);
+          TempAmount = TempAmount + parseFloat(t[0]);
+          DepositedAmount = DepositedAmount + parseFloat(t[0]);
         } else {
-          TempAmount = TempAmount - parseInt(t[0]);
+          TempAmount = TempAmount - parseFloat(t[0]);
+          DebitedAmount = DebitedAmount + parseFloat(t[0]);
         }
 
         return (
@@ -71,6 +76,9 @@ function Dashboard() {
                 setusrTransaction={setusrTransaction}
                 usrTransaction={usrTransaction}
                 TempAmount={TempAmount}
+                totalTransc={totalTransc}
+                DepositedAmount={DepositedAmount}
+                DebitedAmount={DebitedAmount}
               />
             </div>
           </div>
@@ -235,6 +243,7 @@ function TransactionSummary() {
 }
 
 function TransactionMain(props) {
+  const [Amt, setAmt] = useState("");
   return (
     <>
       <div className="transaction--money">
@@ -243,11 +252,15 @@ function TransactionMain(props) {
         </div>
         <div class="input-container ic1">
           <input
+            value={Amt}
             id="amount"
             class="input"
             placeholder=" "
             required
             autoComplete="off"
+            onKeyDown={(e) => {
+              validateAmount(e.key, setAmt, Amt);
+            }}
           />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">
@@ -277,7 +290,8 @@ function TransactionMain(props) {
                 props.setusrTransaction,
                 props.usrTransaction,
                 1,
-                props.TempAmount
+                props.TempAmount,
+                setAmt
               );
             }}
           >
@@ -292,7 +306,8 @@ function TransactionMain(props) {
                 props.setusrTransaction,
                 props.usrTransaction,
                 0,
-                props.TempAmount
+                props.TempAmount,
+                setAmt
               );
             }}
           >
@@ -304,19 +319,19 @@ function TransactionMain(props) {
             Total
             <br /> Transactions
             <br />
-            <div className="amount--value">232</div>
+            <div className="amount--value">{props.totalTransc}</div>
           </div>
           <div className="total--transaction r2">
             Deposited
             <br />
             Amount
             <br />
-            <div className="amount--value">4000</div>
+            <div className="amount--value">{props.DepositedAmount}</div>
           </div>
           <div className="total--transaction r3">
             Amount
             <br /> Spent
-            <div className="amount--value">3200</div>
+            <div className="amount--value">{props.DebitedAmount}</div>
           </div>
         </div>
       </div>
@@ -341,11 +356,11 @@ function Transaction(props) {
   } else {
     textstyle = { color: "red" };
   }
-
+  let Display = props.details[0] + props.details[1];
   return (
     <div className="transction--main">
       <div style={styles} className="transaction--icon">
-        <center>AD</center>
+        <center>{Display}</center>
       </div>
       <div className="transaction--details">
         {props.details}
@@ -363,20 +378,17 @@ function MakeTransaction(
   setTransaction,
   usrTransaction,
   transactionStatus,
-  TempAmount
+  TempAmount,
+  setAmt
 ) {
   let amount = document.getElementById("amount").value;
   let summary = document.getElementById("paid-to").value;
-  const isValid = validateAmount(amount);
-  if (!isValid) {
-    toast.error("Please enter a valid amount!");
-    return 0;
-  }
   const date = new Date().toJSON().slice(0, 10);
-  let newTransaction = `${amount},${summary},${date},${transactionStatus}`;
   if (amount === "" && summary === "") {
     toast.error("Please fill all parameters");
   } else {
+    amount = (Math.round(amount * 100) / 100).toFixed(2);
+    let newTransaction = `${amount},${summary},${date},${transactionStatus}`;
     if (usrTransaction === "") {
       newTransaction = [newTransaction];
       if (!transactionStatus) {
@@ -388,6 +400,7 @@ function MakeTransaction(
       CreateUserTransaction(details.$id, newTransaction).then((e) => {
         GetTransaction(details.$id, setTransaction);
         document.getElementById("paid-to").value = "";
+        setAmt("");
         document.getElementById("amount").value = "";
       });
     } else {
@@ -401,6 +414,7 @@ function MakeTransaction(
       newT.push(newTransaction);
 
       let temp = { UserTransaction: newT };
+      setAmt("");
       document.getElementById("paid-to").value = "";
       document.getElementById("amount").value = "";
       UpdateTransaction(details.$id, temp, setTransaction);

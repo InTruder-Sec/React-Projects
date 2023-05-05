@@ -138,6 +138,7 @@
   height: 36px;
   border-radius: 22px;
   padding-top: 8px;
+  text-transform: uppercase;
 }
 
 .transaction--history {
@@ -168,7 +169,7 @@
 .transaction--details {
   padding-left: 10px;
   font-weight: 600;
-  width: 65%;
+  width: 60%;
   padding-top: 3px;
 }
 

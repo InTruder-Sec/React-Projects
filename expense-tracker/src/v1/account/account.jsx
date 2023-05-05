@@ -37,7 +37,7 @@ const LoginAccount = async (email, password) => {
     toast.success("Signed in successfully");
     return 1;
   } catch (err) {
-    toast.error(err.message);
+    toast.error("Invalid username or password");
     return 0;
   }
 };
@@ -87,8 +87,8 @@ const OAuthGoogle = (e) => {
     account
       .createOAuth2Session(
         "google",
-        "http://localhost:3001/dashboard",
-        "http://localhost:3001/"
+        "http://localhost:3000/dashboard",
+        "http://localhost:3000/"
       )
       .then(FetchUser());
   } catch (er) {
@@ -118,8 +118,7 @@ const CreateUserTransaction = async (uID, newTransaction) => {
     });
     toast.success("Transaction added successfully!");
   } catch (err) {
-    console.log(err);
-    console.log("something went wrong");
+    toast.error("Transaction too big or Transaction Failed!");
   }
 };
 
@@ -140,10 +139,11 @@ const UpdateTransaction = async (uID, newTran, setusrTransaction) => {
       .then((e) => {
         toast.success("Transaction added successfully");
         GetTransaction(uID, setusrTransaction);
+        return 1;
       });
   } catch (err) {
-    toast.error("Transaction  Failed");
-    console.log(err);
+    console.log("Eror");
+    return 0;
   }
 };
 
