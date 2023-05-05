@@ -143,7 +143,7 @@
 .transaction--history {
   margin-top: 15px;
   padding: 0px 0px 20px 0px;
-  height: 50%;
+  height: 45%;
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -168,7 +168,7 @@
 .transaction--details {
   padding-left: 10px;
   font-weight: 600;
-  width: 60%;
+  width: 65%;
   padding-top: 3px;
 }
 

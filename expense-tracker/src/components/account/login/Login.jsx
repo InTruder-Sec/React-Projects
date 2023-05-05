@@ -9,7 +9,6 @@ import loginImg2 from "./../../../images/loginImg2.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useNavigate } from "react-router-dom";
-import { FetchUser } from "../../../v1/account/account";
 
 function Login() {
   const navigate = useNavigate();
@@ -27,17 +26,7 @@ function Login() {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-  const [userDetails, setuserDetails] = useState("");
 
-  useEffect(() => {
-    FetchUser(setuserDetails).then((e) => {
-      if (!e) {
-        navigate("/");
-      } else {
-        navigate("/dashboard");
-      }
-    });
-  }, []);
   return (
     <div className="login--main">
       <center>

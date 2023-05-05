@@ -44,8 +44,9 @@ const LoginAccount = async (email, password) => {
 
 const DeleteSession = async () => {
   try {
-    await account.deleteSession("current");
-    await toast.success("Logged out successfully");
+    await account.deleteSession("current").then((e) => {
+      toast.success("Logged out successfully");
+    });
   } catch {
     toast.error("Something Went wrong");
   }
@@ -86,8 +87,8 @@ const OAuthGoogle = (e) => {
     account
       .createOAuth2Session(
         "google",
-        "http://localhost:3000/dashboard",
-        "http://localhost:3000/"
+        "http://localhost:3001/dashboard",
+        "http://localhost:3001/"
       )
       .then(FetchUser());
   } catch (er) {
@@ -126,18 +127,19 @@ const GetTransaction = async (uID, setusrTransaction) => {
   try {
     databases.getDocument(databaseID, collectionId, uID).then((e) => {
       setusrTransaction(e.UserTransaction);
+      console.log(e);
       return e;
     });
   } catch (err) {}
 };
 
-const UpdateTransaction = async (uID, newTran) => {
-  console.log(newTran);
+const UpdateTransaction = async (uID, newTran, setusrTransaction) => {
   try {
     databases
       .updateDocument(databaseID, collectionId, uID, newTran)
       .then((e) => {
         toast.success("Transaction added successfully");
+        GetTransaction(uID, setusrTransaction);
       });
   } catch (err) {
     toast.error("Transaction  Failed");

@@ -6,7 +6,6 @@ import card from "./../../images/card.png";
 import {
   CreateUserTransaction,
   DeleteSession,
-  FetchData,
   FetchUser,
   GetTransaction,
   UpdateTransaction,
@@ -15,16 +14,19 @@ import TransactionGraph from "./TransactionGraph";
 import CreateSummary from "./CreateSummay";
 import LoadingEffect from "./LoadingEffect";
 import { toast } from "react-toastify";
+import { validateAmount } from "./transactionChecks";
 
 function Dashboard() {
   let isLoading = true;
   const navigate = useNavigate();
   let [userDetails, setuserDetails] = useState("");
+  let TempAmount = 0.0;
+
   useEffect(() => {
     FetchUser(setuserDetails, setusrTransaction).then((e) => {
       if (!e) {
         navigate("/");
-        toast.error("Something went wrong");
+        toast.error("Please log in again");
       } else {
       }
     });
@@ -34,18 +36,41 @@ function Dashboard() {
 
   if (userDetails !== "") {
     isLoading = false;
+    let transc;
+    if (usrTransaction !== "") {
+      transc = usrTransaction.map((e) => {
+        let t = e.split(",");
+        if (t[3] === "1") {
+          TempAmount = TempAmount + parseInt(t[0]);
+        } else {
+          TempAmount = TempAmount - parseInt(t[0]);
+        }
+
+        return (
+          <Transaction amount={t[0]} details={t[1]} date={t[2]} status={t[3]} />
+        );
+      });
+    } else {
+      transc = <div className="no--transaction">No Transactions till now</div>;
+    }
+
+    let FormatedAmount = (Math.round(TempAmount * 100) / 100).toFixed(2);
     return (
       <div className="dashboard">
         <NavBar userDetails={userDetails} />
         <div className="dasboard--main">
           <div className="dashboard--details">
-            <TransactionSummary />
+            <TransactionSummary userTransaction={usrTransaction} />
             <div className="dashboard--graph--main">
-              <TransactionGraph />
+              <TransactionGraph
+                userDetails={userDetails}
+                userTransaction={usrTransaction}
+              />
               <TransactionMain
                 userDetails={userDetails}
                 setusrTransaction={setusrTransaction}
                 usrTransaction={usrTransaction}
+                TempAmount={TempAmount}
               />
             </div>
           </div>
@@ -55,9 +80,9 @@ function Dashboard() {
             <div className="card--main">
               <div className="card--details--main">
                 <div className="balance--head">Balance</div>
-                <div className="balance--amount">&#8377;0.00</div>
-                <div className="card--no">8263 9038 4590 2224</div>
-                <div className="card--holder--name">InTruder Security</div>
+                <div className="balance--amount">&#8377;{FormatedAmount}</div>
+                <div className="card--no">{userDetails.$id}</div>
+                <div className="card--holder--name">{userDetails.name}</div>
               </div>
               <img
                 className="image--card"
@@ -69,13 +94,7 @@ function Dashboard() {
             <div className="dashboard--card--details  transaction--head">
               Transaction History
             </div>
-            <div className="transaction--history">
-              <Transaction />
-              <Transaction />
-              <Transaction />
-              <Transaction />
-              <Transaction />
-            </div>
+            <div className="transaction--history">{transc}</div>
           </div>
         </div>
       </div>
@@ -223,14 +242,26 @@ function TransactionMain(props) {
           Transaction Menu
         </div>
         <div class="input-container ic1">
-          <input id="amount" class="input" placeholder=" " required />
+          <input
+            id="amount"
+            class="input"
+            placeholder=" "
+            required
+            autoComplete="off"
+          />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">
             Amount
           </label>
         </div>
         <div class="input-container ic1 ic2">
-          <input id="paid-to" class="input" placeholder=" " required />
+          <input
+            id="paid-to"
+            class="input"
+            placeholder=" "
+            required
+            autoComplete="off"
+          />
           <div class="cut"></div>
           <label for="firstname" class="placeholder">
             Detials
@@ -245,7 +276,8 @@ function TransactionMain(props) {
                 props.userDetails,
                 props.setusrTransaction,
                 props.usrTransaction,
-                1
+                1,
+                props.TempAmount
               );
             }}
           >
@@ -259,7 +291,8 @@ function TransactionMain(props) {
                 props.userDetails,
                 props.setusrTransaction,
                 props.usrTransaction,
-                0
+                0,
+                props.TempAmount
               );
             }}
           >
@@ -291,18 +324,19 @@ function TransactionMain(props) {
   );
 }
 
-function Transaction() {
+function Transaction(props) {
   const randomBetween = (min, max) =>
     min + Math.floor(Math.random() * (max - min + 1));
-  const r = randomBetween(0, 185);
-  const g = randomBetween(100, 185);
-  const b = randomBetween(0, 185);
+  const r = randomBetween(0, 225);
+  const g = randomBetween(100, 225);
+  const b = randomBetween(0, 225);
   const background = `rgb(${r},${g},${b}, 0.5)`;
   const textcolor = `rgb(${r},${g},${b})`;
+
   const styles = { background: background, color: textcolor };
   let textstyle;
-  let transactionAmount = "+ 600"; //Pass through props
-  if (transactionAmount.slice(0, 1) === "+") {
+  let transactionAmount = props.amount;
+  if (props.status === "1") {
     textstyle = { color: "green" };
   } else {
     textstyle = { color: "red" };
@@ -314,11 +348,11 @@ function Transaction() {
         <center>AD</center>
       </div>
       <div className="transaction--details">
-        Advance Details
-        <div className="transaction--date">17/12/2022</div>
+        {props.details}
+        <div className="transaction--date">{props.date}</div>
       </div>
       <div className="transaction--amount" style={textstyle}>
-        {transactionAmount}
+        &#8377; {transactionAmount}
       </div>
     </div>
   );
@@ -328,32 +362,48 @@ function MakeTransaction(
   details,
   setTransaction,
   usrTransaction,
-  transactionStatus
+  transactionStatus,
+  TempAmount
 ) {
   let amount = document.getElementById("amount").value;
   let summary = document.getElementById("paid-to").value;
+  const isValid = validateAmount(amount);
+  if (!isValid) {
+    toast.error("Please enter a valid amount!");
+    return 0;
+  }
   const date = new Date().toJSON().slice(0, 10);
-  let newTransaction = `[${amount}, "${summary}", "${date}"]`;
+  let newTransaction = `${amount},${summary},${date},${transactionStatus}`;
   if (amount === "" && summary === "") {
     toast.error("Please fill all parameters");
   } else {
     if (usrTransaction === "") {
       newTransaction = [newTransaction];
+      if (!transactionStatus) {
+        if (TempAmount < amount) {
+          toast.error("Not enough balance");
+          return 0;
+        }
+      }
       CreateUserTransaction(details.$id, newTransaction).then((e) => {
         GetTransaction(details.$id, setTransaction);
         document.getElementById("paid-to").value = "";
         document.getElementById("amount").value = "";
       });
     } else {
+      if (!transactionStatus) {
+        if (TempAmount < amount) {
+          toast.error("Not enough balance");
+          return 0;
+        }
+      }
       let newT = usrTransaction;
       newT.push(newTransaction);
 
       let temp = { UserTransaction: newT };
       document.getElementById("paid-to").value = "";
       document.getElementById("amount").value = "";
-      UpdateTransaction(details.$id, temp).then((e) => {
-        GetTransaction(details.$id, setTransaction);
-      });
+      UpdateTransaction(details.$id, temp, setTransaction);
     }
   }
 }
@@ -372,7 +422,7 @@ function MakePopup(props) {
       }}
       onClick={(e) => {
         if (props.id === "profilePop") {
-          DeleteSession();
+          DeleteSession(props.setuserDetails);
           navigate("/");
         }
       }}
