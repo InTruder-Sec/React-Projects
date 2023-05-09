@@ -114,9 +114,15 @@ function ResetPass() {
                     Back to login page?
                     <hr />
                   </div>
-                  <a href="/">
-                    <div className="create--account">Login</div>
-                  </a>
+
+                  <div
+                    className="create--account"
+                    onClick={(e) => {
+                      navigate("/");
+                    }}
+                  >
+                    Login
+                  </div>
                 </div>
               </div>
             </div>

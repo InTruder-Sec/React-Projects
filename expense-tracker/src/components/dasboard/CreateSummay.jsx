@@ -57,9 +57,10 @@ function CreateSummary(props) {
             />
           </AreaChart>
         </ResponsiveContainer>
+        {}
         <div className="summary--details">
           <div className="s--head">{props.day}</div>
-          <div className="s--transactions">&#8377; 240</div>
+          <div className="s--transactions">&#8377; {props.newAmount}</div>
         </div>
       </div>
     </>

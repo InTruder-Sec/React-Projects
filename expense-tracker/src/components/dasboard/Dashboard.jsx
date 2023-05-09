@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "./../../images/logo.png";
 import "./dashboard.css";
@@ -11,10 +11,10 @@ import {
   UpdateTransaction,
 } from "../../v1/account/account";
 import TransactionGraph from "./TransactionGraph";
-import CreateSummary from "./CreateSummay";
 import LoadingEffect from "./LoadingEffect";
 import { toast } from "react-toastify";
 import { validateAmount } from "./transactionChecks";
+import TransactionSummary from "./TransactionSummary";
 
 function Dashboard() {
   let isLoading = true;
@@ -41,7 +41,9 @@ function Dashboard() {
     isLoading = false;
     let transc;
     if (usrTransaction !== "") {
-      transc = usrTransaction.map((e) => {
+      let tempUserTransaction = [...usrTransaction].reverse();
+
+      transc = tempUserTransaction.map((e) => {
         let t = e.split(",");
         if (t[3] === "1") {
           TempAmount = TempAmount + parseFloat(t[0]);
@@ -60,16 +62,53 @@ function Dashboard() {
     }
 
     let FormatedAmount = (Math.round(TempAmount * 100) / 100).toFixed(2);
+    let Today = new Date();
+
+    let TodaysDate = Today.getDate();
+
+    let WeeklyDate = TodaysDate;
+    let WeeklyDay;
+    let WeekDates = [];
+    let WeekDay = [];
+
+    function getDayOfWeek(date) {
+      const dayOfWeek = new Date(date).getDay();
+      return isNaN(dayOfWeek)
+        ? null
+        : [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ][dayOfWeek];
+    }
+
+    for (let i = 0; i < 7; i++) {
+      WeeklyDate = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
+      WeeklyDate = WeeklyDate.toISOString().split("T")[0];
+      WeeklyDay = getDayOfWeek(WeeklyDate);
+      WeekDay.push(WeeklyDay);
+      WeekDates.push(WeeklyDate);
+    }
+
     return (
       <div className="dashboard">
         <NavBar userDetails={userDetails} />
         <div className="dasboard--main">
           <div className="dashboard--details">
-            <TransactionSummary userTransaction={usrTransaction} />
+            <TransactionSummary
+              userTransaction={usrTransaction}
+              WeekDates={WeekDates}
+            />
             <div className="dashboard--graph--main">
               <TransactionGraph
                 userDetails={userDetails}
                 userTransaction={usrTransaction}
+                WeekDates={WeekDates}
+                WeekDay={WeekDay}
               />
               <TransactionMain
                 userDetails={userDetails}
@@ -215,33 +254,6 @@ function NavBar({ userDetails }) {
   );
 }
 
-function TransactionSummary() {
-  return (
-    <>
-      <div className="summary">
-        <CreateSummary
-          color="#0F4C75"
-          bgcolor="#3282B8"
-          point="4200"
-          day="Today"
-        />
-        <CreateSummary
-          color="#50CB93"
-          bgcolor="#71EFA3"
-          point="1200"
-          day="This Week"
-        />
-        <CreateSummary
-          color="#E36BAE"
-          bgcolor="#F8A1D1"
-          point="40"
-          day="This Month"
-        />
-      </div>
-    </>
-  );
-}
-
 function TransactionMain(props) {
   const [Amt, setAmt] = useState("");
   return (
@@ -250,11 +262,12 @@ function TransactionMain(props) {
         <div className="dashboard--transction--head dashboard--card--details padding--b-2">
           Transaction Menu
         </div>
-        <div class="input-container ic1">
+        <div className="input-container ic1">
           <input
             value={Amt}
             id="amount"
-            class="input"
+            type="number"
+            className="input"
             placeholder=" "
             required
             autoComplete="off"
@@ -262,22 +275,22 @@ function TransactionMain(props) {
               validateAmount(e.key, setAmt, Amt);
             }}
           />
-          <div class="cut"></div>
-          <label for="firstname" class="placeholder">
+          <div className="cut"></div>
+          <label for="firstname" className="placeholder">
             Amount
           </label>
         </div>
-        <div class="input-container ic1 ic2">
+        <div className="input-container ic1 ic2">
           <input
             id="paid-to"
-            class="input"
+            className="input"
             placeholder=" "
             required
             autoComplete="off"
           />
-          <div class="cut"></div>
-          <label for="firstname" class="placeholder">
-            Detials
+          <div className="cut"></div>
+          <label for="firstname" className="placeholder">
+            Details
           </label>
         </div>
         <div className="transaction--buttons">
@@ -356,7 +369,11 @@ function Transaction(props) {
   } else {
     textstyle = { color: "red" };
   }
-  let Display = props.details[0] + props.details[1];
+  let q = props.details[1];
+  if (props.details[1] === undefined) {
+    q = "";
+  }
+  let Display = props.details[0] + q;
   return (
     <div className="transction--main">
       <div style={styles} className="transaction--icon">
@@ -384,7 +401,7 @@ function MakeTransaction(
   let amount = document.getElementById("amount").value;
   let summary = document.getElementById("paid-to").value;
   const date = new Date().toJSON().slice(0, 10);
-  if (amount === "" && summary === "") {
+  if (amount === "" || summary === "") {
     toast.error("Please fill all parameters");
   } else {
     amount = (Math.round(amount * 100) / 100).toFixed(2);

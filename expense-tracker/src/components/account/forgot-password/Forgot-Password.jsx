@@ -84,17 +84,28 @@ function ForgotPass() {
                     Already Have an account?
                     <hr />
                   </div>
-                  <a href="/">
-                    <div className="create--account">Login</div>
-                  </a>
+                  <div
+                    className="create--account"
+                    onClick={(e) => {
+                      navigate("/");
+                    }}
+                  >
+                    Login
+                  </div>
+
                   <div className="other--options">
                     <hr />
                     Not registered yet?
                     <hr />
                   </div>
-                  <a href="./register">
-                    <div className="create--account">Create Account</div>
-                  </a>
+                  <div
+                    className="create--account"
+                    onClick={(e) => {
+                      navigate("/register");
+                    }}
+                  >
+                    Create Account
+                  </div>
                 </div>
               </div>
             </div>

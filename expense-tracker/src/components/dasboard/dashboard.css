@@ -64,7 +64,7 @@
   width: 470px;
   background-color: #ffffff;
   float: right;
-  height: 79vh;
+  height: 620px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   border-radius: 10px;
@@ -144,7 +144,7 @@
 .transaction--history {
   margin-top: 15px;
   padding: 0px 0px 20px 0px;
-  height: 45%;
+  height: 42%;
   overflow-y: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -300,6 +300,7 @@
   background-color: #ffffff;
   padding-left: 20px;
   padding-top: 15px;
+  margin-top: 20px;
   display: flex;
   border-radius: 8px;
   transition: 0.5s;
@@ -317,6 +318,7 @@
   justify-content: space-evenly;
   flex-direction: row;
   padding-top: 5px;
+  margin-top: -20px;
 }
 
 .s--transactions {
@@ -458,6 +460,7 @@
 .total--tran {
   margin-top: 30px;
   text-align: center;
+  width: 400px;
 }
 
 .total--transaction {
@@ -505,4 +508,124 @@
 .amount--value {
   font-family: "Rajdhani", sans-serif;
   font-size: 18px;
+}
+
+@media (max-width: 1430px) {
+  .dashboard--graph--main {
+    display: block;
+  }
+  .transaction--graph .recharts-responsive-container {
+    height: 400px !important;
+  }
+  .transaction--money {
+    margin-left: 20%;
+    margin-top: 75px;
+    width: 55%;
+  }
+  .transaction--graph .recharts-responsive-container {
+    min-width: 560px !important;
+  }
+
+  .dashboard--card--main {
+    height: 100%;
+  }
+}
+
+@media (max-width: 1040px) {
+  .dashboard {
+    padding-left: 10px;
+  }
+  .transaction--graph .recharts-responsive-container {
+    min-width: 560px !important;
+  }
+  .recharts-rectangle {
+    width: 10px !important;
+  }
+}
+
+@media (max-width: 890px) {
+  .dasboard--main {
+    flex-direction: column-reverse;
+  }
+  .dashboard--card--main {
+    margin: 0px auto;
+  }
+  .transaction--graph {
+    margin: 20px auto;
+  }
+  .transaction--money {
+    margin: 50px auto;
+  }
+  .summary {
+    margin-top: 10px;
+  }
+  .dashboard--graph--main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .transaction--graph {
+    margin-top: 200px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard--card--main {
+    width: 75%;
+  }
+  .transaction--graph {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard--details {
+    padding: 20px 0px 20px 10px;
+  }
+  .dashboard--card--main {
+    width: 90%;
+  }
+  .transaction--graph .recharts-wrapper {
+    margin-left: -20px;
+  }
+  .dashboard--graph--main {
+    margin-left: -20px;
+  }
+  .image--card {
+    width: 100%;
+  }
+  .summary {
+    margin: 10px 0px;
+    justify-content: unset;
+  }
+  .notification {
+    display: none;
+  }
+  .username--nav {
+    margin-top: 15px;
+  }
+  .transaction--money {
+    width: 90%;
+    margin-left: 30px;
+  }
+  .transaction--graph {
+    display: none;
+  }
+  .login--quote {
+    width: 96%;
+  }
+  .input-container {
+    width: 80%;
+  }
+  .s-transaction {
+    width: 300px;
+  }
+  .oauth--text {
+    margin-top: 4px;
+  }
+  .card--details--main {
+    height: 145px;
+  }
 }

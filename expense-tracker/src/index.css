@@ -1,4 +1,5 @@
 body {
+  background-color: #f4f6fa;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -22,6 +23,6 @@ input:focus {
 }
 
 .App {
-  background-color: #ecf0f9;
   background-color: #f4f6fa;
+  height: max-content;
 }

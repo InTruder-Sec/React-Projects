@@ -56,7 +56,7 @@ const ForgotPasswordSend = async (email) => {
   try {
     const promise = await account.createRecovery(
       email,
-      "http://localhost/reset"
+      "https://phoeinix.netlify.app/reset"
     );
     console.log(promise);
     return 1;
@@ -87,8 +87,8 @@ const OAuthGoogle = (e) => {
     account
       .createOAuth2Session(
         "google",
-        "http://localhost:3000/dashboard",
-        "http://localhost:3000/"
+        "https://phoeinix.netlify.app/dashboard",
+        "https://phoeinix.netlify.app/"
       )
       .then(FetchUser());
   } catch (er) {
