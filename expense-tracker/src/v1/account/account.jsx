@@ -16,12 +16,7 @@ const collectionId = "644778ca0d7933b1732d";
 
 const createAcc = async (email, username, password) => {
   try {
-    const promise = await account.create(
-      ID.unique(),
-      email,
-      password,
-      username
-    );
+    await account.create(ID.unique(), email, password, username);
     toast.success("Account Created Successfully");
     return 1;
   } catch (err) {
@@ -56,7 +51,7 @@ const ForgotPasswordSend = async (email) => {
   try {
     const promise = await account.createRecovery(
       email,
-      "https://phoeinix.netlify.app/reset"
+      "https://https://phoeinix.netlify.app/"
     );
     console.log(promise);
     return 1;
@@ -68,12 +63,7 @@ const ForgotPasswordSend = async (email) => {
 
 const UpdateRecovery = async (userId, secret, password, cnfpassword) => {
   try {
-    const promise = await account.updateRecovery(
-      userId,
-      secret,
-      password,
-      cnfpassword
-    );
+    await account.updateRecovery(userId, secret, password, cnfpassword);
     return 1;
   } catch (err) {
     toast.error(err.message);
@@ -113,7 +103,7 @@ const FetchUser = async (setuserDetails, setusrTransaction) => {
 
 const CreateUserTransaction = async (uID, newTransaction) => {
   try {
-    const data = await databases.createDocument(databaseID, collectionId, uID, {
+    await databases.createDocument(databaseID, collectionId, uID, {
       UserTransaction: newTransaction,
     });
     toast.success("Transaction added successfully!");

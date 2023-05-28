@@ -15,6 +15,7 @@ import LoadingEffect from "./LoadingEffect";
 import { toast } from "react-toastify";
 import { validateAmount } from "./transactionChecks";
 import TransactionSummary from "./TransactionSummary";
+import Footer from "../footer/Footer";
 
 function Dashboard() {
   let isLoading = true;
@@ -32,7 +33,7 @@ function Dashboard() {
       } else {
       }
     });
-  }, []);
+  }, [navigate]);
 
   const [usrTransaction, setusrTransaction] = useState("");
   let totalTransc = usrTransaction.length;
@@ -144,6 +145,7 @@ function Dashboard() {
             <div className="transaction--history">{transc}</div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   } else {
