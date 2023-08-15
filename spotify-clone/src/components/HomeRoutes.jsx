@@ -20,4 +20,5 @@ function HomeRoutes(props) {
     </BrowserRouter>
   );
 }
+
 export default HomeRoutes;
