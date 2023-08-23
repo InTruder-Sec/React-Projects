@@ -5,4 +5,4 @@
 4. [Playifyi](https://playifyi.netlify.app/)
 5. [Health Care App](https://healthcare-service.netlify.app/)
 6. [Portfolio (Using react)](https://intruder-security.systems/)
-7. [Expense Tracker](https://phoeinix.netlify.app/) Made with appwrite cloud
+7. [Expense Tracker](https://phoeinix.netlify.app/) [Made with appwrite cloud]
