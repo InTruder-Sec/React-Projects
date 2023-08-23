@@ -14,7 +14,6 @@ function App() {
   const [nextWindow, ChangeNextWindow] = useState("");
   previousWindow = createContext(prevWindow);
   nxtWindow = createContext(nextWindow);
-
   return (
     <BrowserRouter>
       <div className="App">
