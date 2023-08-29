@@ -7,8 +7,9 @@ function NowPlaying() {
       <div className="signup--div">Sign up free</div>
       <div className="nowplaying--title">PREVIEW OF PLAYIFY</div>
       <div className="nowplaying--details">
-        Sign up to get unlimited songs and podcasts with occasional ads. No
-        credit card required.
+        Playify is coming soon, you can't play or listen to any songs yet! In
+        the meantime, you can explore latest and trending songs, and search for
+        songs.
       </div>
     </div>
   );
