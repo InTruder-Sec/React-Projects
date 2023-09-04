@@ -1,6 +1,5 @@
 import GetToken, { GetPLaylist } from "../api/access";
 import "./Cards.css";
-import { playlistData } from "./Main";
 let Playlisturl;
 
 function Cards(props) {
@@ -25,6 +24,7 @@ function Cards(props) {
         props.changeData(data);
       });
     });
+
     document.getElementById("prev--arrow").style.cursor = "pointer";
     document.getElementById("prev--arrow").style.opacity = "1";
     document.getElementById("next--arrow").style.cursor = "not-allowed";
